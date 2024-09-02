@@ -1,0 +1,58 @@
+.info-box {
+    position: relative;
+    /* Add relative positioning */
+    overflow: hidden;
+    white-space: nowrap;
+    box-sizing: border-box;
+    border: 2px solid transparent;
+    /* Start with transparent border */
+    padding: 1rem;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+    animation: pulse-border 3s infinite;
+    /* Apply pulse animation */
+}
+
+@keyframes pulse-border {
+
+    
+    100% {
+        border-color: #dc2626;
+        /* Start and end with red */
+    }
+
+    75% {
+        border-color: #f87171;
+    }
+
+    50% {
+        border-color: #fca5a5;
+        /* Pulse to green at 50% */
+    }
+
+    25% {
+        border-color: #fecaca;
+    }
+
+    10% {
+        border-color: #ffffff;
+    }
+
+    
+}
+
+.info-box p {
+    display: inline-block;
+    white-space: nowrap;
+    animation: scroll-text 40s linear infinite;
+}
+
+@keyframes scroll-text {
+    0% {
+        transform: translateX(65%);
+    }
+
+    100% {
+        transform: translateX(-100%);
+    }
+}

@@ -1,0 +1,28 @@
+.info-container a {
+  display: block; 
+  margin: 8px; 
+  color: black; 
+  text-decoration: none; 
+}
+.section-heading {
+  font-weight: bold;
+  font-size: 1.5em;
+  margin-top: 10px; 
+}
+
+.title {
+  font-weight: bold;
+  font-size: 3em; 
+  margin-top: 10px; 
+}
+
+.identification-card-container {
+  display: flex;
+  flex-wrap: wrap; 
+  gap: 10px; 
+}
+
+.identification-image {
+  max-width: 400px; 
+  height: auto;
+}

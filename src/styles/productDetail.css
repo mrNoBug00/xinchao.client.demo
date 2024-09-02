@@ -1,0 +1,8 @@
+.product-detail-container {
+    border: 1px solid #ccc;
+    max-width: 800px; /* Đặt chiều rộng tối đa */
+    margin: 20px; /* Căn giữa theo chiều ngang */
+    padding: 20px;
+    border-radius: 8px; 
+  }
+  

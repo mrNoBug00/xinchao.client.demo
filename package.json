@@ -1,0 +1,47 @@
+{
+  "name": "xinchao",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@headlessui/react": "^2.1.2",
+    "@heroicons/react": "^2.1.4",
+    "@react-google-maps/api": "^2.19.3",
+    "@types/dotenv": "^8.2.0",
+    "@types/react-helmet-async": "^1.0.3",
+    "axios": "^1.7.2",
+    "cookie": "^0.6.0",
+    "dotenv": "^16.4.5",
+    "framer-motion": "^11.3.2",
+    "js-cookie": "^3.0.5",
+    "jsonwebtoken": "^9.0.2",
+    "next": "14.2.4",
+    "react": "^18",
+    "react-copy-to-clipboard": "^5.1.0",
+    "react-dom": "^18",
+    "react-helmet-async": "^2.0.5",
+    "react-icons": "^5.2.1",
+    "react-signature-canvas": "^1.0.6",
+    "react-to-print": "^2.15.1",
+    "react-toastify": "^10.0.5",
+    "yet-another-react-lightbox": "^3.21.1"
+  },
+  "devDependencies": {
+    "@types/node": "^20",
+    "@types/react": "^18",
+    "@types/react-copy-to-clipboard": "^5.0.7",
+    "@types/react-dom": "^18",
+    "@types/react-signature-canvas": "^1.0.5",
+    "autoprefixer": "^10.4.19",
+    "eslint": "^8",
+    "eslint-config-next": "14.2.4",
+    "postcss": "^8.4.39",
+    "tailwindcss": "^3.4.4",
+    "typescript": "^5"
+  }
+}
