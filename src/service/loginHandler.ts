@@ -23,7 +23,7 @@ export async function loginHandler(email: string, password: string): Promise<Log
         "Content-Type": "application/json",
       },
       body: JSON.stringify({ email, password }),
-      mode: "no-cors",
+      
     });
 
     if (!response.ok) {
