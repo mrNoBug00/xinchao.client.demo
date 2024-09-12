@@ -1,8 +1,8 @@
 
 import { auth } from '../security/auth';
 
-export const IMG_URL = "http://xcserver.site:8080/api/v1/images";
-export const BASE_URL = "http://xcserver.site:8080";
+export const IMG_URL = "https://xcserver.site:443/api/v1/images";
+export const BASE_URL = "https://xcserver.site:443";
 
 interface FetchOptions extends RequestInit {
     headers?: HeadersInit;
