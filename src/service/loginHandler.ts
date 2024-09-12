@@ -18,11 +18,12 @@ export async function loginHandler(email: string, password: string): Promise<Log
 
   try {
     const response = await fetch(apiUrl, {
-      method: 'POST',
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
       },
       body: JSON.stringify({ email, password }),
+      mode: "no-cors",
     });
 
     if (!response.ok) {
