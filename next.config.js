@@ -4,7 +4,7 @@ require("dotenv").config({
 
 const nextConfig = {
   images: {
-    domains: ["13.213.33.4"],
+    domains: ["xcserver.site"],
   },
   env: {
     GOOGLE_MAPS_API_KEY: process.env.GOOGLE_MAPS_API_KEY,
