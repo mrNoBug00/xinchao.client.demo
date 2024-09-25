@@ -339,7 +339,7 @@ const BookingsPage: React.FC = () => {
           </table>
 
           <ModalRefuseBooking
-            isOpen={isModalOpen}
+            isOpen={isModalRefuseOpen}
             onClose={handleModalClose}
             onConfirm={handleRefuseConfirm}
           />
