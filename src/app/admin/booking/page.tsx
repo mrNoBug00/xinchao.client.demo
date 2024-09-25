@@ -129,7 +129,7 @@ const BookingsPage: React.FC = () => {
       });
     }
 
-    handleModalClose();
+    handleModalRefuseClose();
   };
 
   // Hàm xử lý cancel
