@@ -50,6 +50,7 @@ const defaultProductData: Product = {
   electricityFee: "0",
   waterFee: "0",
   gasFee: "0",
+  numberOfTenantsByRoomRate: "0",
   address: "No address",
   imageUrl: [], // Giá trị mặc định cho mảng Image
   author: null,

@@ -33,6 +33,7 @@ interface Product {
   description: string;
   status: Status;
   price: number;
+  numberOfTenantsByRoomRate: string;
   address: string;
   image: Image[];
   author: string | null;

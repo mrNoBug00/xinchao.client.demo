@@ -45,10 +45,12 @@ const Card: React.FC<CardProps> = ({ product }) => {
   const [photoIndex, setPhotoIndex] = useState<number>(0);
   const router = useRouter();
 
-  const slides = product.image.map((img) => ({
-    src: `${IMG_URL}/${img.imageUrl}`,
-    alt: product.name,
-  }));
+  const slides = product.image
+    ? product.image.map((img) => ({
+        src: `${IMG_URL}/${img.imageUrl}`,
+        alt: product.name,
+      }))
+    : [];
 
   const handleViewHouseClick = (id: number) => {
     router.push(`/pages/product/${id}`);
@@ -79,7 +81,9 @@ const Card: React.FC<CardProps> = ({ product }) => {
   };
 
   const maxImagesToShow = 3;
-  const remainingImages = product.image.length - maxImagesToShow;
+  const remainingImages = product.image
+    ? product.image.length - maxImagesToShow
+    : 0;
 
   return (
     <div className="border rounded-lg p-4 shadow-md">
@@ -108,28 +112,29 @@ const Card: React.FC<CardProps> = ({ product }) => {
         Price: ${product.price}/{product.numberOfTenantsByRoomRate}people
       </p>
       <div className="grid grid-cols-3 gap-2">
-        {product.image.slice(0, maxImagesToShow).map((img, index) => (
-          <div key={img.id} className="relative">
-            <Image
-              src={`${IMG_URL}/${img.imageUrl}`}
-              alt={product.name}
-              className="card-image rounded-md cursor-pointer"
-              width={500}
-              height={300}
-              onClick={() => {
-                setPhotoIndex(index);
-                setIsOpen(true);
-              }}
-            />
-            {index === 2 && remainingImages > 0 && (
-              <div className="absolute inset-0 flex items-center justify-center bg-gray-200 rounded-md opacity-60">
-                <span className="text-center text-2xl font-bold">
-                  +{remainingImages}
-                </span>
-              </div>
-            )}
-          </div>
-        ))}
+        {product.image &&
+          product.image.slice(0, maxImagesToShow).map((img, index) => (
+            <div key={img.id} className="relative">
+              <Image
+                src={`${IMG_URL}/${img.imageUrl}`}
+                alt={product.name}
+                className="card-image rounded-md cursor-pointer"
+                width={500}
+                height={300}
+                onClick={() => {
+                  setPhotoIndex(index);
+                  setIsOpen(true);
+                }}
+              />
+              {index === 2 && remainingImages > 0 && (
+                <div className="absolute inset-0 flex items-center justify-center bg-gray-200 rounded-md opacity-60">
+                  <span className="text-center text-2xl font-bold">
+                    +{remainingImages}
+                  </span>
+                </div>
+              )}
+            </div>
+          ))}
       </div>
       <div className="mt-4 mr-4 space-x-2">
         <ViewHouseButton onClick={() => handleViewHouseClick(product.id)}>
@@ -156,7 +161,6 @@ const Card: React.FC<CardProps> = ({ product }) => {
           index={photoIndex}
           open={isOpen}
           close={() => setIsOpen(false)}
-          
         />
       )}
     </div>
