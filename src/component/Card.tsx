@@ -28,6 +28,7 @@ interface Product {
   description: string;
   status: Status;
   price: number;
+  numberOfTenantsByRoomRate: string;
   address: string;
   image: Image[];
   author: string | null;
@@ -97,8 +98,11 @@ const Card: React.FC<CardProps> = ({ product }) => {
       <p className="text-sm text-gray-600 mb-2">
         Status: {product.status.description}
       </p>
-      <p className="text-lg font-bold text-blue-500 mb-4">
+      <p className="text-lg font-bold text-blue-500 mb-2">
         Price: ${product.price}
+      </p>
+      <p className="text-lg font-bold text-gray-600 mb-2">
+        {product.type} price for {product.numberOfTenantsByRoomRate ?? 1} people
       </p>
       <div className="grid grid-cols-3 gap-2">
         {product.image.slice(0, maxImagesToShow).map((img, index) => (
@@ -141,7 +145,6 @@ const Card: React.FC<CardProps> = ({ product }) => {
         index={photoIndex}
         open={isOpen}
         close={() => setIsOpen(false)}
-        
       />
       <ToastContainer />
     </div>

@@ -13,6 +13,7 @@ import {
   useViewportScroll,
   useTransform,
 } from "framer-motion";
+import BookingChart from "@/component/admin/BookingChart";
 
 interface Image {
   id: number;
@@ -84,7 +85,7 @@ const Products: React.FC = () => {
   }, [filteredData, controls]);
 
   return (
-    <div className="p-4 max-w-7xl mx-auto">
+    <div className="max-w-7xl mx-auto p-4 h-screen w-screen overflow-y-auto">
       <div className="mb-4 flex space-x-2">
         <input
           type="text"
@@ -104,27 +105,7 @@ const Products: React.FC = () => {
           Add New Product
         </Button>
       </div>
-      <div className="h-[800px] overflow-y-scroll grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4">
-        {filteredData
-          .slice() // Tạo một bản sao của mảng để không thay đổi mảng gốc
-          .reverse() // Đảo ngược mảng
-          .map((product) => (
-            <motion.div
-              key={product.id}
-              className="product-card"
-              whileHover={{ scale: 1.1, zIndex: 1 }}
-              whileTap={{ scale: 0.9 }}
-              animate={controls}
-              initial="hidden"
-              variants={{
-                visible: { opacity: 1, y: 0 },
-                hidden: { opacity: 0, y: 100 },
-              }}
-              transition={{ duration: 0.5 }}>
-              <Card product={product} />
-            </motion.div>
-          ))}
-      </div>
+      <BookingChart />
     </div>
   );
 };

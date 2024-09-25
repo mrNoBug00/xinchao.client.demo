@@ -14,6 +14,7 @@ export const productApiPath = {
 
 export const houseApiPath = {
   bookingHouse: `${BASE_URL}/api/v1/bookings`,
+  uploadContactQrCode: `${BASE_URL}/api/v1/images`,
 };
 
 export const contractApiPath = {

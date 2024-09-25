@@ -34,6 +34,7 @@ const ProductDetail: React.FC<EditContractProps> = ({ params }) => {
     electricityFee: "",
     waterFee: "",
     gasFee: "",
+    numberOfTenantsByRoomRate: "",
     address: "",
     status: "",
     images: [] as FormImage[],
@@ -45,53 +46,6 @@ const ProductDetail: React.FC<EditContractProps> = ({ params }) => {
   const router = useRouter();
 
 
-  // useEffect(() => {
-  //   document.title = "Product detail | xinchao";
-
-  //   console.log(params);
-    
-  //   const token = localStorage.getItem("token");
-  //   const userRole = localStorage.getItem("role") || "";
-  //   setRole(userRole);
-
-  //   if (!token) {
-  //     router.push("/login");
-  //   } else {
-  //     fetchData(`${productApiPath.getProductById}/${params.id}`)
-  //       .then((response: Product) => {
-  //         setData(response);
-  //         console.log(response);
-          
-  //         setFormData({
-  //           name: response.name,
-  //           type: response.type,
-  //           description: response.description,
-  //           price: response.price,
-  //           electricityFee: response.electricityFee,
-  //           waterFee: response.waterFee,
-  //           gasFee: response.gasFee,
-  //           address: response.address,
-  //           status: response.status.description,
-  //           images: response.image.map((img) => ({
-  //             file: null,
-  //             imageUrl: `${IMG_URL}/${img.imageUrl}`, // Assuming `imageUrl` property exists in Image
-  //           })),
-  //         });
-  //       })
-  //       .catch((error) => {
-  //         console.error("Error fetching data:", error);
-  //       });
-
-  //     // Lấy danh sách trạng thái
-  //     fetchData(houseApiPath.getAllStatus)
-  //       .then((response) => {
-  //         setStatuses(response); // Giả sử response trả về là danh sách trạng thái
-  //       })
-  //       .catch((error) => {
-  //         console.error("Error fetching statuses:", error);
-  //       });
-  //   }
-  // }, [params.id, router]);
 
 
   useEffect(() => {
@@ -121,6 +75,7 @@ const ProductDetail: React.FC<EditContractProps> = ({ params }) => {
       
       // Cập nhật form data từ dữ liệu sản phẩm
       setFormData({
+        ...formData,
         name: response.name,
         type: response.type,
         description: response.description,
@@ -128,6 +83,7 @@ const ProductDetail: React.FC<EditContractProps> = ({ params }) => {
         electricityFee: response.electricityFee,
         waterFee: response.waterFee,
         gasFee: response.gasFee,
+        numberOfTenantsByRoomRate: response.numberOfTenantsByRoomRate,
         address: response.address,
         status: response.status.description,
         images: response.imageUrl.map((img) => ({
@@ -135,6 +91,9 @@ const ProductDetail: React.FC<EditContractProps> = ({ params }) => {
           imageUrl: `${IMG_URL}/${img.imageUrl}`,
         })),
       });
+
+      console.log("Form data:", formData);
+
 
     } catch (error) {
       console.error("Error fetching product data:", error);
@@ -169,6 +128,7 @@ const ProductDetail: React.FC<EditContractProps> = ({ params }) => {
    e: ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>
  ) => {
    const { name, value } = e.target;
+
    setFormData((prev) => ({ ...prev, [name]: value }));
  };
 
@@ -218,6 +178,7 @@ const ProductDetail: React.FC<EditContractProps> = ({ params }) => {
         electricityFee: formData.electricityFee,
         waterFee: formData.waterFee,
         gasFee: formData.gasFee,
+        numberOfTenantsByRoomRate: formData.numberOfTenantsByRoomRate,
         address: formData.address,
         statusId: selectedStatus ? selectedStatus.id : null, // Lấy statusId
       })
@@ -263,6 +224,7 @@ const ProductDetail: React.FC<EditContractProps> = ({ params }) => {
       electricityFee: data?.electricityFee || "",
       waterFee: data?.waterFee || "",
       gasFee: data?.gasFee || "",
+      numberOfTenantsByRoomRate: data?.numberOfTenantsByRoomRate || "",
       address: data?.address || "",
       status: data?.status.description || "",
       images: data?.imageUrl
@@ -318,26 +280,30 @@ const ProductDetail: React.FC<EditContractProps> = ({ params }) => {
                 placeholder="Name"
               />
               <select
+                name="type"
                 value={formData.type}
                 onChange={handleInputChange}
                 className="border p-2 mb-2 w-full"
                 required>
-                <option value="house">House</option>
-                <option value="room">Room</option>
+                <option value="House">House</option>
+                <option value="Room">Room</option>
+                <option value="Whole floor">Whole floor</option>
               </select>
               <select
+                name="electricityFee"
                 value={formData.electricityFee}
                 onChange={handleInputChange}
                 className="border p-2 mb-2 w-full"
                 required>
-                <option value="In summer, 6 NTD/unit; in other seasons, 5 NTD/unit.">
-                  In summer, 6 NTD/unit; in other seasons, 5 NTD/unit.
+                <option value="In summer, 6 NTD/unit; in other seasons, 5 NTD/unit">
+                  In summer, 6 NTD/unit; in other seasons, 5 NTD/unit
                 </option>
-                <option value="All rooms are equally divided.">
-                  All rooms are equally divided.
+                <option value="All rooms are equally divided">
+                  All rooms are equally divided
                 </option>
               </select>
               <input
+                name="waterFee"
                 type="text"
                 placeholder="Water Fee"
                 value={formData.waterFee}
@@ -346,9 +312,19 @@ const ProductDetail: React.FC<EditContractProps> = ({ params }) => {
                 required
               />
               <input
+                name="gasFee"
                 type="text"
                 placeholder="Gas fee"
                 value={formData.gasFee}
+                onChange={handleInputChange}
+                className="border p-2 mb-2 w-full"
+                required
+              />
+              <input
+                name="numberOfTenantsByRoomRate"
+                type="text"
+                placeholder="number of tenants by room rate"
+                value={formData.numberOfTenantsByRoomRate}
                 onChange={handleInputChange}
                 className="border p-2 mb-2 w-full"
                 required
@@ -435,19 +411,22 @@ const ProductDetail: React.FC<EditContractProps> = ({ params }) => {
                 <strong>Type:</strong> {data.type}
               </p>
               <p className="text-gray-700 mb-2">
-                <strong>Electricity fee:</strong> {data.electricityFee}
+                <strong>Electricity fee:</strong> {data.electricityFee}/month
               </p>
               <p className="text-gray-700 mb-2">
-                <strong>Water fee:</strong> {data.waterFee}
+                <strong>Water fee:</strong> {data.waterFee} NTD/month
               </p>
               <p className="text-gray-700 mb-2">
-                <strong>Gas fee:</strong> {data.gasFee}
+                <strong>Gas fee:</strong> {data.gasFee} NTD/month
               </p>
               <p className="text-gray-700 mb-2">
                 <strong>Description:</strong> {data.description}
               </p>
               <p className="text-gray-700 mb-2">
-                <strong>Price:</strong> ${data.price}
+                <strong>
+                  {data.type} price for {data.numberOfTenantsByRoomRate} people:
+                </strong>{" "}
+                {data.price} NTD/month
               </p>
               <p className="text-gray-700 mb-2">
                 <strong>Address:</strong> {data.address}

@@ -24,6 +24,7 @@ export interface Product {
   electricityFee: string;
   waterFee: string;
   gasFee: string;
+  numberOfTenantsByRoomRate: string;
   address: string;
   imageUrl: Image[];
   author: string | null;
@@ -48,6 +49,7 @@ export interface FormData {
   electricityFee: string;
   waterFee: string;
   gasFee: string;
+  numberOfTenantsByRoomRate: string;
   address: string;
   status: string;
   images: { file: File | null; imageUrl: string }[];

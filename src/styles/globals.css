@@ -14,6 +14,15 @@ html, body, #__next {
   border-radius: 8px;
 }
 
+.tooltip {
+  display: none;
+  /* Các thuộc tính khác nếu cần */
+}
+
+.group:hover .tooltip {
+  display: block;
+}
+
 
 @media (max-width: 1024px) {
   .product-detail-image {

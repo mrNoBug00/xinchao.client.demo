@@ -6,7 +6,8 @@ export const createBooking = async (
   roomId: string,
   bookingTime: string,
   username: string,
-  phone: string
+  phone: string,
+  contactQrCode: string[]
 ) => {
   const bookingData = {
     userId: userId,
@@ -14,6 +15,7 @@ export const createBooking = async (
     bookingTime: bookingTime,
     bookerName: username,
     bookerPhone: phone,
+    contactQrCode: contactQrCode,
   };
 
   const token = localStorage.getItem("token"); // Lấy token từ localStorage

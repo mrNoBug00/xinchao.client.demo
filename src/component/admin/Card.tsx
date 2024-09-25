@@ -30,6 +30,7 @@ interface Product {
   description: string;
   status: Status;
   price: number;
+  numberOfTenantsByRoomRate: string;
   address: string;
   image: Image[];
   author: string | null;
@@ -104,7 +105,7 @@ const Card: React.FC<CardProps> = ({ product }) => {
         Status: {product.status.description}
       </p>
       <p className="text-lg font-bold text-blue-500 mb-4">
-        Price: ${product.price}
+        Price: ${product.price}/{product.numberOfTenantsByRoomRate}people
       </p>
       <div className="grid grid-cols-3 gap-2">
         {product.image.slice(0, maxImagesToShow).map((img, index) => (

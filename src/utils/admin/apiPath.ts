@@ -1,4 +1,5 @@
 
+import { refuseBooking } from "@/service/admin/bookingActions";
 import { BASE_URL } from "@/service/api";
 
 
@@ -19,6 +20,8 @@ import { BASE_URL } from "@/service/api";
 export const houseApiPath = {
   getAllBooking: `${BASE_URL}/api/v1/bookings`,
   comfirmBooking: `${BASE_URL}/api/v1/bookings`,
+  cancelBooking: `${BASE_URL}/api/v1/bookings`,
+  refuseBooking: `${BASE_URL}/api/v1/bookings`,
   addNewProduct: `${BASE_URL}/api/v1/products/create`,
   updateProduct: `${BASE_URL}/api/v1/products`,
   getAllStatus: `${BASE_URL}/api/v1/statuses`,

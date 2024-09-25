@@ -7,6 +7,9 @@ import "../styles/globals.css";
 import "../styles/bookingForm.css"; // Add this line
 import { ToastContainer, toast } from "react-toastify";
 import { BookingFormProps } from "../service/interfaces/Booking";
+import Image from "next/image";
+import { houseApiPath } from "@/utils/apiPath";
+import { fetchData } from "@/service/api";
 
 const BookingForm: React.FC<BookingFormProps> = ({ roomId }) => {
   const [username, setUsername] = useState("");
@@ -15,6 +18,8 @@ const BookingForm: React.FC<BookingFormProps> = ({ roomId }) => {
   const [hour, setHour] = useState("1");
   const [minute, setMinute] = useState("00");
   const router = useRouter();
+  const [imagePreviews, setImagePreviews] = useState<string[]>([]);
+  const [imageFiles, setImageFiles] = useState<File[]>([]);
 
   const handleSubmit = async (event: FormEvent) => {
     event.preventDefault();
@@ -25,6 +30,25 @@ const BookingForm: React.FC<BookingFormProps> = ({ roomId }) => {
       return;
     }
 
+    // Upload identification cards
+    const formDataImages = new FormData();
+    imageFiles.forEach((file) => {
+      const randomFileName = generateRandomFileName(file.name);
+      const renamedFile = new File([file], randomFileName, {
+        type: file.type,
+      });
+      formDataImages.append("files", renamedFile);
+    });
+
+    const responseImages = await fetchData(houseApiPath.uploadContactQrCode, {
+      method: "POST",
+      body: formDataImages,
+    });
+
+    const dataImages = await responseImages;
+
+    const imageIds = dataImages.map((image: any) => image.id);
+
     const bookingTime = `${date}T${hour}:${minute}:00`; // Định dạng ngày giờ
 
     const result = await createBooking(
@@ -32,7 +56,8 @@ const BookingForm: React.FC<BookingFormProps> = ({ roomId }) => {
       roomId,
       bookingTime,
       username,
-      phone
+      phone,
+      imageIds
     );
 
     if (result.success) {
@@ -49,6 +74,29 @@ const BookingForm: React.FC<BookingFormProps> = ({ roomId }) => {
         autoClose: 1000,
       });
     }
+  };
+
+  const generateRandomFileName = (originalName: string): string => {
+    const randomString = Math.random().toString(36).substring(2, 15);
+    const fileExtension = originalName.split(".").pop();
+    return `${randomString}contactQrCode.${fileExtension}`;
+  };
+
+  const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files) {
+      const files = Array.from(e.target.files);
+      setImageFiles(files);
+
+      const previews = files.map((file) => URL.createObjectURL(file));
+      setImagePreviews(previews);
+    }
+  };
+
+  const handleRemoveImage = (index: number) => {
+    const newImageFiles = imageFiles.filter((_, i) => i !== index);
+    const newImagePreviews = imagePreviews.filter((_, i) => i !== index);
+    setImageFiles(newImageFiles);
+    setImagePreviews(newImagePreviews);
   };
 
   return (
@@ -125,6 +173,46 @@ const BookingForm: React.FC<BookingFormProps> = ({ roomId }) => {
               </select>
             </div>
           </div>
+          <div className="mt-4">
+            <label className="block text-sm font-medium text-gray-700">
+              Upload Qr Code Of Line Or Zalo
+            </label>
+            <button
+              type="button"
+              onClick={() => document.getElementById("fileInput")?.click()}
+              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 px-4 py-2 bg-blue-500 text-white">
+              Select Files
+            </button>
+            <input
+              id="fileInput"
+              type="file"
+              accept="image/*"
+              multiple
+              onChange={handleImageChange}
+              className="hidden"
+            />
+
+            <div className="mt-4 grid grid-cols-2 sm:grid-cols-4 gap-4">
+              {imagePreviews.map((preview, index) => (
+                <div key={index} className="relative">
+                  <Image
+                    src={preview}
+                    alt={`Preview ${index}`}
+                    className="w-full h-40 object-cover rounded-md"
+                    width={500}
+                    height={300}
+                  />
+                  <button
+                    type="button"
+                    onClick={() => handleRemoveImage(index)}
+                    className="absolute top-1 right-1 bg-red-500 text-white p-1 rounded-full">
+                    X
+                  </button>
+                </div>
+              ))}
+            </div>
+          </div>
+
           <div className="flex justify-end">
             <button
               type="submit"
