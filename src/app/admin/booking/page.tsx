@@ -19,6 +19,7 @@ const BookingsPage: React.FC = () => {
   const [filteredBookings, setFilteredBookings] = useState<Booking[]>([]);
   const [selectedDate, setSelectedDate] = useState<string>("");
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isModalRefuseOpen, setIsModalRefuseOpen] = useState(false);
   const [selectedBookingId, setSelectedBookingId] = useState<string | null>(
     null
   );
@@ -97,7 +98,7 @@ const BookingsPage: React.FC = () => {
   const handleAccept = async (bookingId: string, message: string) => {
     try {
       await confirmBooking(bookingId, message);
-      setRender(true)
+      setRender(!reRender);
       toast.success("Accept successfully!", {
         position: "top-center",
         autoClose: 1000,
@@ -116,7 +117,7 @@ const BookingsPage: React.FC = () => {
 
     try {
       await refuseBooking(selectedBookingId, reason);
-      setRender(true);
+      setRender(!reRender);
       toast.success("Booking refused successfully!", {
         position: "top-center",
         autoClose: 1000,
@@ -137,7 +138,7 @@ const BookingsPage: React.FC = () => {
 
     try {
       await cancelBooking(selectedBookingId, reason);
-      setRender(true);
+      setRender(!reRender);
       toast.success("Booking canceled successfully!", {
         position: "top-center",
         autoClose: 1000,
@@ -154,12 +155,12 @@ const BookingsPage: React.FC = () => {
 
   const handleRefuse = (id: string) => {
     setSelectedBookingId(id);
-    setIsModalOpen(true);
+    setIsModalRefuseOpen(!isModalRefuseOpen);
   };
 
   const handleCancel = (id: string) => {
     setSelectedBookingId(id);
-    setIsModalOpen(true);
+    setIsModalOpen(!isModalOpen);
   };
 
   const handleModalClose = () => {
