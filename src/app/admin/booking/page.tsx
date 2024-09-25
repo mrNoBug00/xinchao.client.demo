@@ -167,6 +167,10 @@ const BookingsPage: React.FC = () => {
     setIsModalOpen(false);
   };
 
+  const handleModalRefuseClose = () => {
+    setIsModalRefuseOpen(!isModalRefuseOpen);
+  };
+
   const truncateText = (text: string, length: number) => {
     return text.length > length ? text.slice(0, length) + "..." : text;
   };
@@ -340,7 +344,7 @@ const BookingsPage: React.FC = () => {
 
           <ModalRefuseBooking
             isOpen={isModalRefuseOpen}
-            onClose={handleModalClose}
+            onClose={handleModalRefuseClose}
             onConfirm={handleRefuseConfirm}
           />
 
