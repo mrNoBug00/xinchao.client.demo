@@ -36,6 +36,7 @@ interface Product {
   address: string;
   image: Image[];
   author: string | null;
+  numberOfTenantsByRoomRate: string;
 }
 
 const Products: React.FC = () => {
