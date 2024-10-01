@@ -38,7 +38,6 @@ function Navbar() {
   const router = useRouter();
   const pathname = usePathname(); // Lấy đường dẫn hiện tại
 
-  const { t } = useTranslation("common");
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -95,7 +94,7 @@ function Navbar() {
                         : "text-gray-300 hover:bg-gray-700 hover:text-white",
                       "rounded-md px-3 py-2 text-sm font-medium"
                     )}>
-                    {t(item.name)}
+                    {item.name}
                   </Link>
                 ))}
               </div>
@@ -139,7 +138,7 @@ function Navbar() {
                   : "text-gray-300 hover:bg-gray-700 hover:text-white",
                 "block rounded-md px-3 py-2 text-base font-medium"
               )}>
-              {t(item.name)}
+              {item.name}
             </DisclosureButton>
           ))}
         </div>
@@ -148,4 +147,4 @@ function Navbar() {
   );
 }
 
-export default appWithTranslation(Navbar)
+export default Navbar
