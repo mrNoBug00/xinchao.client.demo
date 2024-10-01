@@ -29,7 +29,11 @@ interface Contract {
   productType: string;
   rentFee: number;
   tenancyDeposit: number;
-  status: string;
+  status: {
+   id: number;
+   name: string;
+   description: string;
+ }
   createTime: [number, number, number, number, number, number, number];
 }
 
@@ -163,7 +167,7 @@ const ContractList: React.FC = () => {
                     ).toLocaleString()}
                   </td>
                   <td className="py-3 px-4 border-b text-center">
-                    {contract.status}
+                    {contract.status.name}
                   </td>
                   <td className="py-3 px-4 border-b text-center space-x-2">
                     <button

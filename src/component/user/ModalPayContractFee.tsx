@@ -1,22 +1,19 @@
 import { Fragment, useEffect, useState } from "react";
 import { Dialog, Transition } from "@headlessui/react";
-
-interface ProductData {
-  price?: number;
-}
+import { formatCurrency } from "../../utils/formatCurrency";
 
 interface ModalProps {
   isOpen: boolean;
   closeModal: () => void;
   handleConfirm: () => void;
-  productData: ProductData;
+  rentFee: string; // rentFee is a string
 }
 
 const Modal: React.FC<ModalProps> = ({
   isOpen,
   closeModal,
   handleConfirm,
-  productData,
+  rentFee,
 }) => {
   const [price, setPrice] = useState<number | undefined>(undefined);
   const [deposit, setDeposit] = useState<number | undefined>(undefined);
@@ -24,15 +21,19 @@ const Modal: React.FC<ModalProps> = ({
   const [total, setTotal] = useState<number | undefined>(undefined);
 
   useEffect(() => {
-    if (productData?.price) {
-      const newPrice = productData.price;
-      const totalFee = productData.price * 3.5;
+    // Chuyển rentFee sang kiểu number trước khi sử dụng
+    const rentFeeNumber = parseFloat(rentFee);
+    if (!isNaN(rentFeeNumber)) {
+      const newPrice = rentFeeNumber;
+      const totalFee = rentFeeNumber * 3.5;
       setPrice(newPrice);
       setDeposit(newPrice * 2);
       setBrokerFee(newPrice / 2);
       setTotal(totalFee);
     }
-  }, [productData?.price]);
+  }, [rentFee]);
+
+
 
   return (
     <Transition appear show={isOpen} as={Fragment}>
@@ -67,18 +68,21 @@ const Modal: React.FC<ModalProps> = ({
                 <div className="mt-2">
                   <div className="border border-gray-300 rounded-lg p-4">
                     <p className="text-sm text-gray-500 mt-2">
-                      1. Two months of rent as a deposit: {deposit} NTD
+                      1. Two months of rent as a deposit:{" "}
+                      {formatCurrency(deposit ?? 0)}{" "}
                     </p>
                     <p className="text-sm text-gray-500 mt-2">
-                      2. The first month of rent: {price} NTD
+                      2. The first month of rent: {formatCurrency(price ?? 0)}{" "}
                     </p>
                     <p className="text-sm text-gray-500 mt-2">
-                      3. Brokerage fee (pay only one time): {brokerFee} NTD
+                      3. Brokerage fee (pay only one time):{" "}
+                      {formatCurrency(brokerFee ?? 0)}{" "}
                     </p>
                     <p className="text-sm text-gray-500 mt-2">
-                      Total: {total} NTD
+                      Total: {formatCurrency(total ?? 0)}{" "}
                     </p>
                   </div>
+
                   <p className="text-sm text-gray-500 mt-2">
                     The contract will only be effective after all these fees are
                     paid in full. Thank you.

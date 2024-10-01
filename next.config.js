@@ -2,9 +2,11 @@ require("dotenv").config({
   path: `.env.local`,
 });
 
+const withNextIntl = require("next-intl/plugin")();
+
 const nextConfig = {
   images: {
-    domains: ["xcserver.site", "localhost"],
+    domains: ["xcserver.site", "localhost"], // Thêm hostname vào đây
   },
   env: {
     NEXT_PUBLIC_GOOGLE_MAPS_API_KEY:
@@ -13,4 +15,5 @@ const nextConfig = {
   },
 };
 
-module.exports = nextConfig;
+// Xuất cấu hình
+module.exports = withNextIntl({ ...nextConfig });

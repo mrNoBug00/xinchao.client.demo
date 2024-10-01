@@ -9,6 +9,9 @@ import { CopyToClipboard } from "react-copy-to-clipboard";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Image from "next/image";
+import { formatCurrency } from "../utils/formatCurrency";
+
+
 interface Image {
   id: number;
   imageUrl: string;
@@ -99,7 +102,7 @@ const Card: React.FC<CardProps> = ({ product }) => {
         Status: {product.status.description}
       </p>
       <p className="text-lg font-bold text-blue-500 mb-2">
-        Price: ${product.price}
+        Price: {formatCurrency(product.price)}
       </p>
       <p className="text-lg font-bold text-gray-600 mb-2">
         {product.type} price for {product.numberOfTenantsByRoomRate ?? 1} people
