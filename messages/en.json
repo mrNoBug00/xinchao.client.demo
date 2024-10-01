@@ -1,7 +1,10 @@
 {
-  "LangdingPage": {
-    "title": "Hello",
+  "LandingPage": {
+    "appName": "Your Application Name",
+    "title": "Welcome to Our Service",
+    "description": "Learn how we can help you achieve your goals.",
     "login": "Login",
-    "register": "Register"
+    "register": "Register",
+    "footerText": "© 2024 Our Company. All rights reserved."
   }
 }
