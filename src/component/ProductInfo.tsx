@@ -65,9 +65,9 @@ export default function ProductInfo() {
                 </div>
               </div>
               <p className="text-primary-foreground">
-                "XinChao will assist foreigners living, studying, and working in
+                XinChao will assist foreigners living, studying, and working in
                 Taiwan in easily finding a suitable house or room that matches
-                their personal preferences and budget."
+                their personal preferences and budget.
               </p>
             </div>
             <div className="bg-gray-800 p-6 rounded-lg shadow-lg md:col-span-2">
