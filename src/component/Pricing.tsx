@@ -82,7 +82,7 @@ export default function Pricing() {
                   ))}
                 </ul>
                 <button className="w-full bg-purple-600 text-white py-2 rounded mt-auto">
-                  Let's go
+                  go
                 </button>
               </div>
             ))}

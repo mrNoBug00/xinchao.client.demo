@@ -13,7 +13,7 @@ import { refuseBooking, cancelBooking } from "@/service/admin/bookingActions";
 import ModalRefuseBooking from "../../../../component/admin/ModalRefuseBooking";
 import ModalCancelBooking from "../../../../component/admin/ModalCancelBooking";
 import { Booking } from "../../../../service/interfaces/Booking";
-
+import Image from "next/image";
 const BookingsPage: React.FC = () => {
   const [bookings, setBookings] = useState<Booking[]>([]);
   const [filteredBookings, setFilteredBookings] = useState<Booking[]>([]);
@@ -304,7 +304,7 @@ const BookingsPage: React.FC = () => {
 
                       <div className="mt-2 grid grid-cols-2 gap-2">
                         {booking.contactQrCode.map((qr) => (
-                          <img
+                          <Image
                             key={qr.id}
                             src={`${IMG_URL}/${qr.imageUrl}`}
                             alt="Contact QR Code"
