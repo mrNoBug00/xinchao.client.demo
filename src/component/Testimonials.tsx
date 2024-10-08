@@ -5,17 +5,17 @@ export default function Testimonials() {
     {
       name: "Nguyen Van Thinh",
       comment:
-        '"A beautiful, spacious, and airy house, located near the market with all necessary amenities nearby."',
+        "A beautiful, spacious, and airy house, located near the market with all necessary amenities nearby.",
     },
     {
       name: "Tran Thi Lan",
       comment:
-        '"A beautiful, spacious room with a clean kitchen at a reasonable price."',
+        "A beautiful, spacious room with a clean kitchen at a reasonable price.",
     },
     {
       name: "Le Thi Nam Phuong",
       comment:
-        '"A spacious room surrounded by all necessary amenities, fully equipped with essential items, and offered at a reasonable price."',
+        "A spacious room surrounded by all necessary amenities, fully equipped with essential items, and offered at a reasonable price.",
     },
   ];
 
