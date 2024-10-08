@@ -1,10 +1,10 @@
 {
   "LandingPage": {
-    "appName": "Your Application Name",
+    "appName": "Xin Chao",
     "title": "Welcome to Our Service",
     "description": "Learn how we can help you achieve your goals.",
     "login": "Login",
     "register": "Register",
-    "footerText": "© 2024 Our Company. All rights reserved."
+    "footerText": "© 2024 Xin Chao Company. All rights reserved."
   }
 }

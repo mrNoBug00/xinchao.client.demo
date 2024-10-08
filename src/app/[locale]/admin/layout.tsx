@@ -3,7 +3,7 @@
 import Footer from "@/component/Footer";
 import Navbar from "@/component/Navbar";
 import { Metadata } from "next";
-import Header from "@/component/Header";
+import Header from "@/component/SideBar";
 import { ReactNode } from "react"; // Import ReactNode
 
 export const metadata: Metadata = {

@@ -1,68 +1,51 @@
-// src/components/Header.tsx
-"use client";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
-import {
-  FaHome,
-  FaCalendarAlt,
-  FaBuilding,
-  FaCheckCircle,
-} from "react-icons/fa";
-import { FaFileContract } from "react-icons/fa6";
+import ThemeToggle from "./ThemeToggle";
+import { useRouter } from "next/navigation";
+import { useTranslations, useLocale } from "next-intl";
 
-const Header: React.FC = () => {
-  const pathname = usePathname(); // Lấy đường dẫn hiện tại
+export default function Header() {
+  const router = useRouter();
+  const t = useTranslations("LandingPage");
+  const locale = useLocale();
+
+  const handleNavigation = (path: string) => {
+    router.push(path);
+  };
+
+  const handleChangeLanguage = (lang: string) => {
+    if (locale !== lang) {
+      router.push(`${lang}`); // Thêm locale vào URL
+    }
+  };
 
   return (
-    <header className="bg-gray-800 p-4 rounded-lg">
-      <div className="container mx-auto flex flex-col space-y-2">
-        <nav>
-          <Link
-            href="/admin/home"
-            className={`text-white hover:bg-gray-700 px-3 py-2 rounded flex items-center ${
-              pathname === "/admin/home" || pathname === "/admin/addNewProduct"
-                ? "bg-gray-700"
-                : ""
-            }`}>
-            <FaHome className="mr-2" /> {/* Icon */}
-            Dashboard
-          </Link>
-          <Link
-            href="/admin/booking"
-            className={`text-white hover:bg-gray-700 px-3 py-2 rounded flex items-center ${
-              pathname === "/admin/booking" ? "bg-gray-700" : ""
-            }`}>
-            <FaCalendarAlt className="mr-2" />
-            Booking House
-          </Link>
-          <Link
-            href="/admin/for-rent"
-            className={`text-white hover:bg-gray-700 px-3 py-2 rounded flex items-center ${
-              pathname === "/admin/for-rent" ? "bg-gray-700" : ""
-            }`}>
-            <FaBuilding className="mr-2" />
-            For Rent
-          </Link>
-          <Link
-            href="/admin/rented"
-            className={`text-white hover:bg-gray-700 px-3 py-2 rounded flex items-center ${
-              pathname === "/admin/rented" ? "bg-gray-700" : ""
-            }`}>
-            <FaCheckCircle className="mr-2" />
-            Rented
-          </Link>
-          <Link
-            href="/admin/contract"
-            className={`text-white hover:bg-gray-700 px-3 py-2 rounded flex items-center ${
-              pathname === "/admin/contract" ? "bg-gray-700" : ""
-            }`}>
-            <FaFileContract className="mr-2" />
-            Contract
-          </Link>
-        </nav>
+    <header className="bg-purple-900 shadow-md">
+      <div className="container mx-auto flex flex-col md:flex-row justify-between items-center p-4">
+        <h1 className="text-xl font-bold text-white">{t("appName")}</h1>
+        <div className="flex items-center space-x-4 mt-4 md:mt-0">
+          <div>
+            <select
+              onChange={(e) => handleChangeLanguage(e.target.value)}
+              className="border border-gray-300 rounded-md p-2 bg-white text-gray-800"
+              defaultValue={locale} // Đặt ngôn ngữ mặc định theo locale hiện tại
+            >
+              <option value="vn">Tiếng Việt</option>
+              <option value="en">English</option>
+              <option value="zh">中文</option>
+            </select>
+          </div>
+          <button
+            onClick={() => handleNavigation("/login")}
+            className="bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 transition duration-300">
+            {t("login")}
+          </button>
+          <button
+            onClick={() => handleNavigation("/register")}
+            className="bg-green-500 text-white py-2 px-4 rounded-md hover:bg-green-600 transition duration-300">
+            {t("register")}
+          </button>
+        </div>
       </div>
     </header>
   );
-};
-
-export default Header;
+}

@@ -1,10 +1,10 @@
 {
   "LandingPage": {
-    "appName": "Tên ứng dụng của bạn",
+    "appName": "Xin Chào",
     "title": "Chào mừng đến với Dịch vụ của chúng tôi",
     "description": "Tìm hiểu cách chúng tôi có thể giúp bạn đạt được mục tiêu của mình.",
     "login": "Đăng nhập",
     "register": "Đăng ký",
-    "footerText": "© 2024 Công ty của chúng tôi. Bảo lưu mọi quyền."
+    "footerText": "© 2024 Công ty Xin Chào. Bảo lưu mọi quyền."
   }
 }

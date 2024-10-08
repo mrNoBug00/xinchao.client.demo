@@ -1,10 +1,10 @@
 {
   "LandingPage": {
-    "appName": "您的應用程式名稱",
+    "appName": "您好",
     "title": "歡迎來到我們的服務",
     "description": "了解我們如何幫助您實現目標。",
     "login": "登入",
     "register": "註冊",
-    "footerText": "© 2024 我們的公司。保留所有權利。"
+    "footerText": "© 2024 您好公司。保留所有權利。"
   }
 }
