@@ -53,7 +53,7 @@ export default function ProductInfo() {
             <div className="bg-gradient-to-r from-blue-300  to-purple-300   p-6 rounded-lg shadow-lg flex flex-col justify-between">
               <div className="flex items-start space-x-4 mb-4">
                 <Image
-                  src="/placeholder.svg"
+                  src="/avatar3.jpg"
                   alt="James"
                   width={48}
                   height={48}
