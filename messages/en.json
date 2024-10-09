@@ -1,10 +1,98 @@
 {
-  "LandingPage": {
+  "LandingPageHeader": {
     "appName": "Xin Chao",
     "title": "Welcome to Our Service",
     "description": "Learn how we can help you achieve your goals.",
     "login": "Login",
     "register": "Register",
     "footerText": "© 2024 Xin Chao Company. All rights reserved."
+  },
+
+  "Hero": {
+    "Make life in Taiwan easier and convenient": "Make life in Taiwan easier and convenient",
+    "description": "Our company provides house and room rental services for foreigners living, studying, and working in Taiwan. We are committed to providing the best service and experience to our customers."
+  },
+
+  "Features": {
+    "Services": "Services",
+    "Diversity": "Diversity",
+    "Personalization": "Personalization",
+    "Product": "Product",
+    "All services comply with legal regulations": "All services comply with legal regulations, clear and transparent.",
+    "We offer a wide range of services to make your life more convenient": "We offer a wide range of services to make your life more convenient",
+    "You can customize services to your preferences or personal style": "You can customize services to your preferences or personal style",
+    "We offer a wide range of products and services for you to choose from": "We offer a wide range of products and services for you to choose from"
+  },
+
+  "ProductInfo": {
+    "CoreProduct": "Core product",
+    "ReasonablePrices": "Reasonable prices",
+    "Our company has over": "Our company has over",
+    "CoreProductDesc": "100+ houses and rooms for rent throughout Taichung. ",
+    "In the future": "In the future, we aim to expand our presence across Taiwan to serve all foreigners living in the country.",
+    "ReasonablePricesDesc": "We always provide products and services at the best prices in the market.",
+    "Founder": "Founder",
+    "FounderDesc": "XinChao will assist foreigners living, studying, and working in Taiwan in easily finding a suitable house or room that matches their personal preferences and budget.",
+    "AvailableRentalLocations": "Available rental locations",
+    "AvailableRentalLocationsDesc": "We are always searching for the best living locations for our customers.",
+    "North District": "North District",
+    "South District": "South District",
+    "West District": "West District",
+    "East District": "East District",
+    "Nantun District": "Nantun District",
+    "Xitun District": "Xitun District",
+    "Taiping District": "Taiping District",
+    "Dali District": "Dali District",
+    "Wuri District": "Wuri District",
+    "Fengyuan District": "Fengyuan District",
+    "Shalu District": "Shalu District",
+    "Longjing District": "Longjing District",
+    "Wuqi District": "Wuqi District",
+    "Daya District": "Daya District",
+    "Qingshui District": "Qingshui District"
+  },
+
+  "Testimonials": {
+    "title": "Loved by rent people",
+    "A beautiful, spacious, and airy house, located near the market with all necessary amenities nearby": "A beautiful, spacious, and airy house, located near the market with all necessary amenities nearby.",
+    "A spacious room surrounded by all necessary amenities, fully equipped with essential items, and offered at a reasonable price": "A spacious room surrounded by all necessary amenities, fully equipped with essential items, and offered at a reasonable price.",
+    "A beautiful, spacious room with a clean kitchen at a reasonable price": "A beautiful, spacious room with a clean kitchen at a reasonable price.",
+    "Nguyen Van Thinh": "Nguyen Van Thinh",
+    "Tran Thi Lan": "Tran Thi Lan",
+    "Le Thi Nam Phuong": "Le Thi Nam Phuong"
+  },
+
+  "Pricing": {
+    "title": "Pricing for service",
+    "description": "One-time payment or monthly payment",
+    "Room": "Pricing for service",
+    "RoomDesc": "A basic room, suitable for one person.",
+    "RoomResidence": "Room Residence",
+    "RoomResidenceDesc": "Spacious room with all necessary amenities.",
+    "House": "House",
+    "HouseDesc": "Fully furnished, suitable for multiple occupants.",
+    "Shared bathroom": "Shared bathroom",
+    "Shared kitchen": "Shared kitchen",
+    "Wifi": "Wifi",
+    "Mattress": "Mattress",
+    "Wardrobe": "Wardrobe",
+    "En-suite bathroom": "En-suite bathroom",
+    "Air conditioning": "Air conditioning",
+    "Bed": "Bed",
+    "Private accommodation": "Private accommodation",
+    "go": "go",
+    "note": "The price above does not include brokerage fees."
+  },
+
+  "FAQ": {
+    "title": "Frequently Asked Questions",
+    "What fees do I have to pay when signing a rental agreement?": "What fees do I have to pay when signing a rental agreement?",
+    "The fees that customers need to pay when renting a house are a two-month security deposit, one month of rent, and a one-month brokerage fee.": "The fees that customers need to pay when renting a house are a two-month security deposit, one month of rent, and a one-month brokerage fee.",
+    "How long can I sign the contract for?": "How long can I sign the contract for?",
+    "The minimum rental period is 6 months, and the maximum is one year. Upon expiration, if the customer wishes to continue renting, they can sign a new contract.": "The minimum rental period is 6 months, and the maximum is one year. Upon expiration, if the customer wishes to continue renting, they can sign a new contract.",
+    "How will the utility costs be calculated when renting a house or room?": "How will the utility costs be calculated when renting a house or room?",
+    "Utility costs will be calculated based on the meter or according to the contract terms. If the customer rents a room, the cost will be divided equally among the tenants. For houses, the tenant is responsible for all utility costs.": "Utility costs will be calculated based on the meter or according to the contract terms. If the customer rents a room, the cost will be divided equally among the tenants. For houses, the tenant is responsible for all utility costs.",
+    "What identification documents are required when renting a house or a room?": "What identification documents are required when renting a house or a room?",
+    "When renting a house or room, customers need to provide their passport, ARC (Alien Resident Certificate), or other relevant ID card, passport, or Government ID card of the guarantor.": "When renting a house or room, customers need to provide their passport, ARC (Alien Resident Certificate), or other relevant ID card, passport, or Government ID card of the guarantor."
   }
 }

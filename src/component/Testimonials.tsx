@@ -1,21 +1,25 @@
 import ScrollReveal from "../component/ScrollReveal";
+import { useTranslations } from "next-intl";
 
 export default function Testimonials() {
+
+   const t = useTranslations("Testimonials");
+
   const testimonials = [
     {
       name: "Nguyen Van Thinh",
       comment:
-        "A beautiful, spacious, and airy house, located near the market with all necessary amenities nearby.",
+        "A beautiful, spacious, and airy house, located near the market with all necessary amenities nearby",
     },
     {
       name: "Tran Thi Lan",
       comment:
-        "A beautiful, spacious room with a clean kitchen at a reasonable price.",
+        "A beautiful, spacious room with a clean kitchen at a reasonable price",
     },
     {
       name: "Le Thi Nam Phuong",
       comment:
-        "A spacious room surrounded by all necessary amenities, fully equipped with essential items, and offered at a reasonable price.",
+        "A spacious room surrounded by all necessary amenities, fully equipped with essential items, and offered at a reasonable price",
     },
   ];
 
@@ -24,16 +28,16 @@ export default function Testimonials() {
       <ScrollReveal>
         <div className="container mx-auto px-4">
           <h2 className="text-3xl font-semibold text-white text-center mb-12">
-            Loved by rent people
+            {t("title")}
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {testimonials.map((testimonial, index) => (
               <div
                 key={index}
                 className="bg-gray-800 p-6 rounded-lg flex flex-col justify-between h-full">
-                <p className="text-gray-400 mb-4">{testimonial.comment}</p>
+                <p className="text-gray-400 mb-4">{t(testimonial.comment)}</p>
                 <p className="text-white font-semibold mt-auto">
-                  {testimonial.name}
+                  {t(testimonial.name)}
                 </p>
               </div>
             ))}

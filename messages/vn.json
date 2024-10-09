@@ -1,10 +1,100 @@
 {
-  "LandingPage": {
-    "appName": "Xin Chào",
-    "title": "Chào mừng đến với Dịch vụ của chúng tôi",
+  "LandingPageHeader": {
+    "appName": "Xin Chao",
+    "title": "Chào mừng đến với dịch vụ của chúng tôi",
     "description": "Tìm hiểu cách chúng tôi có thể giúp bạn đạt được mục tiêu của mình.",
     "login": "Đăng nhập",
     "register": "Đăng ký",
-    "footerText": "© 2024 Công ty Xin Chào. Bảo lưu mọi quyền."
+    "footerText": "© 2024 Công ty Xin Chao. Bảo lưu mọi quyền."
+  },
+
+  "Hero": {
+    "Make life in Taiwan easier and convenient": "Giúp cuộc sống của bạn tại Đài Loan dễ dàng và tiện lợi hơn",
+    "description": "Công ty chúng tôi cung cấp dịch vụ thuê nhà và phòng cho người nước ngoài sinh sống, học tập và làm việc tại Đài Loan. Chúng tôi cam kết mang đến dịch vụ và trải nghiệm tốt nhất cho khách hàng."
+  },
+
+
+  "Features": {
+    "Services": "Dịch vụ",
+    "Diversity": "Đa dạng",
+    "Personalization": "Cá nhân hóa",
+    "Product": "Sản phẩm",
+    "All services comply with legal regulations": "Tất cả dịch vụ đều tuân thủ quy định pháp luật, rõ ràng và minh bạch ",
+    "We offer a wide range of services to make your life more convenient": "Chúng tôi cung cấp đa dạng dịch vụ giúp cuộc sống của bạn trở nên thuận tiện hơn",
+    "You can customize services to your preferences or personal style": "Bạn có thể tùy chỉnh dịch vụ theo sở thích hoặc phong cách cá nhân",
+    "We offer a wide range of products and services for you to choose from": "Chúng tôi cung cấp đa dạng sản phẩm và dịch vụ cho bạn lựa chọn"
+  },
+
+  
+  "ProductInfo": {
+    "CoreProduct": "Sản phẩm chính",
+    "ReasonablePrices": "Giá cả hợp lý",
+    "Our company has over": "Công ty chúng tôi có hơn",
+    "CoreProductDesc": " 100+ căn nhà và phòng cho thuê trên toàn thành phố Đài Trung. ",
+    "In the future":"Trong tương lai, chúng tôi mong muốn mở rộng phạm vi trên toàn Đài Loan để phục vụ tất cả người nước ngoài sinh sống tại đây.",
+    "ReasonablePricesDesc": "Chúng tôi luôn cung cấp sản phẩm và dịch vụ với giá tốt nhất trên thị trường.",
+    "Founder": "Người sáng lập",
+    "FounderDesc": "XinChao sẽ hỗ trợ người nước ngoài sống, học tập và làm việc tại Đài Loan dễ dàng tìm được căn nhà hoặc phòng phù hợp với sở thích và ngân sách cá nhân.",
+    "AvailableRentalLocations": "Vị trí cho thuê hiện có",
+    "AvailableRentalLocationsDesc": "Chúng tôi luôn tìm kiếm những địa điểm sống tốt nhất cho khách hàng của mình.",
+    "North District": "Quận Bắc",
+    "South District": "Quận Nam",
+    "West District": "Quận Tây",
+    "East District": "Quận Đông",
+    "Nantun District": "Quận Nam Đồn",
+    "Xitun District": "Quận Tây Đồn",
+    "Taiping District": "Quận Thái Bình",
+    "Dali District": "Quận Đại Lý",
+    "Wuri District": "Quận Ngũ Nhĩ",
+    "Fengyuan District": "Quận Phong Nguyên",
+    "Shalu District": "Quận Sa Lộc",
+    "Longjing District": "Quận Long Tĩnh",
+    "Wuqi District": "Quận Ngô Khởi",
+    "Daya District": "Quận Đại Giáp",
+    "Qingshui District": "Quận Thanh Thủy"
+  },
+
+  "Testimonials": {
+    "title": "Được yêu thích bởi người thuê",
+    "A beautiful, spacious, and airy house, located near the market with all necessary amenities nearby": "Nhà rộng rãi, thoáng mát, nằm gần chợ và có đầy đủ tiện nghi cần thiết.",
+    "A spacious room surrounded by all necessary amenities, fully equipped with essential items, and offered at a reasonable price": "Phòng rộng rãi, xung quanh có đầy đủ tiện nghi cần thiết, trang bị đầy đủ vật dụng cần thiết với giá cả hợp lý.",
+    "A beautiful, spacious room with a clean kitchen at a reasonable price": "Phòng đẹp, rộng rãi, bếp sạch sẽ với giá cả hợp lý.",
+    "Nguyen Van Thinh": "Nguyễn Văn Thịnh",
+    "Tran Thi Lan": "Trần Thị Lan",
+    "Le Thi Nam Phuong": "Lê Thị Nam Phương"
+  },
+
+  "Pricing": {
+    "title": "Bảng giá dịch vụ",
+    "description": "Thanh toán một lần hoặc thanh toán hàng tháng",
+    "Room": "Phòng",
+    "RoomDesc": "Phòng cơ bản, phù hợp cho một người.",
+    "RoomResidence": "Phòng cư trú",
+    "RoomResidenceDesc": "Phòng rộng rãi, có đầy đủ tiện nghi cần thiết.",
+    "House": "Nhà",
+    "HouseDesc": "Đầy đủ nội thất, phù hợp cho nhiều người sinh sống.",
+    "Shared bathroom": "Phòng tắm chung",
+    "Shared kitchen": "Nhà bếp chung",
+    "Wifi": "Wifi",
+    "Mattress": "Nệm",
+    "Wardrobe": "Tủ quần áo",
+    "En-suite bathroom": "Phòng tắm riêng",
+    "Air conditioning": "Máy lạnh",
+    "Bed": "Giường",
+    "Private accommodation": "Chỗ ở riêng",
+    "go": "đi",
+    "note": "Giá trên không bao gồm phí môi giới."
+  },
+
+  "FAQ": {
+    "title": "Câu hỏi thường gặp",
+    "What fees do I have to pay when signing a rental agreement?": "Tôi phải trả những phí gì khi ký hợp đồng thuê nhà?",
+    "The fees that customers need to pay when renting a house are a two-month security deposit, one month of rent, and a one-month brokerage fee.": "Các khoản phí khách hàng cần trả khi thuê nhà bao gồm: tiền cọc hai tháng, một tháng tiền thuê nhà và một tháng phí môi giới.",
+    "How long can I sign the contract for?": "Thời gian thuê nhà tối thiểu và tối đa là bao lâu?",
+    "The minimum rental period is 6 months, and the maximum is one year. Upon expiration, if the customer wishes to continue renting, they can sign a new contract.": "Thời gian thuê tối thiểu là 6 tháng, tối đa là một năm. Khi hết hạn, nếu khách hàng muốn tiếp tục thuê, họ có thể ký hợp đồng mới.",
+    "How will the utility costs be calculated when renting a house or room?": "Chi phí tiện ích sẽ được tính như thế nào khi thuê nhà hoặc phòng?",
+    "Utility costs will be calculated based on the meter or according to the contract terms. If the customer rents a room, the cost will be divided equally among the tenants. For houses, the tenant is responsible for all utility costs.": "Chi phí tiện ích sẽ được tính theo đồng hồ hoặc theo điều khoản trong hợp đồng. Nếu khách hàng thuê phòng, chi phí sẽ được chia đều cho các người thuê. Đối với nhà, khách thuê sẽ chịu trách nhiệm toàn bộ chi phí tiện ích.",
+    "What identification documents are required when renting a house or a room?": "Tôi cần cung cấp giấy tờ gì khi thuê nhà hoặc phòng?",
+    "When renting a house or room, customers need to provide their passport, ARC (Alien Resident Certificate), or other relevant ID card, passport, or Government ID card of the guarantor.": "Khi thuê nhà hoặc phòng, khách hàng cần cung cấp hộ chiếu, ARC (Giấy Chứng Nhận Cư Trú Người Nước Ngoài) hoặc các giấy tờ tùy thân liên quan khác, hộ chiếu hoặc thẻ căn cước của người bảo lãnh."
   }
 }

@@ -1,7 +1,10 @@
 import Image from "next/image";
 import ScrollReveal from "../component/ScrollReveal";
+import { useTranslations } from "next-intl";
 
 export default function ProductInfo() {
+
+   const t = useTranslations("ProductInfo");
   const locations = [
     "North District",
     "South District",
@@ -27,25 +30,21 @@ export default function ProductInfo() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div className="bg-gray-800 p-6 rounded-lg shadow-lg md:col-span-2">
               <h2 className="text-2xl font-bold mb-4 text-white">
-                Core product
+                {t("CoreProduct")}
               </h2>
               <p className="text-gray-400">
-                Our company has over{" "}
+                {t("Our company has over")}{" "}
                 <span className="font-bold text-primary">
-                  100+ houses and rooms for rent throughout Taichung
+                  {t("CoreProductDesc")}
                 </span>
-                . In the future, we aim to expand our presence across Taiwan to
-                serve all foreigners living in the country.
+                {t("In the future")}
               </p>
             </div>
             <div className="bg-gray-800 p-6 rounded-lg shadow-lg">
               <h2 className="text-2xl font-bold mb-4 text-white">
-                Reasonable prices
+                {t("ReasonablePrices")}
               </h2>
-              <p className="text-gray-400">
-                We always provide products and services at the best prices in
-                the market.
-              </p>
+              <p className="text-gray-400">{t("ReasonablePricesDesc")}</p>
             </div>
           </div>
 
@@ -61,29 +60,26 @@ export default function ProductInfo() {
                 />
                 <div>
                   <h3 className="font-bold text-primary-foreground">James</h3>
-                  <p className="text-primary-foreground/80 text-sm">Founder</p>
+                  <p className="text-primary-foreground/80 text-sm">
+                    {t("Founder")}
+                  </p>
                 </div>
               </div>
-              <p className="text-primary-foreground">
-                XinChao will assist foreigners living, studying, and working in
-                Taiwan in easily finding a suitable house or room that matches
-                their personal preferences and budget.
-              </p>
+              <p className="text-primary-foreground">{t("FounderDesc")}</p>
             </div>
             <div className="bg-gray-800 p-6 rounded-lg shadow-lg md:col-span-2">
               <h2 className="text-2xl font-bold mb-4 text-white">
-                Available rental locations
+                {t("AvailableRentalLocations")}
               </h2>
               <p className="text-gray-400 mb-4">
-                We are always searching for the best living locations for our
-                customers.
+                {t("AvailableRentalLocationsDesc")}
               </p>
               <div className="flex flex-wrap gap-2">
                 {locations.map((location, index) => (
                   <span
                     key={index}
                     className="bg-gray-500 text-sm text-purple-300 px-3 py-1 rounded-full">
-                    {location}
+                    {t(location)}
                   </span>
                 ))}
               </div>

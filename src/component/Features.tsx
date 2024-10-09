@@ -2,28 +2,32 @@
 
 import ScrollReveal from "../component/ScrollReveal";
 
+import { useTranslations } from "next-intl";
 
 
 export default function Features() {
+
+  const t = useTranslations("Features");
+
   const features = [
     {
       title: "Services",
-      description: "All services comply with legal regulations.",
+      description: "All services comply with legal regulations",
     },
     {
       title: "Diversity",
       description:
-        "We offer a wide range of services to make your life more convenient.",
+        "We offer a wide range of services to make your life more convenient",
     },
     {
       title: "Personalization",
       description:
-        "You can customize services to your preferences or personal style.",
+        "You can customize services to your preferences or personal style",
     },
     {
       title: "Product",
       description:
-        "We offer a wide range of products and services for you to choose from.",
+        "We offer a wide range of products and services for you to choose from",
     },
   ];
 
@@ -38,9 +42,9 @@ export default function Features() {
                   <span className="text-2xl text-white">✦</span>
                 </div>
                 <h3 className="text-xl font-semibold text-white mb-2">
-                  {feature.title}
+                  {t(feature.title)}
                 </h3>
-                <p className="text-gray-400">{feature.description}</p>
+                <p className="text-gray-400">{t(feature.description)}</p>
               </div>
             ))}
           </div>

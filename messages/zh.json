@@ -1,10 +1,101 @@
 {
-  "LandingPage": {
-    "appName": "您好",
+  "LandingPageHeader": {
+    "appName": "Xin Chao",
     "title": "歡迎來到我們的服務",
     "description": "了解我們如何幫助您實現目標。",
     "login": "登入",
     "register": "註冊",
-    "footerText": "© 2024 您好公司。保留所有權利。"
+    "footerText": "© 2024 Xin Chao 公司。保留所有權利。"
+  },
+
+  "Hero": {
+    "Make life in Taiwan easier and convenient": "讓您在台灣的生活更加簡單方便",
+    "description": "我們公司為在台灣生活、學習和工作的外國人提供房屋和房間租賃服務。我們致力於為客戶提供最佳的服務和體驗。"
+  },
+
+
+  "Features": {
+    "Services": "服務",
+    "Diversity": "多樣性",
+    "Personalization": "個性化",
+    "Product": "產品",
+    "All services comply with legal regulations": "所有服務均遵守法律規定，清楚",
+    "We offer a wide range of services to make your life more convenient": "我們提供多種服務，以讓您的生活更方便",
+    "You can customize services to your preferences or personal style": "您可以根據個人偏好或風格自訂服務",
+    "We offer a wide range of products and services for you to choose from": "我們提供多種產品和服務供您選擇"
+  },
+
+  
+
+  "ProductInfo": {
+    "CoreProduct": "核心產品",
+    "ReasonablePrices": "合理價格",
+    "Our company has over": "我們公司在台中擁有超過",
+    "CoreProductDesc": "100+間房屋和房間出租。",
+    "In the future": "未來，我們目標是擴展到全台，以服務所有在台外國人。",
+    "ReasonablePricesDesc": "我們始終以市場上最好的價格提供產品和服務。",
+    "Founder": "創辦人",
+    "FounderDesc": "XinChao 將協助在台生活、學習和工作的外國人，輕鬆找到符合個人偏好和預算的合適房屋或房間。",
+    "AvailableRentalLocations": "可供租賃地點",
+    "AvailableRentalLocationsDesc": "我們始終為客戶尋找最佳生活地點。",
+    "North District": "北區",
+    "South District": "南區",
+    "West District": "西區",
+    "East District": "東區",
+    "Nantun District": "南屯區",
+    "Xitun District": "西屯區",
+    "Taiping District": "太平區",
+    "Dali District": "大里區",
+    "Wuri District": "烏日區",
+    "Fengyuan District": "豐原區",
+    "Shalu District": "沙鹿區",
+    "Longjing District": "龍井區",
+    "Wuqi District": "梧棲區",
+    "Daya District": "大雅區",
+    "Qingshui District": "清水區"
+  },
+
+  "Testimonials": {
+    "title": "受到租客的喜愛",
+    "A beautiful, spacious, and airy house, located near the market with all necessary amenities nearby": "美麗、寬敞、通風的房子，靠近市場且附近有所有必要設施。",
+    "A spacious room surrounded by all necessary amenities, fully equipped with essential items, and offered at a reasonable price": "寬敞的房間，周圍有所有必要設施，並配備基本用品，價格合理。",
+    "A beautiful, spacious room with a clean kitchen at a reasonable price": "美麗、寬敞的房間，帶有乾淨的廚房且價格合理。",
+    "Nguyen Van Thinh": "阮文盛",
+    "Tran Thi Lan": "陳氏蘭",
+    "Le Thi Nam Phuong": "黎氏南芳"
+  },
+
+  "Pricing": {
+    "title": "服務價格",
+    "description": "一次性付款或按月付款",
+    "Room": "服務價格",
+    "RoomDesc": "適合一人的基本房間。",
+    "RoomResidence": "房間住宅",
+    "RoomResidenceDesc": "寬敞的房間，配備所有必要設施。",
+    "House": "房子",
+    "HouseDesc": "配備齊全，適合多人居住。",
+    "Shared bathroom": "共用浴室",
+    "Shared kitchen": "共用廚房",
+    "Wifi": "無線網絡",
+    "Mattress": "床墊",
+    "Wardrobe": "衣櫃",
+    "En-suite bathroom": "套房浴室",
+    "Air conditioning": "空調",
+    "Bed": "床",
+    "Private accommodation": "私人住宿",
+    "go": "前往",
+    "note": "以上價格不包括中介費。"
+  },
+
+  "FAQ": {
+    "title": "常見問題解答",
+    "What fees do I have to pay when signing a rental agreement?": "簽署租賃合約時需要支付哪些費用？",
+    "The fees that customers need to pay when renting a house are a two-month security deposit, one month of rent, and a one-month brokerage fee.": "客戶在租房時需要支付的費用包括兩個月的押金、一個月的租金和一個月的中介費。",
+    "How long can I sign the contract for?": "我可以簽訂多長時間的合約？",
+    "The minimum rental period is 6 months, and the maximum is one year. Upon expiration, if the customer wishes to continue renting, they can sign a new contract.": "最短租期為6個月，最長為1年。到期後，如果客戶希望繼續租用，可以簽訂新的合約。",
+    "How will the utility costs be calculated when renting a house or room?": "租房或房間時如何計算水電費？",
+    "Utility costs will be calculated based on the meter or according to the contract terms. If the customer rents a room, the cost will be divided equally among the tenants. For houses, the tenant is responsible for all utility costs.": "水電費將根據計量表或合約條款計算。租房間的話，費用將在房客之間平分。若租整間房子，租客需承擔所有水電費。",
+    "What identification documents are required when renting a house or a room?": "租房或房間時需要提供哪些證件？",
+    "When renting a house or room, customers need to provide their passport, ARC (Alien Resident Certificate), or other relevant ID card, passport, or Government ID card of the guarantor.": "租房或房間時，客戶需要提供護照、外僑居留證（ARC）、或其他相關身份證件、擔保人的護照或政府身份證。"
   }
 }

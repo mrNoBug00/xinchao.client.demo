@@ -5,7 +5,7 @@ import { useTranslations, useLocale } from "next-intl";
 
 export default function Header() {
   const router = useRouter();
-  const t = useTranslations("LandingPage");
+  const t = useTranslations("LandingPageHeader");
   const locale = useLocale();
 
   const handleNavigation = (path: string) => {
