@@ -5,7 +5,8 @@
     "description": "Learn how we can help you achieve your goals.",
     "login": "Login",
     "register": "Register",
-    "footerText": "© 2024 Xin Chao Company. All rights reserved."
+    "footerText": "© 2024 Xin Chao Company. All rights reserved.",
+    "Back to top": "Back to top"
   },
 
   "Hero": {
@@ -66,11 +67,11 @@
     "title": "Pricing for service",
     "description": "One-time payment or monthly payment",
     "Room": "Pricing for service",
-    "RoomDesc": "A basic room, suitable for one person.",
-    "RoomResidence": "Room Residence",
-    "RoomResidenceDesc": "Spacious room with all necessary amenities.",
+    "A basic room, suitable for one person": "A basic room, suitable for one person.",
+    "Room Residence": "Room Residence",
+    "Spacious room with all necessary amenities": "Spacious room with all necessary amenities.",
     "House": "House",
-    "HouseDesc": "Fully furnished, suitable for multiple occupants.",
+    "Fully furnished, suitable for multiple occupants": "Fully furnished, suitable for multiple occupants.",
     "Shared bathroom": "Shared bathroom",
     "Shared kitchen": "Shared kitchen",
     "Wifi": "Wifi",
@@ -79,6 +80,7 @@
     "En-suite bathroom": "En-suite bathroom",
     "Air conditioning": "Air conditioning",
     "Bed": "Bed",
+    "Parking space": "Parking space",
     "Private accommodation": "Private accommodation",
     "go": "go",
     "note": "The price above does not include brokerage fees."
@@ -87,12 +89,12 @@
   "FAQ": {
     "title": "Frequently Asked Questions",
     "What fees do I have to pay when signing a rental agreement?": "What fees do I have to pay when signing a rental agreement?",
-    "The fees that customers need to pay when renting a house are a two-month security deposit, one month of rent, and a one-month brokerage fee.": "The fees that customers need to pay when renting a house are a two-month security deposit, one month of rent, and a one-month brokerage fee.",
+    "The fees that customers need to pay when renting a house are a two-month security deposit, one month of rent, and a one-month brokerage fee": "The fees that customers need to pay when renting a house are a two-month security deposit, one month of rent, and a one-month brokerage fee.",
     "How long can I sign the contract for?": "How long can I sign the contract for?",
-    "The minimum rental period is 6 months, and the maximum is one year. Upon expiration, if the customer wishes to continue renting, they can sign a new contract.": "The minimum rental period is 6 months, and the maximum is one year. Upon expiration, if the customer wishes to continue renting, they can sign a new contract.",
+    "The minimum rental period is 6 months, and the maximum is one year. Upon expiration, if the customer wishes to continue renting, they can sign a new contract": "The minimum rental period is 6 months, and the maximum is one year. Upon expiration, if the customer wishes to continue renting, they can sign a new contract.",
     "How will the utility costs be calculated when renting a house or room?": "How will the utility costs be calculated when renting a house or room?",
-    "Utility costs will be calculated based on the meter or according to the contract terms. If the customer rents a room, the cost will be divided equally among the tenants. For houses, the tenant is responsible for all utility costs.": "Utility costs will be calculated based on the meter or according to the contract terms. If the customer rents a room, the cost will be divided equally among the tenants. For houses, the tenant is responsible for all utility costs.",
+    "Utility costs will be calculated based on the meter or according to the contract terms. If the customer rents a room, the cost will be divided equally among the tenants. For houses, the tenant is responsible for all utility costs": "Utility costs will be calculated based on the meter or according to the contract terms. If the customer rents a room, the cost will be divided equally among the tenants. For houses, the tenant is responsible for all utility costs.",
     "What identification documents are required when renting a house or a room?": "What identification documents are required when renting a house or a room?",
-    "When renting a house or room, customers need to provide their passport, ARC (Alien Resident Certificate), or other relevant ID card, passport, or Government ID card of the guarantor.": "When renting a house or room, customers need to provide their passport, ARC (Alien Resident Certificate), or other relevant ID card, passport, or Government ID card of the guarantor."
+    "When renting a house or room, customers need to provide their passport, ARC (Alien Resident Certificate), or other relevant ID card, passport, or Government ID card of the guarantor": "When renting a house or room, customers need to provide their passport, ARC (Alien Resident Certificate), or other relevant ID card, passport, or Government ID card of the guarantor."
   }
 }

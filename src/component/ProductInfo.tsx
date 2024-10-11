@@ -27,8 +27,8 @@ export default function ProductInfo() {
     <section className="py-20 bg-gradient-to-b to-gray-900 via-purple-900 from-gray-900">
       <ScrollReveal>
         <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="bg-gray-800 p-6 rounded-lg shadow-lg md:col-span-2">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 ">
+            <div className="bg-gray-800 p-6 rounded-lg shadow-lg md:col-span-2 transition-transform transform hover:scale-105">
               <h2 className="text-2xl font-bold mb-4 text-white">
                 {t("CoreProduct")}
               </h2>
@@ -40,7 +40,7 @@ export default function ProductInfo() {
                 {t("In the future")}
               </p>
             </div>
-            <div className="bg-gray-800 p-6 rounded-lg shadow-lg">
+            <div className="bg-gray-800 p-6 rounded-lg shadow-lg transition-transform transform hover:scale-105">
               <h2 className="text-2xl font-bold mb-4 text-white">
                 {t("ReasonablePrices")}
               </h2>
@@ -49,8 +49,8 @@ export default function ProductInfo() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-8">
-            <div className="bg-gradient-to-r from-blue-300  to-purple-300   p-6 rounded-lg shadow-lg flex flex-col justify-between">
-              <div className="flex items-start space-x-4 mb-4">
+            <div className="bg-gradient-to-r from-blue-300  to-purple-300   p-6 rounded-lg shadow-lg flex flex-col justify-between transition-transform transform hover:scale-105">
+              <div className="flex items-start space-x-4 mb-4 ">
                 <Image
                   src="/avatar3.jpg"
                   alt="James"
@@ -67,7 +67,7 @@ export default function ProductInfo() {
               </div>
               <p className="text-primary-foreground">{t("FounderDesc")}</p>
             </div>
-            <div className="bg-gray-800 p-6 rounded-lg shadow-lg md:col-span-2">
+            <div className="bg-gray-800 p-6 rounded-lg shadow-lg md:col-span-2 transition-transform transform hover:scale-105">
               <h2 className="text-2xl font-bold mb-4 text-white">
                 {t("AvailableRentalLocations")}
               </h2>

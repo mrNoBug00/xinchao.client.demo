@@ -34,7 +34,7 @@ export default function Testimonials() {
             {testimonials.map((testimonial, index) => (
               <div
                 key={index}
-                className="bg-gray-800 p-6 rounded-lg flex flex-col justify-between h-full">
+                className="bg-gray-800 p-6 rounded-lg flex flex-col justify-between h-full transition-transform transform hover:scale-105">
                 <p className="text-gray-400 mb-4">{t(testimonial.comment)}</p>
                 <p className="text-white font-semibold mt-auto">
                   {t(testimonial.name)}

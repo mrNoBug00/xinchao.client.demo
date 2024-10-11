@@ -19,7 +19,7 @@ export default function Header() {
   };
 
   return (
-    <header className="bg-purple-900 shadow-md">
+    <header className="bg-purple-900 shadow-md ">
       <div className="container mx-auto flex flex-col md:flex-row justify-between items-center p-4">
         <h1 className="text-xl font-bold text-white">{t("appName")}</h1>
         <div className="flex items-center space-x-4 mt-4 md:mt-0">
