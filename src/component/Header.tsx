@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { useTranslations, useLocale } from "next-intl";
+import Image from "next/image";
 
 export default function Header() {
   const router = useRouter();
@@ -39,7 +40,7 @@ export default function Header() {
               onClick={() => setIsDropdownOpen(!isDropdownOpen)}
               className=" rounded-md  text-gray-800  flex items-center justify-between">
               <span>
-                <img
+                <Image
                   src={`/${locale}.png`}
                   alt={locale}
                   className="w-24 h-6 mr-2"
