@@ -11,6 +11,7 @@ import ProductInfo from "../../component/ProductInfo";
 import Testimonials from "../../component/Testimonials";
 import Pricing from "../../component/Pricing";
 import FAQ from "../../component/FAQ";
+import ImageCarousel from "../../component/ImageCarousel";
 
 const HomePage = () => {
   const t = useTranslations("LandingPageHeader");
@@ -39,12 +40,14 @@ const HomePage = () => {
 
   return (
     <div className="flex flex-col min-h-screen bg-gray-100">
-
       <main className="flex-grow flex flex-col items-center justify-center">
         <div className="min-h-screen w-full bg-background">
           <Header />
           <Hero />
-          <Features />
+
+          {/* <Features /> */}
+
+          <ImageCarousel />
           <ProductInfo />
           <Testimonials />
           <Pricing />
