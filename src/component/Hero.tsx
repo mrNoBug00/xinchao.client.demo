@@ -2,9 +2,12 @@ import Link from "next/link";
 import ScrollReveal from "../component/ScrollReveal";
 import { useTranslations } from "next-intl";
 import Image from "next/image";
+import { useState } from "react";
+import styles from "../styles/Hero.module.css";
 
 export default function Hero() {
   const t = useTranslations("Hero");
+  const [isFlipped, setIsFlipped] = useState(false);
 
   return (
     <section className="flex flex-col md:flex-row items-center justify-center py-20 bg-gradient-to-b from-purple-900 to-gray-900">
@@ -18,14 +21,37 @@ export default function Hero() {
       </ScrollReveal>
 
       <ScrollReveal>
-        <div className="flex-1 p-4">
-          <Image
-            src="/heroImage.jpg"
-            alt="Hero Image"
-            width={600}
-            height={500}
-            className="rounded-lg object-cover"
-          />
+        <div
+          className={`flex-1 p-4 ${styles.perspective}`}
+          onMouseEnter={() => setIsFlipped(true)}
+          onMouseLeave={() => setIsFlipped(false)}>
+          <div
+            className={`relative w-96 h-80 transform transition-transform duration-700 ${
+              isFlipped ? styles["rotate-y-180"] : ""
+            } ${styles["preserve-3d"]}`}>
+            {/* Mặt trước */}
+            <div className={`absolute inset-0 ${styles["backface-hidden"]}`}>
+              <Image
+                src="/heroImage.jpg" // Đường dẫn hình ảnh chính
+                alt="Hero Image"
+                layout="fill"
+                objectFit="cover"
+                className="rounded-lg"
+              />
+            </div>
+
+            {/* Mặt sau */}
+            <div
+              className={`absolute inset-0 ${styles["backface-hidden"]} ${styles["rotate-y-180"]}`}>
+              <Image
+                src="/backHeroImage.jpg" // Đường dẫn hình ảnh phía sau
+                alt="Hero Back Image"
+                layout="fill"
+                objectFit="cover"
+                className="rounded-lg"
+              />
+            </div>
+          </div>
         </div>
       </ScrollReveal>
     </section>
