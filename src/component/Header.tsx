@@ -26,11 +26,13 @@ export default function Header() {
       <div className="container mx-auto flex md:flex-row justify-between items-center p-4">
         <h1 className="text-xl font-bold text-white">{t("appName")}</h1>
 
-        <img
+        <Image
           src="/bars-3-bottom-right.svg" // Đường dẫn đến biểu tượng
           alt="Menu"
-          className="md:hidden h-8 w-8 cursor-pointer"
+          className="md:hidden cursor-pointer"
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          width={32}
+          height={8}
         />
 
         {/* Các nút và dropdown cho màn hình lớn - nằm bên phải */}
@@ -43,7 +45,9 @@ export default function Header() {
                 <Image
                   src={`/${locale}.png`}
                   alt={locale}
-                  className="w-24 h-6 mr-2"
+                  className="mr-2"
+                  width={64}
+                  height={16}
                 />
               </span>
               <svg
@@ -65,20 +69,17 @@ export default function Header() {
                 <button
                   onClick={() => handleChangeLanguage("vn")}
                   className="flex items-center space-x-2 w-full p-2 hover:bg-gray-100">
-                  <img src="/vn.png" alt="Vietnam" className="w-32 h-8" />{" "}
-                  {/* Tăng kích thước tại đây */}
+                  <Image src="/vn.png" alt="Vietnam" width={64} height={16} />{" "}
                 </button>
                 <button
                   onClick={() => handleChangeLanguage("en")}
                   className="flex items-center space-x-2 w-full p-2 hover:bg-gray-100">
-                  <img src="/en.png" alt="English" className="w-32 h-8" />{" "}
-                  {/* Tăng kích thước tại đây */}
+                  <Image src="/en.png" alt="English" width={64} height={16} />{" "}
                 </button>
                 <button
                   onClick={() => handleChangeLanguage("zh")}
                   className="flex items-center space-x-2 w-full p-2 hover:bg-gray-100">
-                  <img src="/zh.png" alt="Chinese" className="w-32 h-8" />{" "}
-                  {/* Tăng kích thước tại đây */}
+                  <Image src="/zh.png" alt="Chinese" width={64} height={16} />{" "}
                 </button>
               </div>
             )}
@@ -104,16 +105,13 @@ export default function Header() {
               onClick={() => setIsDropdownOpen(!isDropdownOpen)}
               className="border border-gray-300 rounded-md p-2 bg-white text-gray-800 w-full flex items-center justify-between">
               <span>
-                <img
+                <Image
                   src={`/${locale}.png`}
                   alt={locale}
-                  className="w-4 h-4 inline-block mr-2"
+                  className="mr-2"
+                  width={32}
+                  height={8}
                 />
-                {locale === "vn"
-                  ? "Tiếng Việt"
-                  : locale === "en"
-                  ? "English"
-                  : "中文"}
               </span>
               <svg
                 className="w-4 h-4 text-gray-600"
@@ -130,24 +128,21 @@ export default function Header() {
               </svg>
             </button>
             {isDropdownOpen && (
-              <div className="absolute right-0 mt-2 bg-white shadow-lg rounded-md p-2 z-50">
+              <div className="absolute right-0 mt-2 bg-white shadow-lg rounded-md  z-50">
                 <button
                   onClick={() => handleChangeLanguage("vn")}
                   className="flex items-center space-x-2 w-full p-2 hover:bg-gray-100">
-                  <img src="/vn.png" alt="Vietnam" className="w-4 h-4" />
-                  <span>Tiếng Việt</span>
+                  <Image src="/vn.png" alt="Vietnam" width={32} height={8} />{" "}
                 </button>
                 <button
                   onClick={() => handleChangeLanguage("en")}
                   className="flex items-center space-x-2 w-full p-2 hover:bg-gray-100">
-                  <img src="/us.png" alt="English" className="w-4 h-4" />
-                  <span>English</span>
+                  <Image src="/en.png" alt="Vietnam" width={32} height={8} />{" "}
                 </button>
                 <button
                   onClick={() => handleChangeLanguage("zh")}
                   className="flex items-center space-x-2 w-full p-2 hover:bg-gray-100">
-                  <img src="/tw.png" alt="Chinese" className="w-4 h-4" />
-                  <span>中文</span>
+                  <Image src="/zh.png" alt="Vietnam" width={32} height={8} />{" "}
                 </button>
               </div>
             )}
