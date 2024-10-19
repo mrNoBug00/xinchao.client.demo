@@ -32,11 +32,11 @@ const LoginPage = () => {
     } catch (error: any) {
       // Kiểm tra lỗi và cập nhật vào các trạng thái lỗi tương ứng
       if (error.message === "Invalid account") {
-        setIdentifierError("Identifier is incorrect. Please check your input.");
+        setIdentifierError("Identifier is incorrect Please check your input");
       } else if (error.message === "Invalid password") {
-        setPasswordError("Password is incorrect. Please try again.");
+        setPasswordError("Password is incorrect Please try again");
       } else {
-        setIdentifierError("Failed to login. Please check your credentials.");
+        setIdentifierError("Failed to login Please check your credentials");
       }
     }
   };

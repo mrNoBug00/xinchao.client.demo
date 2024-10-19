@@ -105,7 +105,7 @@
     "Login": "Login",
     "Register": "Register",
     "Do not have an account?": "Do not have an account?",
-    "Identifier is incorrect. Please check your input.": "Identifier is incorrect. Please check your input.",
-    "Password is incorrect. Please try again.": "Password is incorrect. Please try again."
+    "Identifier is incorrect Please check your input": "Identifier is incorrect. Please check your input",
+    "Password is incorrect Please try again": "Password is incorrect. Please try again"
   }
 }

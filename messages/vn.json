@@ -105,7 +105,7 @@
     "Login": "Đăng Nhập",
     "Register": "Đăng Ký",
     "Do not have an account?": "Bạn chưa có tài khoản?",
-    "Identifier is incorrect. Please check your input.": "Tài khoản không chính xác. Vui lòng kiểm tra lại thông tin của bạn.",
-    "Password is incorrect. Please try again.": "Mật khẩu không chính xác. Vui lòng thử lại."
+    "Identifier is incorrect Please check your input": "Tài khoản không chính xác. Vui lòng kiểm tra lại thông tin của bạn",
+    "Password is incorrect Please try again": "Mật khẩu không chính xác. Vui lòng thử lại"
   }
 }

@@ -105,7 +105,7 @@
     "Login": "登入",
     "Register": "註冊",
     "Do not have an account?": "還沒有帳號嗎？",
-    "Identifier is incorrect. Please check your input.": "帳號不正確。請檢查您的輸入。",
-    "Password is incorrect. Please try again.": "密碼不正確。請再試一次。"
+    "Identifier is incorrect Please check your input": "帳號不正確。請檢查您的輸入。",
+    "Password is incorrect Please try again": "密碼不正確。請再試一次。"
   }
 }
