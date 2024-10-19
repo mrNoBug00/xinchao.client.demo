@@ -1,4 +1,3 @@
-
 "use client";
 
 import { useState, useEffect } from "react";
@@ -8,24 +7,35 @@ import "../../../styles/globals.css";
 import Link from "next/link";
 import Image from "next/image";
 
-
 const LoginPage = () => {
   const router = useRouter();
   const [identifier, setIdentifier] = useState(""); // Chuyển từ email sang identifier
   const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
+  const [identifierError, setIdentifierError] = useState(""); // Trạng thái lỗi cho Identifier
+  const [passwordError, setPasswordError] = useState(""); // Trạng thái lỗi cho Password
   const [showPassword, setShowPassword] = useState(false);
 
   const handleLogin = async () => {
+    // Reset lỗi mỗi khi bấm login
+    setIdentifierError("");
+    setPasswordError("");
+
     try {
-      const result = await loginHandler(identifier, password); // Sử dụng identifier thay vì email
+      const result = await loginHandler(identifier, password);
       localStorage.setItem("token", result.token);
       localStorage.setItem("username", result.userName);
       localStorage.setItem("userId", result.userId);
       localStorage.setItem("role", result.role.name);
-      router.push("/pages/home"); // Chuyển hướng đến trang home
-    } catch (error) {
-      setError("Failed to login. Please check your credentials.");
+      router.push("/pages/home"); // Điều hướng tới trang home
+    } catch (error: any) {
+      // Kiểm tra lỗi và cập nhật vào các trạng thái lỗi tương ứng
+      if (error.message === "Invalid account") {
+        setIdentifierError("Identifier is incorrect. Please check your input.");
+      } else if (error.message === "Invalid password") {
+        setPasswordError("Password is incorrect. Please try again.");
+      } else {
+        setIdentifierError("Failed to login. Please check your credentials.");
+      }
     }
   };
 
@@ -48,19 +58,27 @@ const LoginPage = () => {
               type="text" // Sử dụng input kiểu text để người dùng có thể nhập bất kỳ loại thông tin nào
               value={identifier}
               onChange={(e) => setIdentifier(e.target.value)}
-              className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-              placeholder="Email, ARC, VNID, Passport, Phone" // Thêm placeholder để hướng dẫn người dùng
-              required // Bắt buộc nhập
+              className={`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 ${
+                identifierError ? "border-red-500" : ""
+              }`} // Thêm class 'border-red-500' khi có lỗi
+              placeholder="Email, ARC, VNID, Passport, Phone"
+              required
             />
+            {identifierError && (
+              <p className="text-red-500 text-sm mt-2">{identifierError}</p> // Hiển thị lỗi cho identifier
+            )}
           </div>
+
           <div className="mb-4 relative">
             <label className="block text-gray-700">Password:</label>
             <input
               type={showPassword ? "text" : "password"}
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-              required // Bắt buộc nhập
+              className={`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 ${
+                passwordError ? "border-red-500" : ""
+              }`} // Thêm class 'border-red-500' khi có lỗi
+              required
             />
             <button
               type="button"
@@ -73,13 +91,16 @@ const LoginPage = () => {
                 height={20}
               />
             </button>
+            {passwordError && (
+              <p className="text-red-500 text-sm mt-2">{passwordError}</p> // Hiển thị lỗi cho password
+            )}
           </div>
+
           <button
             type="submit"
             className="w-full bg-blue-600 text-white py-2 rounded-md hover:bg-blue-400">
             Login
           </button>
-          {error && <p className="mt-4 text-red-500 text-center">{error}</p>}
         </form>
         <p className="mt-4 text-center text-gray-600">
           Do not have an account?{" "}
@@ -89,10 +110,7 @@ const LoginPage = () => {
         </p>
       </div>
     </div>
-
-    
   );
 };
 
 export default LoginPage;
-

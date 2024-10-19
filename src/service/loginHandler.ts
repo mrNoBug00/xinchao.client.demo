@@ -1,43 +1,4 @@
 
-// import { apiPath } from '../utils/apiPath';
-
-// interface LoginResponse {
-//   token: string;
-//   expiresIn: number;
-//   userId: string;
-//   role: {
-//     id: number;
-//     name: string;
-//     description: string;
-//   };
-//   userName: string;
-// }
-
-// export async function loginHandler(email: string, password: string): Promise<LoginResponse> {
-//   const apiUrl = apiPath.login; // Lấy API URL từ file apiPath.ts
-
-//   try {
-//     const response = await fetch(apiUrl, {
-//       method: "POST",
-//       headers: {
-//         "Content-Type": "application/json",
-//       },
-//       body: JSON.stringify({ email, password }),
-      
-//     });
-
-//     if (!response.ok) {
-//       throw new Error('Failed to login');
-//     }
-
-//     const data: LoginResponse = await response.json();
-//     return data;
-//   } catch (error) {
-//     console.error('Login error:', error);
-//     throw error;
-//   }
-// }
-
 import { apiPath } from "../utils/apiPath";
 
 interface LoginResponse {
@@ -52,11 +13,13 @@ interface LoginResponse {
   userName: string;
 }
 
+
+
 export async function loginHandler(
   identifier: string,
   password: string
 ): Promise<LoginResponse> {
-  const apiUrl = apiPath.login; // Lấy API URL từ file apiPath.ts
+  const apiUrl = apiPath.login;
 
   try {
     const response = await fetch(apiUrl, {
@@ -64,17 +27,20 @@ export async function loginHandler(
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ identifier, password }), // Gửi identifier thay vì email
+      body: JSON.stringify({ identifier, password }),
     });
 
+    // Kiểm tra phản hồi từ server
     if (!response.ok) {
-      throw new Error("Failed to login");
+      const errorData = await response.json(); // Lấy nội dung phản hồi lỗi từ server
+      console.error("Error response data from server:", errorData);
+      throw new Error(errorData.message || "Failed to login"); // Truyền message từ server nếu có
     }
 
     const data: LoginResponse = await response.json();
     return data;
-  } catch (error) {
+  } catch (error: any) {
     console.error("Login error:", error);
-    throw error;
+    throw error; // Ném lại lỗi để xử lý phía ngoài
   }
 }
