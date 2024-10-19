@@ -27,7 +27,6 @@ import { FormImage } from "../../../../../service/interfaces/Product";
 import Image from "next/image";
 import { Image as ImageType } from "../../../../../service/interfaces/Product";
 
-
 const ProductDetail: React.FC<EditContractProps> = ({ params }) => {
   const [data, setData] = useState<Product | null>(null);
   const [role, setRole] = useState("");
@@ -50,25 +49,6 @@ const ProductDetail: React.FC<EditContractProps> = ({ params }) => {
 
   const houseId = params.id;
   const router = useRouter();
-
-
-
-
-  useEffect(() => {
-    document.title = "Product detail | xinchao";
-
-    const token = localStorage.getItem("token");
-    const userRole = localStorage.getItem("role") || "";
-    setRole(userRole);
-
-    if (!token) {
-      router.push("/login");
-    } else {
-      fetchProductData();
-      fetchStatuses();
-    }
-  }, [params.id, router, useCallback]);
-
 
   const fetchProductData = useCallback(async () => {
     try {
@@ -102,6 +82,21 @@ const ProductDetail: React.FC<EditContractProps> = ({ params }) => {
     }
   }, [params.id]);
 
+  useEffect(() => {
+    document.title = "Product detail | xinchao";
+
+    const token = localStorage.getItem("token");
+    const userRole = localStorage.getItem("role") || "";
+    setRole(userRole);
+
+    if (!token) {
+      router.push("/login");
+    } else {
+      fetchProductData();
+      fetchStatuses();
+    }
+  }, [params.id, router, fetchProductData]);
+
   const fetchStatuses = async () => {
     try {
       const response = await fetchData(houseApiPath.getAllStatus);
@@ -123,17 +118,16 @@ const ProductDetail: React.FC<EditContractProps> = ({ params }) => {
     const response = fetchData(`${houseApiPath.deleteProduct}/${houseId}`, {
       method: "DELETE",
     });
-    router.push("/pages/home")
-  }
+    router.push("/pages/home");
+  };
 
- const handleInputChange = (
-   e: ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>
- ) => {
-   const { name, value } = e.target;
+  const handleInputChange = (
+    e: ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>
+  ) => {
+    const { name, value } = e.target;
 
-   setFormData((prev) => ({ ...prev, [name]: value }));
- };
-
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
 
   const handleStatusChange = (
     e: ChangeEvent<HTMLInputElement | HTMLSelectElement>
@@ -201,7 +195,6 @@ const ProductDetail: React.FC<EditContractProps> = ({ params }) => {
         }
       );
 
-
       // Fetch updated product data
       const updatedData = await fetchData(
         `${productApiPath.getProductById}/${houseId}`
@@ -214,7 +207,6 @@ const ProductDetail: React.FC<EditContractProps> = ({ params }) => {
       toast.error("Failed to update product.");
     }
   };
-
 
   const handleCancelClick = () => {
     setIsEditing(false);
