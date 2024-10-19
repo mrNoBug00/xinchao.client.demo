@@ -1,6 +1,12 @@
 "use client";
 
-import React, { useEffect, useState, useRef, ChangeEvent } from "react";
+import React, {
+  useEffect,
+  useState,
+  useRef,
+  ChangeEvent,
+  useCallback,
+} from "react";
 import { useRouter } from "next/navigation";
 import { Product } from "../../../../../service/interfaces/Product";
 import { fetchData } from "../../../../../service/api";
@@ -61,18 +67,16 @@ const ProductDetail: React.FC<EditContractProps> = ({ params }) => {
       fetchProductData();
       fetchStatuses();
     }
-  }, [params.id, router]);
+  }, [params.id, router, useCallback]);
 
 
-  const fetchProductData = async () => {
+  const fetchProductData = useCallback(async () => {
     try {
       const response: Product = await fetchData(
         `${productApiPath.getProductById}/${params.id}`
       );
       setData(response);
 
-      
-      
       // Cập nhật form data từ dữ liệu sản phẩm
       setFormData({
         ...formData,
@@ -93,12 +97,10 @@ const ProductDetail: React.FC<EditContractProps> = ({ params }) => {
       });
 
       console.log("Form data:", formData);
-
-
     } catch (error) {
       console.error("Error fetching product data:", error);
     }
-  };
+  }, [params.id]);
 
   const fetchStatuses = async () => {
     try {
