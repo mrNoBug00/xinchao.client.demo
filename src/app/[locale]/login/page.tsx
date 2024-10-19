@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useState, useEffect } from "react";
@@ -7,21 +8,22 @@ import "../../../styles/globals.css";
 import Link from "next/link";
 import Image from "next/image";
 
+
 const LoginPage = () => {
   const router = useRouter();
-  const [email, setEmail] = useState("");
+  const [identifier, setIdentifier] = useState(""); // Chuyển từ email sang identifier
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [showPassword, setShowPassword] = useState(false);
 
   const handleLogin = async () => {
     try {
-      const result = await loginHandler(email, password);
+      const result = await loginHandler(identifier, password); // Sử dụng identifier thay vì email
       localStorage.setItem("token", result.token);
       localStorage.setItem("username", result.userName);
       localStorage.setItem("userId", result.userId);
       localStorage.setItem("role", result.role.name);
-      router.push("/pages/home");
+      router.push("/pages/home"); // Chuyển hướng đến trang home
     } catch (error) {
       setError("Failed to login. Please check your credentials.");
     }
@@ -41,12 +43,14 @@ const LoginPage = () => {
             handleLogin();
           }}>
           <div className="mb-4">
-            <label className="block text-gray-700">Email:</label>
+            <label className="block text-gray-700">Identifier:</label>
             <input
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              type="text" // Sử dụng input kiểu text để người dùng có thể nhập bất kỳ loại thông tin nào
+              value={identifier}
+              onChange={(e) => setIdentifier(e.target.value)}
               className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              placeholder="Email, ARC, VNID, Passport, Phone" // Thêm placeholder để hướng dẫn người dùng
+              required // Bắt buộc nhập
             />
           </div>
           <div className="mb-4 relative">
@@ -56,6 +60,7 @@ const LoginPage = () => {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              required // Bắt buộc nhập
             />
             <button
               type="button"
@@ -66,7 +71,6 @@ const LoginPage = () => {
                 alt={showPassword ? "Hide Password" : "Show Password"}
                 width={20}
                 height={20}
-                
               />
             </button>
           </div>
@@ -85,7 +89,10 @@ const LoginPage = () => {
         </p>
       </div>
     </div>
+
+    
   );
 };
 
 export default LoginPage;
+

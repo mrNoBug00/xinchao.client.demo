@@ -32,7 +32,7 @@ export default function Hero() {
             {/* Mặt trước */}
             <div className={`absolute inset-0 ${styles["backface-hidden"]}`}>
               <Image
-                src="/heroImage.jpg" // Đường dẫn hình ảnh chính
+                src="/heroImage.jpg" 
                 alt="Hero Image"
                 layout="fill"
                 objectFit="cover"
@@ -44,7 +44,7 @@ export default function Hero() {
             <div
               className={`absolute inset-0 ${styles["backface-hidden"]} ${styles["rotate-y-180"]}`}>
               <Image
-                src="/backHeroImage.jpg" // Đường dẫn hình ảnh phía sau
+                src="/backHeroImage.jpg"
                 alt="Hero Back Image"
                 layout="fill"
                 objectFit="cover"
