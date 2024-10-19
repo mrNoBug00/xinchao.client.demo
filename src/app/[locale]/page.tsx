@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { useTranslations } from "next-intl";
 import "../../styles/globals.css";
+import Image from "next/image";
 
 import Header from "../../component/Header";
 import Hero from "../../component/Hero";
@@ -61,10 +62,12 @@ const HomePage = () => {
           <button
             onClick={scrollToTop}
             className="fixed bottom-10 right-10 bg-purple-600 text-white py-2 px-4 rounded-full shadow-lg transition-opacity duration-300 flex items-center justify-center hover:bg-purple-400">
-            <img
+            <Image
               src="/chevron-double-up.svg"
               alt="Back to top"
-              className="h-6 w-6 mr-2"
+              className="mr-2"
+              width={20}
+              height={20}
             />
             {t("Back to top")}
           </button>
