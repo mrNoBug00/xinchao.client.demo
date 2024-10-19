@@ -6,6 +6,8 @@ import { loginHandler } from "../../../service/loginHandler";
 import "../../../styles/globals.css";
 import Link from "next/link";
 import Image from "next/image";
+import { useTranslations } from "next-intl";
+
 
 const LoginPage = () => {
   const router = useRouter();
@@ -14,7 +16,7 @@ const LoginPage = () => {
   const [identifierError, setIdentifierError] = useState(""); // Trạng thái lỗi cho Identifier
   const [passwordError, setPasswordError] = useState(""); // Trạng thái lỗi cho Password
   const [showPassword, setShowPassword] = useState(false);
-
+  const t = useTranslations("Login");
   const handleLogin = async () => {
     // Reset lỗi mỗi khi bấm login
     setIdentifierError("");
@@ -46,14 +48,14 @@ const LoginPage = () => {
   return (
     <div className="flex items-center justify-center min-h-screen bg-gradient-to-b from-gray-900 to-purple-900">
       <div className="bg-white p-6 rounded-lg shadow-lg w-full max-w-md">
-        <h1 className="text-2xl font-bold mb-4 text-center">Login Page</h1>
+        <h1 className="text-2xl font-bold mb-4 text-center">{t("Login Page")}</h1>
         <form
           onSubmit={(e) => {
             e.preventDefault();
             handleLogin();
           }}>
           <div className="mb-4">
-            <label className="block text-gray-700">Identifier:</label>
+            <label className="block text-gray-700">{t("Account")}:</label>
             <input
               type="text" // Sử dụng input kiểu text để người dùng có thể nhập bất kỳ loại thông tin nào
               value={identifier}
@@ -65,12 +67,12 @@ const LoginPage = () => {
               required
             />
             {identifierError && (
-              <p className="text-red-500 text-sm mt-2">{identifierError}</p> // Hiển thị lỗi cho identifier
+              <p className="text-red-500 text-sm mt-2">{t(identifierError)}</p> // Hiển thị lỗi cho identifier
             )}
           </div>
 
           <div className="mb-4 relative">
-            <label className="block text-gray-700">Password:</label>
+            <label className="block text-gray-700">{t("Password")}:</label>
             <input
               type={showPassword ? "text" : "password"}
               value={password}
@@ -92,20 +94,20 @@ const LoginPage = () => {
               />
             </button>
             {passwordError && (
-              <p className="text-red-500 text-sm mt-2">{passwordError}</p> // Hiển thị lỗi cho password
+              <p className="text-red-500 text-sm mt-2">{t(passwordError)}</p> // Hiển thị lỗi cho password
             )}
           </div>
 
           <button
             type="submit"
             className="w-full bg-blue-600 text-white py-2 rounded-md hover:bg-blue-400">
-            Login
+            {t("Login")}
           </button>
         </form>
         <p className="mt-4 text-center text-gray-600">
-          Do not have an account?{" "}
+          {t("Do not have an account?")}{" "}
           <Link href="/register" className="hover:text-red-400">
-            Register
+            {t("Register")}
           </Link>
         </p>
       </div>

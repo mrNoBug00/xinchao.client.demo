@@ -14,7 +14,6 @@
     "description": "我們公司為在台灣生活、學習和工作的外國人提供房屋和房間租賃服務。我們致力於為客戶提供最佳的服務和體驗。"
   },
 
-
   "Features": {
     "Services": "服務",
     "Diversity": "多樣性",
@@ -25,8 +24,6 @@
     "You can customize services to your preferences or personal style": "您可以根據個人偏好或風格自訂服務",
     "We offer a wide range of products and services for you to choose from": "我們提供多種產品和服務供您選擇"
   },
-
-  
 
   "ProductInfo": {
     "CoreProduct": "核心產品",
@@ -99,5 +96,16 @@
     "Utility costs will be calculated based on the meter or according to the contract terms. If the customer rents a room, the cost will be divided equally among the tenants. For houses, the tenant is responsible for all utility costs": "水電費將根據計量表或合約條款計算。租房間的話，費用將在房客之間平分。若租整間房子，租客需承擔所有水電費。",
     "What identification documents are required when renting a house or a room?": "租房或房間時需要提供哪些證件？",
     "When renting a house or room, customers need to provide their passport, ARC (Alien Resident Certificate), or other relevant ID card, passport, or Government ID card of the guarantor": "租房或房間時，客戶需要提供護照、外僑居留證（ARC）、或其他相關身份證件、擔保人的護照或政府身份證。"
+  },
+
+  "Login": {
+    "Login Page": "登入頁面",
+    "Account": "帳號",
+    "Password": "密碼",
+    "Login": "登入",
+    "Register": "註冊",
+    "Do not have an account?": "還沒有帳號嗎？",
+    "Identifier is incorrect. Please check your input.": "帳號不正確。請檢查您的輸入。",
+    "Password is incorrect. Please try again.": "密碼不正確。請再試一次。"
   }
 }
