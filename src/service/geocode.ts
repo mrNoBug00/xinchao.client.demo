@@ -1,6 +1,12 @@
 import axios from "axios";
 
 export const geocodeAddress = async (address: string) => {
+
+      console.log(
+        "process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY: ",
+        process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY
+      );
+
   try {
     const response = await axios.get(
       "https://maps.googleapis.com/maps/api/geocode/json",
@@ -11,6 +17,8 @@ export const geocodeAddress = async (address: string) => {
         },
       }
     );
+
+    
     const { data } = response;
     if (data.status === "OK" && data.results.length > 0) {
       const { lat, lng } = data.results[0].geometry.location;
