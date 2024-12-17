@@ -33,7 +33,7 @@ export default function FAQ() {
 
   return (
     <section
-      className="py-20 bg-gradient-to-b from-purple-900 to-gray-900"
+      className="py-20"
       id="faq">
       <ScrollReveal>
         <div className="container mx-auto px-4">

@@ -1,0 +1,66 @@
+/* CompanyInfo.css */
+
+/* Đảm bảo container chiếm toàn bộ màn hình */
+.info-container {
+  height: 100%;  /* Chiếm toàn bộ chiều cao của màn hình */
+  width: 100%;   /* Chiếm toàn bộ chiều rộng của màn hình */
+  display: flex;
+  flex-direction: column; /* Các phần tử con sẽ xếp theo chiều dọc */
+  justify-content: center; /* Căn giữa theo chiều dọc */
+  align-items: center; /* Căn giữa theo chiều ngang */
+  padding: 20px; /* Thêm khoảng cách nếu cần */
+  /* background-color: #f9f9f9; */
+
+}
+
+.info-box {
+  border: 1px solid #ccc;  /* Đường viền xung quanh */
+  padding: 20px;  /* Khoảng cách bên trong */
+  border-radius: 8px;  /* Làm tròn các góc */
+  margin-bottom: 20px;  /* Khoảng cách giữa Renter và Guarantor */
+  background-color: #f9f9f9;
+}
+/* Tiêu đề section */
+.section-heading {
+  font-weight: bold;
+  font-size: 24px;  /* Kích thước chữ tiêu đề */
+  margin-bottom: 20px;  /* Khoảng cách dưới tiêu đề */
+}
+
+/* Các dòng thông tin */
+.info-container p {
+  font-size: 18px;  /* Kích thước chữ cho các dòng */
+  margin: 8px 0;  /* Khoảng cách giữa các dòng */
+  line-height: 1.6;
+  text-align: left; /* Căn giữa các dòng thông tin */
+}
+
+/* Responsive: cho màn hình nhỏ */
+@media (max-width: 768px) {
+  .info-container {
+    padding: 10px;  /* Giảm padding khi màn hình nhỏ */
+  }
+
+  .section-heading {
+    font-size: 20px;  /* Giảm kích thước chữ của tiêu đề */
+  }
+
+  .info-container p {
+    font-size: 16px;  /* Giảm kích thước chữ của thông tin */
+  }
+}
+
+/* Responsive: cho màn hình cực nhỏ */
+@media (max-width: 480px) {
+  .info-container {
+    padding: 5px;  /* Giảm padding cho màn hình cực nhỏ */
+  }
+
+  .section-heading {
+    font-size: 18px;  /* Giảm kích thước chữ của tiêu đề */
+  }
+
+  .info-container p {
+    font-size: 14px;  /* Giảm kích thước chữ của thông tin */
+  }
+}

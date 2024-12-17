@@ -22,3 +22,11 @@ export const contractApiPath = {
   createContract: `${BASE_URL}/api/v1/contracts/create`,
   uploadSignatureImage: `${BASE_URL}/api/v1/images`,
 };
+
+export const regulationsApiPath = {
+  getRegulations: `${BASE_URL}/api/regulations`,
+};
+
+export const companyInfo = {
+  getCompanyInfo: `${BASE_URL}/api/company-info`,
+};

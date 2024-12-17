@@ -1,150 +1,111 @@
 "use client";
 
-import React, { useRef, useState, useEffect } from "react";
+import React, { useRef, useState } from "react";
 import SignatureCanvas from "react-signature-canvas";
-import { Button } from "@headlessui/react";
-import "../../../../styles/globals.css";
-import PrintButton from "@/component/PrintButton";
+import CompanyInfo from "@/component/user/RequestContractComponent/CompanyInfo/CompanyInfo";
+import CustomerInfo from "@/component/user/RequestContractComponent/CustomerInfo/CustomerInfo";
+import ProductDetail from "@/component/user/RequestContractComponent/ProductDetail/ProductDetail";
+import Regulations from "@/component/user/RequestContractComponent/Regulations/Regulations";
+import Signature from "@/component/user/RequestContractComponent/Signature/Signature";
+import GuarantorInfo from "@/component/user/RequestContractComponent/GuarantorInfo/GuarantorInfo";
+import UploadImage from "@/component/user/RequestContractComponent/UploadImage/UploadImage";
+import "@/styles/globals.css";
+import { useSearchParams } from "next/navigation";
+import { useEffect } from "react";
+import { fetchData } from "../../../../service/api";
 import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-import { contractApiPath } from "@/utils/apiPath";
-import { fetchData } from "@/service/api";
-import { useRouter, usePathname, useSearchParams } from "next/navigation";
-import { Product } from "../../../../service/interfaces/Product";
-import PrintableTemplate from "@/component/PrintableTemplate";
-import "../../../../styles/contract.css";
-import Image from "next/image";
-import Modal from "@/component/user/ModalPayContractFee";
-import { formatCurrency } from "../../../../utils/formatCurrency";
-
-interface FormData {
-  userId: string;
-  identificationCardIds: string;
-  phone: string;
-  identificationId: string;
-  lessor: string;
-  renter: string;
-  rentTimeFrom: string;
-  rentTimeTo: string;
-  productId: string;
-  productType: string;
-  equipmentProvidedByTheLessor: string;
-  numberOfRenter: string;
-  rentFee: string;
-  dayOfPayRentFee: string;
-  electricityFee: string;
-  waterFee: string;
-  tenancyDeposit: string;
-  regulations: string;
-  agree: boolean;
-  signatureId: string;
-}
-
-const defaultProductData: Product = {
-  id: "",
-  name: "Unknown",
-  type: "Unknown",
-  description: "No description",
-  status: { id: 0, name: "Unknown", description: "Unknown" }, // Giá trị mặc định cho Status
-  price: 0,
-  electricityFee: "0",
-  waterFee: "0",
-  gasFee: "0",
-  numberOfTenantsByRoomRate: "0",
-  address: "No address",
-  imageUrl: [], // Giá trị mặc định cho mảng Image
-  author: null,
-};
-
+import { useRouter } from "next/navigation";
 const RentalForm: React.FC = () => {
+  const router = useRouter();
   const signatureRef = useRef<SignatureCanvas>(null);
-  const [imageFiles, setImageFiles] = useState<File[]>([]);
-  const [imagePreviews, setImagePreviews] = useState<string[]>([]);
-
-  const [formData, setFormData] = useState<FormData>({
-    userId: "",
-    identificationCardIds: "",
-    phone: "",
-    identificationId: "",
-    lessor: "",
-    renter: "",
+  const [currentStep, setCurrentStep] = useState(0); // Quản lý bước hiện tại
+  const [formData, setFormData] = useState({
+    numberOfRenter: "",
     rentTimeFrom: "",
     rentTimeTo: "",
+    agree: false,
+    companyId: "",
+    userId: "",
+    customerName: "",
+    customerIdentificationCardIds: [],
+    customerIdentificationId: "",
+    customerPhone: "",
+    customerLine: "",
+    customerZalo: "",
+    guarantorName: "",
+    guarantorPhone: "",
+    guarantorLine: "",
+    guarantorZalo: "",
     productId: "",
     productType: "",
     equipmentProvidedByTheLessor: "",
-    numberOfRenter: "",
     rentFee: "",
     dayOfPayRentFee: "",
     electricityFee: "",
     waterFee: "",
     tenancyDeposit: "",
-    regulations: "",
-    agree: false,
     signatureId: "",
+    regulationsId: [],
   });
 
-  const pathname = usePathname();
-  const searchParams = useSearchParams();
-  const router = useRouter();
-  const [productData, setProductData] = useState<Product | null>(null);
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  useEffect(() => {
-    const userId = localStorage.getItem("userId");
-    if (userId) {
-      setFormData((prevData) => ({
-        ...prevData,
-        userId: userId,
-      }));
-    }
+  const [productData, setProductData] = useState<any>(null);
+  const [imageFiles, setImageFiles] = useState<File[]>([]);
 
-    const product = searchParams.get("product");
+  const searchParams = useSearchParams();
+  const product = searchParams.get("product");
+
+  const userId = localStorage.getItem("userId");
+  const [isSigned, setIsSigned] = useState(false);
+
+  const handleClearSignature = () => {
+    signatureRef.current?.clear();
+    setIsSigned(false); // Đặt lại trạng thái nếu người dùng xóa chữ ký
+  };
+
+  const handleSignatureChange = () => {
+    if (signatureRef.current && !signatureRef.current.isEmpty()) {
+      setIsSigned(true); // Đánh dấu là đã ký
+    }
+  };
+
+  useEffect(() => {
+    setProductData(JSON.parse(decodeURIComponent(product as string)));
+    console.log(productData);
+
     if (product) {
       try {
         const decodedProduct = decodeURIComponent(product);
         const parsedProduct = JSON.parse(decodedProduct);
 
-        let extraFee = 0;
-        const numberOfRenter = parseInt(formData.numberOfRenter, 10);
-        const numberOfTenantsByRoomRate = parseInt(
-          parsedProduct.numberOfTenantsByRoomRate,
-          10
-        );
-
-        if (numberOfRenter > numberOfTenantsByRoomRate) {
-          const extraTenants =
-            numberOfRenter - parsedProduct.numberOfTenantsByRoomRate;
-
-          extraFee = extraTenants * 500;
-
-        }
-
         setProductData(parsedProduct);
-        setFormData((prevData) => ({
-          ...prevData,
-          productId: parsedProduct.id,
-          productType: parsedProduct.type,
-          rentFee: (extraFee + parsedProduct.price).toString(),
-          tenancyDeposit: ((parsedProduct.price + extraFee) * 2).toString(),
-        }));
+        console.log("productData.companyInfo.id:", parsedProduct.companyInfo);
       } catch (error) {
         console.error("Error parsing product data:", error);
       }
     } else {
       console.log("Product query parameter is missing");
     }
-  }, [searchParams, formData.numberOfRenter]);
+  }, []);
 
+  useEffect(() => {
+    if (currentStep === steps.length - 1) {
+      handleSignatureChange();
+    }
+  }, [currentStep]);
 
   const handleChange = (
     e: React.ChangeEvent<
       HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
     >
   ) => {
-    const { name, value, type, checked } = e.target as HTMLInputElement;
+    const { name, type, value } = e.target;
+
     setFormData((prev) => ({
       ...prev,
-      [name]: type === "checkbox" ? checked : value,
+      [name]:
+        type === "checkbox" && e.target instanceof HTMLInputElement
+          ? e.target.checked
+          : e.target.value,
     }));
 
     if (name === "rentTimeFrom") {
@@ -164,422 +125,214 @@ const RentalForm: React.FC = () => {
     }
   };
 
-  const handleClearSignature = () => {
-    signatureRef.current?.clear();
-  };
+  const handleNext = () => {
+    if (currentStep === 4 && !formData.agree) {
+      return;
+    }
 
-  const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.files) {
-      const files = Array.from(e.target.files);
-      setImageFiles(files);
-
-      const previews = files.map((file) => URL.createObjectURL(file));
-      setImagePreviews(previews);
+    if (currentStep < steps.length - 1) {
+      setCurrentStep(currentStep + 1);
     }
   };
 
-  const handleRemoveImage = (index: number) => {
-    const newImageFiles = imageFiles.filter((_, i) => i !== index);
-    const newImagePreviews = imagePreviews.filter((_, i) => i !== index);
-    setImageFiles(newImageFiles);
-    setImagePreviews(newImagePreviews);
+  // Hàm quay lại bước trước
+  const handlePrevious = () => {
+    if (currentStep > 0) {
+      setCurrentStep(currentStep - 1);
+    }
   };
 
-  const generateRandomFileName = (originalName: string): string => {
-    const randomString = Math.random().toString(36).substring(2, 15);
-    const fileExtension = originalName.split(".").pop();
-    return `${randomString}IdentificationCard.${fileExtension}`;
+  const uploadImages = async (imageFiles: File[]) => {
+    try {
+      const formData = new FormData();
+      imageFiles.forEach((file) => {
+        formData.append("files", file);
+      });
+
+      const response = await fetchData("http://localhost:8080/api/v1/images", {
+        method: "POST",
+        body: formData,
+      });
+
+      if (response && Array.isArray(response) && response.length > 0) {
+        return response.map((image: any) => image.id);
+      } else {
+        console.error("Không có dữ liệu ảnh trong phản hồi:", response);
+        return [];
+      }
+    } catch (error) {
+      console.error("Lỗi khi tải ảnh:", error);
+      return [];
+    }
   };
 
-  const handleSubmit = async (e?: React.FormEvent) => {
-    if (e) e.preventDefault();
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
 
-    if (signatureRef.current) {
-      const signatureData = signatureRef.current
-        .getTrimmedCanvas()
-        .toDataURL("image/png");
+    // 1. Upload ảnh trước khi gửi hợp đồng
+    const customerIdentificationCardIds = await uploadImages(imageFiles);
+    const signatureDataUrl = signatureRef.current?.toDataURL();
 
-      // Convert dataURL to Blob
-      const response = await fetch(signatureData);
-      const blob = await response.blob();
+    let signatureId = "";
 
-      // Create a FormData object
-      const formDataToSend = new FormData();
-      formDataToSend.append("files", blob, `signature-${Date.now()}.png`);
+    if (signatureDataUrl) {
+      // Tạo đối tượng File từ DataURL
+      const signatureBlob = await fetch(signatureDataUrl).then((res) =>
+        res.blob()
+      );
+      const signatureFile = new File([signatureBlob], "signature.png", {
+        type: "image/png",
+      });
 
-      try {
-        // Upload the signature image
-        const uploadResponse = await fetchData(
-          contractApiPath.uploadSignatureImage,
-          {
-            method: "POST",
-            body: formDataToSend,
-          }
-        );
-
-        const uploadData = await uploadResponse;
-        const signatureImgId = uploadData[0].id;
-
-        // Upload identification cards
-        const formDataImages = new FormData();
-        imageFiles.forEach((file) => {
-          const randomFileName = generateRandomFileName(file.name);
-          const renamedFile = new File([file], randomFileName, {
-            type: file.type,
-          });
-          formDataImages.append("files", renamedFile);
-        });
-
-        const responseImages = await fetchData(
-          contractApiPath.uploadIdentificationCards,
-          {
-            method: "POST",
-            body: formDataImages,
-          }
-        );
-
-        const dataImages = await responseImages;
-        console.log("Upload dataImages:", dataImages);
-
-        const imageIds = dataImages.map((image: any) => image.id);
-
-        const updatedFormData = {
-          ...formData,
-          identificationCardIds: imageIds,
-          signatureId: signatureImgId, // Cập nhật với ID của hình ảnh chữ ký
-        };
-
-        // Create contract with all data
-        await createContract(updatedFormData);
-      } catch (error) {
-        toast.error("Failed to submit the form!", {
-          position: "top-center",
-          autoClose: 2000,
-        });
-        console.error("Error submitting form:", error);
+      // Upload ảnh chữ ký
+      const uploadedSignatureIds = await uploadImages([signatureFile]);
+      if (uploadedSignatureIds.length > 0) {
+        signatureId = uploadedSignatureIds[0]; // Lấy ID của chữ ký vừa tải lên
       }
     } else {
-      toast.error("Please provide a signature!", {
-        position: "top-center",
-        autoClose: 2000,
-      });
+      console.log("Chữ ký không hợp lệ");
     }
-  };
 
-  const createContract = async (contractData: FormData) => {
+    // 2. Chuẩn bị dữ liệu hợp đồng
+    const contractData = {
+      companyId: productData.companyInfo.id,
+      userId: userId,
+      customerName: formData.customerName,
+      customerIdentificationCardIds: customerIdentificationCardIds,
+      customerIdentificationId: formData.customerIdentificationId,
+      customerPhone: formData.customerPhone,
+      customerLine: formData.customerLine,
+      customerZalo: formData.customerZalo,
+      rentTimeFrom: formData.rentTimeFrom,
+      rentTimeTo: formData.rentTimeTo,
+      guarantorName: formData.guarantorName,
+      guarantorPhone: formData.guarantorPhone,
+      guarantorLine: formData.guarantorLine,
+      guarantorZalo: formData.guarantorZalo,
+      productId: productData.id,
+      productType: productData.type,
+      equipmentProvidedByTheLessor: formData.equipmentProvidedByTheLessor,
+      numberOfRenter: formData.numberOfRenter,
+      rentFee: formData.rentFee,
+      dayOfPayRentFee: formData.dayOfPayRentFee,
+      electricityFee: formData.electricityFee,
+      waterFee: formData.waterFee,
+      tenancyDeposit: formData.tenancyDeposit,
+      agree: formData.agree,
+      signatureId: signatureId,
+      regulationsId: formData.regulationsId,
+    };
+
+    // 3. Gửi dữ liệu hợp đồng lên server
     try {
-      const response = await fetchData(contractApiPath.createContract, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(contractData),
-      });
+      const response = await fetchData(
+        "http://localhost:8080/api/v1/contracts/create",
+        {
+          method: "POST",
+          body: JSON.stringify(contractData),
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
 
-      const data = await response;
-      toast.success("Contract created successfully!", {
+      toast.success("Product added successfully!", {
         position: "top-center",
-        autoClose: 2000,
+        autoClose: 1000,
       });
-      router.push("/pages/home");
+      setTimeout(() => {
+        router.push("/pages/home");
+      }, 2000);
+      console.log("Contract created successfully:", response);
     } catch (error) {
-      toast.error("Failed to create contract!", {
-        position: "top-center",
-        autoClose: 2000,
-      });
       console.error("Error creating contract:", error);
     }
   };
 
-  const openModal = () => {
-    setIsModalOpen(true);
-  };
+  // Danh sách các bước của form
+  const steps = [
+    <CompanyInfo key="companyInfo" />,
 
-  const closeModal = () => {
-    setIsModalOpen(false);
-  };
-
-  const handleConfirm = () => {
-    setIsModalOpen(false);
-    handleSubmit();
-  };
+    <CustomerInfo
+      key="customerInfo"
+      formData={formData}
+      handleChange={handleChange}
+    />,
+    <GuarantorInfo
+      key="guarantorInfo"
+      formData={formData}
+      handleChange={handleChange}
+    />,
+    <ProductDetail
+      key="productDetail"
+      numberOfRenter={parseInt(formData.numberOfRenter, 10) || 0}
+      productData={productData}
+      formData={formData}
+      setFormData={setFormData}
+    />,
+    <Regulations key="regulations" handleChange={handleChange} />,
+    <UploadImage
+      key="uploadImage"
+      imageFiles={imageFiles}
+      setImageFiles={setImageFiles}
+    />,
+    <Signature
+      key="signature"
+      signatureRef={signatureRef}
+      handleClearSignature={handleClearSignature}
+      handleSignatureChange={handleSignatureChange}
+    />,
+  ];
 
   return (
-    <>
-      <form className="max-w-4xl mx-auto p-4 space-y-4">
-        <ToastContainer />
+    <form className=" flex flex-col justify-between bg-white rounded-lg shadow-lg">
+      <ToastContainer />
+      <div className="flex-1">{steps[currentStep]}</div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          <div>
-            <label className="block text-sm font-medium text-gray-700">
-              Renter (please! typing your real name)
-            </label>
-            <input
-              type="text"
-              name="renter"
-              value={formData.renter}
-              onChange={handleChange}
-              className="mt-1 block w-full rounded-md border border-gray-300 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 pl-3"
-            />
-          </div>
-          <div>
-            <label className="block text-sm font-medium text-gray-700">
-              Identification id
-            </label>
-            <input
-              type="text"
-              name="identificationId"
-              value={formData.identificationId}
-              onChange={handleChange}
-              className="mt-1 block w-full rounded-md border border-gray-300 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 pl-3"
-            />
-          </div>
-          <div>
-            <label className="block text-sm font-medium text-gray-700">
-              Phone
-            </label>
-            <input
-              type="text"
-              name="phone"
-              value={formData.phone}
-              onChange={handleChange}
-              className="mt-1 block w-full rounded-md border border-gray-300 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 pl-3"
-            />
-          </div>
-          <div>
-            <label className="block text-sm font-medium text-gray-700">
-              Number Of Renter
-            </label>
-            <input
-              type="number"
-              name="numberOfRenter"
-              value={formData.numberOfRenter}
-              onChange={handleChange}
-              className="mt-1 block w-full rounded-md border border-gray-300 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 pl-3"
-            />
-          </div>
-        </div>
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          <div>
-            <label className="block text-sm font-medium text-gray-700">
-              Rent Time From
-            </label>
-            <input
-              type="date"
-              name="rentTimeFrom"
-              value={formData.rentTimeFrom}
-              onChange={handleChange}
-              className="mt-1 block w-full rounded-md border border-gray-300 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 pl-3"
-              max={formData.rentTimeTo}
-            />
-          </div>
-          <div>
-            <label className="block text-sm font-medium text-gray-700">
-              Rent Time To
-            </label>
-            <input
-              type="date"
-              name="rentTimeTo"
-              value={formData.rentTimeTo}
-              onChange={handleChange}
-              className="mt-1 block w-full rounded-md border border-gray-300 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 pl-3"
-              min={formData.rentTimeFrom}
-              readOnly
-            />
-          </div>
-        </div>
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          <div>
-            <label className="block text-sm font-medium text-gray-700">
-              Product name
-            </label>
-            <div className="mt-1 block w-full rounded-md border border-gray-300 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 pl-3">
-              {productData?.name}
-            </div>
-          </div>
-          <div>
-            <label className="block text-sm font-medium text-gray-700">
-              Product Type
-            </label>
-            <div className="mt-1 block w-full rounded-md border border-gray-300 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 pl-3">
-              {formData.productType}
-            </div>
-          </div>
-        </div>
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          <div>
-            <label className="block text-sm font-medium text-gray-700">
-              Rent Fee
-            </label>
-            <div className="mt-1 block w-full rounded-md border border-gray-300 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 pl-3">
-              {formatCurrency(parseFloat(formData.rentFee))}
-            </div>
-          </div>
-          <div>
-            <label className="block text-sm font-medium text-gray-700">
-              Tenancy Deposit
-            </label>
-            <div className="mt-1 block w-full rounded-md border border-gray-300 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 pl-3">
-              {formatCurrency(parseFloat(formData.tenancyDeposit))}
-            </div>
-          </div>
-        </div>
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          <div>
-            <label className="block text-sm font-medium text-gray-700">
-              Day Of Pay Rent Fee
-            </label>
-            <input
-              type="text"
-              name="dayOfPayRentFee"
-              value={formData.dayOfPayRentFee}
-              onChange={handleChange}
-              className="mt-1 block w-full rounded-md border border-gray-300 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 pl-3"
-              readOnly
-            />
-          </div>
-        </div>
-
-        <div>
-          <label className="block text-sm font-medium text-gray-700">
-            Regulations
-          </label>
-          <div className="info-container">
-            <a>
-              Hợp đồng chưa hết hạn và hai bên không được phép chấm dứt hợp đồng
-              khi chưa được chấp thuận của đối phương.
-            </a>
-            <a>
-              Nếu vi phạm một trong chín điều sau đây bên cho thuê sẽ không đồng
-              ý cho Bên thuê ở tiếp và lập tức yêu cầu bên thuê rời đi và sẽ
-              không hoàn lại tiền cọc
-            </a>
-            <a>
-              1. Trong thời gian hợp đồng thuê, bên thuê không được phép vi phạm
-              pháp luật, không được tụ tập đánh bạc dưới mọi hình thức hay lập
-              sòng bạc, không được hành nghề mại dâm.
-            </a>
-            <a>
-              2. Giữ vệ sinh chung, Không được ồn ào to tiếng làm ảnh hưởng hàng
-              xóm
-            </a>
-            <a>3. Số lượng người ở không đúng với số người đã đăng ký </a>
-            <a>4. Nếu thêm người phải báo với cty </a>
-            <a>
-              5. Vào và ra khỏi nhà và phòng phải tắt công tắc đèn hoặc đóng cửa
-            </a>
-            <a>6. Cty gửi line bắt buộc phải xem và trả lời cty </a>
-            <a>
-              7. Cty cho bạn thuê bạn không được tự tiện cho người khác thuê nếu
-              bạn cho người khác thuê bạn phải báo với cty
-            </a>
-            <a>
-              8. Nếu bạn chậm quá 15 ngày cty sẽ kết thúc hợp đồng và không cho
-              bạn thuê nữa
-            </a>
-            <a>
-              9. Trong nhà không được hút thuốc dễ sảy ra cháy nếu bạn muốn hút
-              thì ra ngoài hút
-            </a>
-          </div>
-        </div>
-        <div className="flex items-center">
-          <input
-            id="agree"
-            name="agree"
-            type="checkbox"
-            checked={formData.agree}
-            onChange={handleChange}
-            className="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded"
-          />
-          <label htmlFor="agree" className="ml-2 block text-sm text-gray-900">
-            I agree to the terms and conditions
-          </label>
-        </div>
-        <div className="mt-4">
-          <label className="block text-sm font-medium text-gray-700">
-            Upload Identification Cards (please! upload front and back of the
-            identification card)
-          </label>
+      {/* Nút điều hướng */}
+      <div className="flex flex-row justify-center space-x-4 m-6">
+        {currentStep > 0 && (
           <button
             type="button"
-            onClick={() => document.getElementById("fileInput")?.click()}
-            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 px-4 py-2 bg-blue-500 text-white">
-            Select Files
+            onClick={handlePrevious}
+            className="bg-gray-300 text-black py-2 px-6 rounded-md hover:bg-gray-400 transition-colors">
+            Previous
           </button>
-          <input
-            id="fileInput"
-            type="file"
-            accept="image/*"
-            multiple
-            onChange={handleImageChange}
-            className="hidden"
-          />
+        )}
 
-          <div className="mt-4 grid grid-cols-2 sm:grid-cols-4 gap-4">
-            {imagePreviews.map((preview, index) => (
-              <div key={index} className="relative">
-                <Image
-                  src={preview}
-                  alt={`Preview ${index}`}
-                  className="w-full h-40 object-cover rounded-md"
-                  width={500}
-                  height={300}
-                />
-                <button
-                  type="button"
-                  onClick={() => handleRemoveImage(index)}
-                  className="absolute top-1 right-1 bg-red-500 text-white p-1 rounded-full">
-                  X
-                </button>
-              </div>
-            ))}
-          </div>
-        </div>
+        <button
+          type="button"
+          onClick={handleNext}
+          hidden={currentStep === steps.length - 1}
+          disabled={
+            (currentStep === 4 && !formData.agree) ||
+            (currentStep === 5 && imageFiles.length < 2)
+          }
+          className={`${
+            currentStep === steps.length - 1 ||
+            (currentStep === 4 && !formData.agree) ||
+            (currentStep === 5 && imageFiles.length < 2)
+              ? "bg-gray-400 text-gray-700 cursor-not-allowed"
+              : "bg-blue-600 text-white hover:bg-blue-700"
+          } py-2 px-6 rounded-md transition-colors`}>
+          Next
+        </button>
 
-        <div>
-          <label className="block text-sm font-medium text-gray-700">
-            Signature
-          </label>
-          <div className="mt-1 border-gray-300 border-2 rounded-md">
-            <SignatureCanvas
-              ref={signatureRef}
-              penColor="black"
-              canvasProps={{
-                className: "w-full h-40",
-                style: { border: "1px solid #D1D5DB" },
-              }}
-            />
-            <div className="flex justify-center space-x-4 mt-2">
-              <Button
-                onClick={handleClearSignature}
-                className="bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-500">
-                Clear Signature
-              </Button>
-            </div>
-          </div>
-        </div>
-
-        <div className="flex justify-end">
-          <Button
-            onClick={openModal}
-            className="bg-indigo-500 text-white px-4 py-2 rounded-md hover:bg-indigo-600 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+        {currentStep === steps.length - 1 && (
+          <button
+            type="submit"
+            disabled={!isSigned}
+            onClick={handleSubmit}
+            className={`py-2 px-6 rounded-md transition-colors ${
+              isSigned
+                ? "bg-green-600 text-white hover:bg-green-700"
+                : "bg-gray-400 text-gray-700 cursor-not-allowed"
+            }`}>
             Submit
-          </Button>
-        </div>
-      </form>
-
-      <Modal
-        isOpen={isModalOpen}
-        closeModal={closeModal}
-        handleConfirm={handleConfirm}
-        rentFee={formData.rentFee}
-      />
-    </>
+          </button>
+        )}
+      </div>
+    </form>
   );
 };
 

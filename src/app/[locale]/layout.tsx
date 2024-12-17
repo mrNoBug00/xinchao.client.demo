@@ -1,6 +1,10 @@
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages } from "next-intl/server";
 import { Providers } from "../../component/Providers";
+
+export const metadata = {
+  title: "Landing page | xinchao",
+};
 export default async function LocaleLayout({
   children,
   params: { locale },

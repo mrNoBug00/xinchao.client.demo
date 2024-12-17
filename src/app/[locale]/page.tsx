@@ -14,10 +14,13 @@ import Pricing from "../../component/Pricing";
 import FAQ from "../../component/FAQ";
 import ImageCarousel from "../../component/ImageCarousel";
 
+
+
+
 const HomePage = () => {
   const t = useTranslations("LandingPageHeader");
   const [isVisible, setIsVisible] = useState(false);
-  document.title = "Landing page | xinchao";
+  // document.title = "Landing page | xinchao";
   // Show button when page is scrolled down
   useEffect(() => {
     const toggleVisibility = () => {

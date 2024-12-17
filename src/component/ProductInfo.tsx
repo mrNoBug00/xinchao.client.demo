@@ -24,7 +24,7 @@ export default function ProductInfo() {
   ];
 
   return (
-    <section className="py-20 bg-gradient-to-b to-gray-900 via-purple-900 from-gray-900">
+    <section className="py-20 bg-gradient-to-b ">
       <ScrollReveal>
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 ">

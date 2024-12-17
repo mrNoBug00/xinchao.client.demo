@@ -89,12 +89,15 @@ const ProductDetail: React.FC<EditContractProps> = ({ params }) => {
     const userRole = localStorage.getItem("role") || "";
     setRole(userRole);
 
+
     if (!token) {
       router.push("/login");
     } else {
       fetchProductData();
       fetchStatuses();
     }
+
+
   }, [params.id, router, fetchProductData]);
 
   const fetchStatuses = async () => {
@@ -229,14 +232,15 @@ const ProductDetail: React.FC<EditContractProps> = ({ params }) => {
 
   if (!data) {
     return (
-      <div className="container mx-auto p-4">
-        <p>Loading...</p>
+      <div className="loader-overlay">
+        <div className="loader"></div>
       </div>
     );
   }
 
   return (
     <div className="container mx-auto p-4">
+
       <div className="bg-white shadow-lg rounded-lg p-6 mb-6 relative">
         {/* <h1 className="text-3xl font-bold mb-4">{data.name}</h1> */}
         {role === "ADMIN" || role === "SUPER_ADMIN" ? (
@@ -426,7 +430,7 @@ const ProductDetail: React.FC<EditContractProps> = ({ params }) => {
                 <strong>Address:</strong> {data.address}
               </p>
               <h2 className="text-xl font-semibold mt-4 mb-2">Status:</h2>
-              <p className="text-gray-700">{data.status.description}</p>
+              <p className="text-gray-700">{data.status?.description}</p>
               <h2 className="text-xl font-semibold mt-4 mb-2">Images:</h2>
               <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
                 {data?.imageUrl && data.imageUrl.length > 0 ? (

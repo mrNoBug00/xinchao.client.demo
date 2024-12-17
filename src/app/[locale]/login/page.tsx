@@ -16,11 +16,13 @@ const LoginPage = () => {
   const [identifierError, setIdentifierError] = useState(""); // Trạng thái lỗi cho Identifier
   const [passwordError, setPasswordError] = useState(""); // Trạng thái lỗi cho Password
   const [showPassword, setShowPassword] = useState(false);
+  const [isLoading, setIsLoading] = useState(false); // State cho loader
   const t = useTranslations("Login");
   const handleLogin = async () => {
     // Reset lỗi mỗi khi bấm login
     setIdentifierError("");
     setPasswordError("");
+    setIsLoading(true);
 
     try {
       const result = await loginHandler(identifier, password);
@@ -30,11 +32,12 @@ const LoginPage = () => {
       localStorage.setItem("role", result.role.name);
       router.push("/pages/home"); // Điều hướng tới trang home
     } catch (error: any) {
+      setIsLoading(false);
       // Kiểm tra lỗi và cập nhật vào các trạng thái lỗi tương ứng
       if (error.message === "Invalid account") {
         setIdentifierError("Identifier is incorrect Please check your input");
       } else if (error.message === "Invalid password") {
-        setPasswordError("Password is incorrect Please try again");
+        setPasswordError("Password is incorrect Please try again"); 
       } else {
         setIdentifierError("Failed to login Please check your credentials");
       }
@@ -47,8 +50,15 @@ const LoginPage = () => {
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-gradient-to-b from-gray-900 to-purple-900">
+      {isLoading && (
+        <div className="loader-overlay">
+          <div className="loader"></div>
+        </div>
+      )}
       <div className="bg-white p-6 rounded-lg shadow-lg w-full max-w-md">
-        <h1 className="text-2xl font-bold mb-4 text-center">{t("Login Page")}</h1>
+        <h1 className="text-2xl font-bold mb-4 text-center">
+          {t("Login Page")}
+        </h1>
         <form
           onSubmit={(e) => {
             e.preventDefault();

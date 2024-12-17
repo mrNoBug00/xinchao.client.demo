@@ -58,14 +58,14 @@ export default function Pricing() {
 
   return (
     <section
-      className="py-20 bg-gradient-to-b from-gray-900 to-purple-900"
+      className="py-20"
       id="pricing">
       <ScrollReveal>
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-semibold text-white text-center mb-12">
+          <h2 className="text-3xl font-semibold text-black text-center mb-12">
             {t("title")}
           </h2>
-          <p className="text-center text-gray-300 mb-8">{t("description")}</p>
+          <p className="text-center text-black mb-8">{t("description")}</p>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {plans.map((plan, index) => (
               <div
@@ -94,7 +94,7 @@ export default function Pricing() {
               </div>
             ))}
           </div>
-          <p className="text-center text-gray-300 mt-8">{t("note")}</p>
+          <p className="text-center text-black mt-8">{t("note")}</p>
         </div>
       </ScrollReveal>
     </section>

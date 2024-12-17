@@ -24,3 +24,26 @@ export interface ContractData {
         imageUrl: string;
   }[];
 }
+
+export interface FormData {
+  userId: string;
+  identificationCardIds: string;
+  phone: string;
+  identificationId: string;
+  lessor: string;
+  renter: string;
+  rentTimeFrom: string;
+  rentTimeTo: string;
+  productId: string;
+  productType: string;
+  equipmentProvidedByTheLessor: string;
+  numberOfRenter: string;
+  rentFee: string;
+  dayOfPayRentFee: string;
+  electricityFee: string;
+  waterFee: string;
+  tenancyDeposit: string;
+  regulations: string;
+  agree: boolean;
+  signatureId: string;
+}

@@ -24,7 +24,7 @@ export default function Testimonials() {
   ];
 
   return (
-    <section className="py-20 bg-gray-900">
+    <section className="py-20">
       <ScrollReveal>
         <div className="container mx-auto px-4">
           <h2 className="text-3xl font-semibold text-white text-center mb-12">

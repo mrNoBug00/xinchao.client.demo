@@ -1,0 +1,30 @@
+/* CustomerInfo.css */
+
+/* Container của mỗi phần (Renter và Guarantor) */
+.info-box {
+  border: 1px solid #ccc;  /* Đường viền xung quanh */
+  padding: 20px;  /* Khoảng cách bên trong */
+  border-radius: 8px;  /* Làm tròn các góc */
+  margin-bottom: 20px;  /* Khoảng cách giữa Renter và Guarantor */
+}
+
+/* Nếu muốn thêm màu sắc cho tiêu đề hoặc các phần khác */
+.info-box label {
+  font-weight: bold;
+  margin-top: 16px;
+
+}
+
+/* Đảm bảo các input có cùng phong cách */
+.info-box input {
+  padding: 8px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+}
+
+/* Responsive: Tùy chỉnh cho màn hình nhỏ */
+@media (max-width: 768px) {
+  .info-container {
+    padding: 10px;
+  }
+}

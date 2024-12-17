@@ -46,10 +46,10 @@ const Products: React.FC = () => {
   const controls = useAnimation();
   const { scrollY } = useViewportScroll();
   const y = useTransform(scrollY, [0, 1], [0, 1]);
-
+  const [isLoading, setIsLoading] = useState(true);
   useEffect(() => {
     document.title = "Home | xinchao";
-
+    setIsLoading(true);
     const token = localStorage.getItem("token");
 
     if (!token) {
@@ -58,8 +58,10 @@ const Products: React.FC = () => {
       fetchData(productApiPath.getAllProducts)
         .then((data: Product[]) => {
           setData(data);
+          setIsLoading(false);
         })
         .catch((error) => {
+          
           console.error("Error fetching data:", error);
         });
     }
@@ -106,6 +108,11 @@ const Products: React.FC = () => {
         </Button> */}
       </div>
       <div className="h-[800px] overflow-y-scroll grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4">
+        {isLoading && (
+          <div className="loader-overlay">
+            <div className="loader"></div>
+          </div>
+        )}
         {filteredData
           .filter((product) => product.status.id === 1)
           .slice() // Tạo một bản sao của mảng để không thay đổi mảng gốc

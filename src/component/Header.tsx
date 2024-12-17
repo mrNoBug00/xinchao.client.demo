@@ -22,9 +22,9 @@ export default function Header() {
   };
 
   return (
-    <header className="bg-purple-900 shadow-md">
+    <header className="shadow-md">
       <div className="container mx-auto flex md:flex-row justify-between items-center p-4">
-        <h1 className="text-xl font-bold text-white">{t("appName")}</h1>
+        <h1 className="text-xl font-bold text-black">{t("appName")}</h1>
 
         <Image
           src="/bars-3-bottom-right.svg" // Đường dẫn đến biểu tượng

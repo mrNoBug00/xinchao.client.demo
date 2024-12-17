@@ -45,9 +45,9 @@ const ImageCarousel: React.FC = () => {
   };
 
   return (
-    <div className="relative overflow-hidden bg-gray-900">
-      <div className="absolute top-0 left-0 h-full w-8 md:w-96 bg-gradient-to-r from-gray-900 via-gray-900  to-transparent z-10 pointer-events-none" />
-      <div className="absolute top-0 right-0 h-full w-8 md:w-96 bg-gradient-to-l from-gray-900 via-gray-900 to-transparent z-10 pointer-events-none" />
+    <div className="relative overflow-hidden">
+      <div className="absolute top-0 left-0 h-full w-8 md:w-96" />
+      <div className="absolute top-0 right-0 h-full w-8 md:w-96" />
 
       <Slider {...settings}>
         {images.map((src, index) => (

@@ -11,7 +11,6 @@ import "react-toastify/dist/ReactToastify.css";
 import Image from "next/image";
 import { formatCurrency } from "../utils/formatCurrency";
 
-
 interface Image {
   id: number;
   imageUrl: string;
@@ -69,10 +68,7 @@ const Card: React.FC<CardProps> = ({ product }) => {
     });
   };
 
-  console.log(product);
-  
   const handleSignContractClick = () => {
-    
     const productData = encodeURIComponent(JSON.stringify(product));
     router.push(`/pages/contract?product=${productData}`);
   };
@@ -85,13 +81,21 @@ const Card: React.FC<CardProps> = ({ product }) => {
       <h2 className="text-xl font-bold mb-2">
         {truncateText(product.name, 10)}
       </h2>
-      <CopyToClipboard text={product.address} onCopy={notify}>
-        <p
-          className="text-sm text-gray-600 mb-2 cursor-pointer"
-          title="Click to copy">
+      <div className="flex items-center mb-2">
+        <p className="text-sm text-gray-600">
           Address: {truncateText(product.address, 10)}
         </p>
-      </CopyToClipboard>
+        <CopyToClipboard text={product.address} onCopy={notify}>
+          <Image
+            src="/document-duplicate.svg" // Đường dẫn tới tệp SVG
+            alt="Copy Address"
+            width={20}
+            height={20}
+            className="ml-4 cursor-pointer"
+            title="Copy Address"
+          />
+        </CopyToClipboard>
+      </div>
       <p className="text-sm text-gray-600 mb-2">Type: {product.type}</p>
       <CopyToClipboard text={product.description} onCopy={notify}>
         <p className="text-gray-700 mb-4 cursor-pointer" title="Click to copy">
