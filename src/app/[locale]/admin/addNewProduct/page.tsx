@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { fetchData } from "../../../../service/api";
 import { houseApiPath } from "@/utils/admin/apiPath";
@@ -8,6 +8,19 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "../../../../styles/globals.css";
 import Image from "next/image";
+import { companyInfo } from "@/utils/apiPath";
+import axios from "axios";
+
+
+interface Company {
+  id: string;
+  name: string;
+  taxNumber: string;
+  address: string;
+  line: string;
+}
+
+
 const AddNewProduct: React.FC = () => {
   const router = useRouter();
   const [productName, setProductName] = useState<string>("");
@@ -16,12 +29,25 @@ const AddNewProduct: React.FC = () => {
   const [productPrice, setProductPrice] = useState<string>("");
   const [productAddress, setProductAddress] = useState<string>("");
   const [images, setImages] = useState<File[]>([]);
-  const [productElectricityFee, setProductElectricityFee] = useState<string>("");
+  const [productElectricityFee, setProductElectricityFee] =
+    useState<string>("");
   const [productWaterFee, setProductWaterFee] = useState<string>("");
   const [productGasFee, setProductGasFee] = useState<string>("");
-  const [numberOfTenantsByRoomRate, setNumberOfTenantsByRoomRate] = useState<string>("");
+  const [numberOfTenantsByRoomRate, setNumberOfTenantsByRoomRate] =
+    useState<string>("");
 
   const fileInputRef = useRef<HTMLInputElement | null>(null);
+
+  const token = localStorage.getItem("token");
+
+
+  const [company, setCompany] = useState<Company>({
+    id: "",
+    name: "",
+    taxNumber: "",
+    address: "",
+    line: "",
+  });
 
   const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const files = event.target.files;
@@ -33,6 +59,21 @@ const AddNewProduct: React.FC = () => {
   const handleRemoveImage = (index: number) => {
     setImages((prevImages) => prevImages.filter((_, i) => i !== index));
   };
+
+  useEffect(() => {
+    const fetchCompanyInfo = async () => {
+      try {
+        const data: Company[] = await fetchData(companyInfo.getCompanyInfo);
+        if (data && data.length > 0) {
+          setCompany(data[0]);
+        }
+      } catch (error) {
+        console.error("Error fetching company info:", error);
+      }
+    };
+
+    fetchCompanyInfo();
+  }, []);
 
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
@@ -48,32 +89,43 @@ const AddNewProduct: React.FC = () => {
         price: Number(productPrice),
         numberOfTenantsByRoomRate: numberOfTenantsByRoomRate,
         electricityFee: productElectricityFee,
-        waterFee: productWaterFee,
+        waterFee: Number(productWaterFee),
         gasFee: productGasFee,
         address: productAddress,
       })
     );
-
     formData.append("userId", id ?? "");
+    formData.append("companyInfoId", company.id);
+
     images.forEach((image) => {
       formData.append("images", image);
     });
 
     try {
-      const response = await fetchData(houseApiPath.addNewProduct, {
-        method: "POST",
-        body: formData,
+      const response = await axios.post(houseApiPath.addNewProduct, formData, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
       });
 
-      toast.success("Product added successfully!", {
-        position: "top-center",
-        autoClose: 1000,
-      });
-      setTimeout(() => {
-        router.push("/admin/home");
-      }, 2000);
+      if (response.status === 200) {
+        toast.success("Product added successfully!", {
+          position: "top-center",
+          autoClose: 1000,
+        });
+
+        setTimeout(() => {
+          router.push("/admin/home");
+        }, 2000);
+      } else {
+        // Nếu status không phải 200, xử lý lỗi
+        toast.error("Failed to add product", {
+          position: "top-center",
+          autoClose: 2000,
+        });
+      }
     } catch (error) {
-      if (error instanceof Error) {
+      if (axios.isAxiosError(error)) {
         toast.error("Error adding product: " + error.message, {
           position: "top-center",
           autoClose: 2000,

@@ -15,6 +15,7 @@ import { useEffect } from "react";
 import { fetchData } from "../../../../service/api";
 import { ToastContainer, toast } from "react-toastify";
 import { useRouter } from "next/navigation";
+import { contractApiPath } from "@/utils/apiPath";
 const RentalForm: React.FC = () => {
   const router = useRouter();
   const signatureRef = useRef<SignatureCanvas>(null);
@@ -149,7 +150,7 @@ const RentalForm: React.FC = () => {
         formData.append("files", file);
       });
 
-      const response = await fetchData("http://localhost:8080/api/v1/images", {
+      const response = await fetchData(contractApiPath.uploadSignatureImage, {
         method: "POST",
         body: formData,
       });
@@ -193,6 +194,7 @@ const RentalForm: React.FC = () => {
       console.log("Chữ ký không hợp lệ");
     }
 
+    
     // 2. Chuẩn bị dữ liệu hợp đồng
     const contractData = {
       companyId: productData.companyInfo.id,
@@ -225,16 +227,13 @@ const RentalForm: React.FC = () => {
 
     // 3. Gửi dữ liệu hợp đồng lên server
     try {
-      const response = await fetchData(
-        "http://localhost:8080/api/v1/contracts/create",
-        {
-          method: "POST",
-          body: JSON.stringify(contractData),
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      );
+      const response = await fetchData(contractApiPath.createContract, {
+        method: "POST",
+        body: JSON.stringify(contractData),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
 
       toast.success("Product added successfully!", {
         position: "top-center",
