@@ -40,7 +40,6 @@ const AddNewProduct: React.FC = () => {
 
   const token = localStorage.getItem("token");
 
-
   const [company, setCompany] = useState<Company>({
     id: "",
     name: "",
