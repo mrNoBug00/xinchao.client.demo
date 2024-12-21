@@ -83,7 +83,9 @@
     "Parking space": "停車位",
     "Private accommodation": "私人住宿",
     "go": "前往",
-    "note": "以上價格不包括中介費。"
+    "note": "以上價格不包括中介費。",
+    "Bathroom": "浴室",
+    "Kitchen": "廚房"
   },
 
   "FAQ": {
@@ -91,9 +93,9 @@
     "What fees do I have to pay when signing a rental agreement?": "簽署租賃合約時需要支付哪些費用？",
     "The fees that customers need to pay when renting a house are a two-month security deposit, one month of rent, and a one-month brokerage fee": "客戶在租房時需要支付的費用包括兩個月的押金、一個月的租金和一個月的中介費。",
     "How long can I sign the contract for?": "我可以簽訂多長時間的合約？",
-    "The minimum rental period is 6 months, and the maximum is one year. Upon expiration, if the customer wishes to continue renting, they can sign a new contract": "最短租期為6個月，最長為1年。到期後，如果客戶希望繼續租用，可以簽訂新的合約。",
+    "The minimum rental period is 6 months, and the maximum is one year Upon expiration, if the customer wishes to continue renting, they can sign a new contract": "最短租期為6個月，最長為1年。到期後，如果客戶希望繼續租用，可以簽訂新的合約。",
     "How will the utility costs be calculated when renting a house or room?": "租房或房間時如何計算水電費？",
-    "Utility costs will be calculated based on the meter or according to the contract terms. If the customer rents a room, the cost will be divided equally among the tenants. For houses, the tenant is responsible for all utility costs": "水電費將根據計量表或合約條款計算。租房間的話，費用將在房客之間平分。若租整間房子，租客需承擔所有水電費。",
+    "Utility costs will be calculated based on the meter or according to the contract terms If the customer rents a room, the cost will be divided equally among the tenants For houses, the tenant is responsible for all utility costs": "水電費將根據計量表或合約條款計算。租房間的話，費用將在房客之間平分。若租整間房子，租客需承擔所有水電費。",
     "What identification documents are required when renting a house or a room?": "租房或房間時需要提供哪些證件？",
     "When renting a house or room, customers need to provide their passport, ARC (Alien Resident Certificate), or other relevant ID card, passport, or Government ID card of the guarantor": "租房或房間時，客戶需要提供護照、外僑居留證（ARC）、或其他相關身份證件、擔保人的護照或政府身份證。"
   },
@@ -107,5 +109,11 @@
     "Do not have an account?": "還沒有帳號嗎？",
     "Identifier is incorrect Please check your input": "帳號不正確。請檢查您的輸入。",
     "Password is incorrect Please try again": "密碼不正確。請再試一次。"
+  },
+
+  "Navbar": {
+    "home": "首頁",
+    "product": "產品",
+    "about": "關於我們"
   }
 }

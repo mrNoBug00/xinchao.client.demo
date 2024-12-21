@@ -10,31 +10,32 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Button from "../Button";
 import Image from "next/image";
+import { Product } from "../../service/interfaces/Product";
 
-interface Image {
-  id: number;
-  imageUrl: string;
-  imagePath: string;
-}
+// interface Image {
+//   id: number;
+//   imageUrl: string;
+//   imagePath: string;
+// }
 
-interface Status {
-  id: number;
-  name: string;
-  description: string;
-}
+// interface Status {
+//   id: number;
+//   name: string;
+//   description: string;
+// }
 
-interface Product {
-  id: number;
-  name: string;
-  type: string;
-  description: string;
-  status: Status;
-  price: number;
-  numberOfTenantsByRoomRate: string;
-  address: string;
-  image: Image[];
-  author: string | null;
-}
+// interface Product {
+//   id: number;
+//   name: string;
+//   type: string;
+//   description: string;
+//   status: Status;
+//   price: number;
+//   numberOfTenantsByRoomRate: string;
+//   address: string;
+//   image: Image[];
+//   author: string | null;
+// }
 
 interface CardProps {
   product: Product;
@@ -52,7 +53,7 @@ const Card: React.FC<CardProps> = ({ product }) => {
       }))
     : [];
 
-  const handleViewHouseClick = (id: number) => {
+  const handleViewHouseClick = (id: string) => {
     router.push(`/pages/product/${id}`);
   };
 
@@ -99,14 +100,14 @@ const Card: React.FC<CardProps> = ({ product }) => {
           Address: {truncateText(product.address, 10)}
         </p>
       </CopyToClipboard>
-      <p className="text-sm text-gray-600 mb-2">Type: {product.type}</p>
+      <p className="text-sm text-gray-600 mb-2">Type: {product.type.name}</p>
       <CopyToClipboard text={product.description} onCopy={notify}>
         <p className="text-gray-700 mb-4 cursor-pointer" title="Click to copy">
           {truncateText(product.description, 10)}
         </p>
       </CopyToClipboard>
       <p className="text-sm text-gray-600 mb-2">
-        Status: {product.status.description}
+        Status: {product.status?.name}
       </p>
       <p className="text-lg font-bold text-blue-500 mb-4">
         Price: ${product.price}/{product.numberOfTenantsByRoomRate}people
@@ -140,14 +141,14 @@ const Card: React.FC<CardProps> = ({ product }) => {
         <ViewHouseButton onClick={() => handleViewHouseClick(product.id)}>
           Details
         </ViewHouseButton>
-        {product.status.id === 2 && (
+        {product.status?.name === "RENTED" && (
           <button
             className="bg-gray-800 text-white p-2 rounded-md mt-2"
             onClick={handleShowContractClick}>
             Show Contract
           </button>
         )}
-        {product.status.id === 1 && (
+        {product.status?.name === "FOR_RENT" && (
           <button
             className="bg-yellow-500 text-white p-2 rounded-md mt-2"
             onClick={handleSignContractClick}>

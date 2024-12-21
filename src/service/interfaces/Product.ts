@@ -17,24 +17,31 @@ export interface Status {
 export interface Product {
   id: string;
   name: string;
-  type: string;
+  type: Type;
   description: string;
-  status: Status;
+  status?: Status;
   price: number;
-  electricityFee: string;
-  waterFee: string;
-  gasFee: string;
-  numberOfTenantsByRoomRate: string;
+  electricityFee?: string;
+  waterFee?: string;
+  gasFee?: string;
+  numberOfTenantsByRoomRate?: string;
   address: string;
-  imageUrl: Image[];
+  image: Image[];
   author: string | null;
 }
   
+export interface Type {
+  id: number;
+  name: string;
+}
+
 export interface EditContractProps {
   params: {
     id: string;
   };
 }
+
+
 
 export interface FormImage {
   file: File | null;

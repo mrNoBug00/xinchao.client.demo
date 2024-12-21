@@ -26,11 +26,13 @@ import type { FormData } from "../../../../../service/interfaces/Product";
 import { FormImage } from "../../../../../service/interfaces/Product";
 import Image from "next/image";
 import { Image as ImageType } from "../../../../../service/interfaces/Product";
+import axios from "axios";
 
 const ProductDetail: React.FC<EditContractProps> = ({ params }) => {
   const [data, setData] = useState<Product | null>(null);
   const [role, setRole] = useState("");
   const [isEditing, setIsEditing] = useState(false);
+  const [loading, setLoading] = useState<boolean>(true);
   const [formData, setFormData] = useState<FormData>({
     name: "",
     type: "",
@@ -47,57 +49,67 @@ const ProductDetail: React.FC<EditContractProps> = ({ params }) => {
   const [statuses, setStatuses] = useState<Status[]>([]); // Danh sách trạng thái
   const fileInputRef = useRef<HTMLInputElement | null>(null); // Tham chiếu tới input file
 
+  const token = localStorage.getItem("token");
   const houseId = params.id;
   const router = useRouter();
 
   const fetchProductData = useCallback(async () => {
     try {
-      const response: Product = await fetchData(
+      const response = await axios.get<Product>(
         `${productApiPath.getProductById}/${params.id}`
       );
-      setData(response);
+
+      setData(response.data);
+      console.log(response.data.image);
 
       // Cập nhật form data từ dữ liệu sản phẩm
       setFormData({
         ...formData,
-        name: response.name,
-        type: response.type,
-        description: response.description,
-        price: response.price,
-        electricityFee: response.electricityFee,
-        waterFee: response.waterFee,
-        gasFee: response.gasFee,
-        numberOfTenantsByRoomRate: response.numberOfTenantsByRoomRate,
-        address: response.address,
-        status: response.status.description,
-        images: response.imageUrl.map((img) => ({
-          file: null,
-          imageUrl: `${IMG_URL}/${img.imageUrl}`,
-        })),
+        name: response.data.name || "",
+        type: response.data.type?.name || "",
+        description: response.data.description || "",
+        price: response.data.price || 0,
+        electricityFee: response.data.electricityFee || "",
+        waterFee: response.data.waterFee || "",
+        gasFee: response.data.gasFee || "",
+        numberOfTenantsByRoomRate:
+          response.data.numberOfTenantsByRoomRate || "",
+        address: response.data.address || "",
+        status: response.data.status?.description || "",
+        images:
+          response.data.image?.map((img) => ({
+            file: null,
+            imageUrl: `${IMG_URL}/${img.imageUrl || ""}`,
+          })) || [],
       });
-
       console.log("Form data:", formData);
     } catch (error) {
       console.error("Error fetching product data:", error);
+    } finally {
+      setLoading(false)
     }
   }, [params.id]);
 
   useEffect(() => {
     document.title = "Product detail | xinchao";
 
-    const token = localStorage.getItem("token");
-    const userRole = localStorage.getItem("role") || "";
-    setRole(userRole);
+    // const token = localStorage.getItem("token");
+    // const userRole = localStorage.getItem("role") || "";
+    // setRole(userRole);
 
+    // if (!token) {
+    //   router.push("/login");
+    // } else {
+    //   fetchProductData();
+    //   fetchStatuses();
+    // }
 
-    if (!token) {
-      router.push("/login");
-    } else {
+    const timeout = setTimeout(() => {
       fetchProductData();
       fetchStatuses();
-    }
+    }, 1000);
 
-
+    return () => clearTimeout(timeout);
   }, [params.id, router, fetchProductData]);
 
   const fetchStatuses = async () => {
@@ -112,7 +124,7 @@ const ProductDetail: React.FC<EditContractProps> = ({ params }) => {
   const handleEditClick = () => {
     setIsEditing(true);
     // Xóa tất cả ảnh cũ
-    if (data && data.imageUrl.length > 0) {
+    if (data && data.image.length > 0) {
       setFormData((prev) => ({ ...prev, images: [] }));
     }
   };
@@ -190,11 +202,13 @@ const ProductDetail: React.FC<EditContractProps> = ({ params }) => {
     });
 
     try {
-      const result = await fetchData(
-        `${houseApiPath.updateProduct}/${houseId}`,
+      const response = await axios.post(
+        houseApiPath.addNewProduct,
+        formDataToSubmit,
         {
-          method: "PUT",
-          body: formDataToSubmit,
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
         }
       );
 
@@ -215,7 +229,7 @@ const ProductDetail: React.FC<EditContractProps> = ({ params }) => {
     setIsEditing(false);
     setFormData({
       name: data?.name || "",
-      type: data?.type || "",
+      type: data?.type.name || "",
       description: data?.description || "",
       price: data?.price || 0,
       electricityFee: data?.electricityFee || "",
@@ -223,24 +237,22 @@ const ProductDetail: React.FC<EditContractProps> = ({ params }) => {
       gasFee: data?.gasFee || "",
       numberOfTenantsByRoomRate: data?.numberOfTenantsByRoomRate || "",
       address: data?.address || "",
-      status: data?.status.description || "",
-      images: data?.imageUrl
-        ? data.imageUrl.map((img) => ({ file: null, imageUrl: img.imageUrl }))
+      status: data?.status?.description || "",
+      images: data?.image
+        ? data.image.map((img) => ({ file: null, imageUrl: img.imageUrl }))
         : [],
     });
   };
 
-  if (!data) {
+  if (loading)
     return (
       <div className="loader-overlay">
         <div className="loader"></div>
       </div>
     );
-  }
 
   return (
     <div className="container mx-auto p-4">
-
       <div className="bg-white shadow-lg rounded-lg p-6 mb-6 relative">
         {/* <h1 className="text-3xl font-bold mb-4">{data.name}</h1> */}
         {role === "ADMIN" || role === "SUPER_ADMIN" ? (
@@ -403,38 +415,39 @@ const ProductDetail: React.FC<EditContractProps> = ({ params }) => {
           ) : (
             <>
               <p className="text-gray-700 mb-2">
-                <strong>Name:</strong> {data.name}
+                <strong>Name:</strong> {data?.name}
               </p>
               <p className="text-gray-700 mb-2">
-                <strong>Type:</strong> {data.type}
+                <strong>Type:</strong> {data?.type.name}
               </p>
               <p className="text-gray-700 mb-2">
-                <strong>Electricity fee:</strong> {data.electricityFee}/month
+                <strong>Electricity fee:</strong> {data?.electricityFee}/month
               </p>
               <p className="text-gray-700 mb-2">
-                <strong>Water fee:</strong> {data.waterFee} NTD/month
+                <strong>Water fee:</strong> {data?.waterFee} NTD/month
               </p>
               <p className="text-gray-700 mb-2">
-                <strong>Gas fee:</strong> {data.gasFee} NTD/month
+                <strong>Gas fee:</strong> {data?.gasFee} NTD/month
               </p>
               <p className="text-gray-700 mb-2">
-                <strong>Description:</strong> {data.description}
+                <strong>Description:</strong> {data?.description}
               </p>
               <p className="text-gray-700 mb-2">
                 <strong>
-                  {data.type} price for {data.numberOfTenantsByRoomRate} people:
+                  {data?.type.name} price for {data?.numberOfTenantsByRoomRate}{" "}
+                  people:
                 </strong>{" "}
-                {data.price} NTD/month
+                {data?.price} NTD/month
               </p>
               <p className="text-gray-700 mb-2">
-                <strong>Address:</strong> {data.address}
+                <strong>Address:</strong> {data?.address}
               </p>
               <h2 className="text-xl font-semibold mt-4 mb-2">Status:</h2>
-              <p className="text-gray-700">{data.status?.description}</p>
+              <p className="text-gray-700">{data?.status?.description}</p>
               <h2 className="text-xl font-semibold mt-4 mb-2">Images:</h2>
               <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
-                {data?.imageUrl && data.imageUrl.length > 0 ? (
-                  data.imageUrl.map((image: ImageType) => (
+                {data?.image && data.image.length > 0 ? (
+                  data.image.map((image: ImageType) => (
                     <Image
                       key={image.id}
                       src={`${IMG_URL}/${image.imageUrl}`}

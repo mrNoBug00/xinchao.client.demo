@@ -13,6 +13,7 @@ import Testimonials from "../../component/Testimonials";
 import Pricing from "../../component/Pricing";
 import FAQ from "../../component/FAQ";
 import ImageCarousel from "../../component/ImageCarousel";
+import Navbar from "@/component/Navbar";
 
 
 
@@ -20,6 +21,7 @@ import ImageCarousel from "../../component/ImageCarousel";
 const HomePage = () => {
   const t = useTranslations("LandingPageHeader");
   const [isVisible, setIsVisible] = useState(false);
+  const [loading, setLoading] = useState<boolean>(true);
   // document.title = "Landing page | xinchao";
   // Show button when page is scrolled down
   useEffect(() => {
@@ -42,11 +44,27 @@ const HomePage = () => {
     });
   };
 
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      setLoading(false); 
+    }, 1000); 
+
+    return () => clearTimeout(timeout); // Cleanup timeout on component unmount
+  }, []); // Empty dependency array ensures this runs only once after initial mount
+
+  if (loading)
+    return (
+      <div className="loader-overlay">
+        <div className="loader"></div>
+      </div>
+    );
+
   return (
     <div className="flex flex-col min-h-screen bg-gray-100">
       <main className="flex-grow flex flex-col items-center justify-center">
         <div className="min-h-screen w-full bg-background">
-          <Header />
+          <Navbar />
+          {/* <Header /> */}
           <Hero />
 
           {/* <Features /> */}

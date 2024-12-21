@@ -10,31 +10,8 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Image from "next/image";
 import { formatCurrency } from "../utils/formatCurrency";
+import  { Product }  from "../service/interfaces/Product";
 
-interface Image {
-  id: number;
-  imageUrl: string;
-  imagePath: string;
-}
-
-interface Status {
-  id: number;
-  name: string;
-  description: string;
-}
-
-interface Product {
-  id: number;
-  name: string;
-  type: string;
-  description: string;
-  status: Status;
-  price: number;
-  numberOfTenantsByRoomRate: string;
-  address: string;
-  image: Image[];
-  author: string | null;
-}
 
 interface CardProps {
   product: Product;
@@ -50,7 +27,7 @@ const Card: React.FC<CardProps> = ({ product }) => {
     alt: product.name,
   }));
 
-  const handleViewHouseClick = (id: number) => {
+  const handleViewHouseClick = (id: string) => {
     router.push(`/pages/product/${id}`);
   };
 
@@ -96,21 +73,26 @@ const Card: React.FC<CardProps> = ({ product }) => {
           />
         </CopyToClipboard>
       </div>
-      <p className="text-sm text-gray-600 mb-2">Type: {product.type}</p>
+      <p className="text-sm text-gray-600 mb-2">Type: {product.type?.name}</p>
       <CopyToClipboard text={product.description} onCopy={notify}>
         <p className="text-gray-700 mb-4 cursor-pointer" title="Click to copy">
           {truncateText(product.description, 10)}
         </p>
       </CopyToClipboard>
       <p className="text-sm text-gray-600 mb-2">
-        Status: {product.status.description}
+        Status: {product.status?.description || "No description available"}
       </p>
       <p className="text-lg font-bold text-blue-500 mb-2">
         Price: {formatCurrency(product.price)}
       </p>
       <p className="text-lg font-bold text-gray-600 mb-2">
-        {product.type} price for {product.numberOfTenantsByRoomRate ?? 1} people
+        {product.type.name === "second hand"
+          ? ""
+          : `${product.type.name} price for ${
+              product.numberOfTenantsByRoomRate ?? 1
+            } people`}
       </p>
+
       <div className="grid grid-cols-3 gap-2">
         {product.image.slice(0, maxImagesToShow).map((img, index) => (
           <div key={img.id} className="relative">
@@ -139,7 +121,7 @@ const Card: React.FC<CardProps> = ({ product }) => {
         <ViewHouseButton onClick={() => handleViewHouseClick(product.id)}>
           Details
         </ViewHouseButton>
-        {product.status.id === 1 && (
+        {product.status?.name === "FOR_RENT" && (
           <button
             className="bg-yellow-500 text-white p-2 rounded-md mt-2"
             onClick={handleSignContractClick}>
