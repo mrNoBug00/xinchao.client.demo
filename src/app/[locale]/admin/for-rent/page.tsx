@@ -69,7 +69,7 @@ const Products: React.FC = () => {
     .filter(
       (product) =>
         product.name.toLowerCase().includes(search.toLowerCase()) ||
-        product.type.name.toLowerCase().includes(search.toLowerCase()) ||
+        product.category.name.toLowerCase().includes(search.toLowerCase()) ||
         product.address.toLowerCase().includes(search.toLowerCase())
     );
 

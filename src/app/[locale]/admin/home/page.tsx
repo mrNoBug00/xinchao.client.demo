@@ -15,29 +15,31 @@ import {
 } from "framer-motion";
 import BookingChart from "@/component/admin/BookingChart";
 
-interface Image {
-  id: number;
-  imageUrl: string;
-  imagePath: string;
-}
+import { Product } from "../../../../service/interfaces/Product";
 
-interface Status {
-  id: number;
-  name: string;
-  description: string;
-}
+// interface Image {
+//   id: number;
+//   imageUrl: string;
+//   imagePath: string;
+// }
 
-interface Product {
-  id: number;
-  name: string;
-  type: string;
-  description: string;
-  status: Status;
-  price: number;
-  address: string;
-  image: Image[];
-  author: string | null;
-}
+// interface Status {
+//   id: number;
+//   name: string;
+//   description: string;
+// }
+
+// interface Product {
+//   id: number;
+//   name: string;
+//   type: string;
+//   description: string;
+//   status: Status;
+//   price: number;
+//   address: string;
+//   image: Image[];
+//   author: string | null;
+// }
 
 const Products: React.FC = () => {
   const router = useRouter();
@@ -68,7 +70,7 @@ const Products: React.FC = () => {
   const filteredData = data.filter(
     (product) =>
       product.name.toLowerCase().includes(search.toLowerCase()) ||
-      product.type.toLowerCase().includes(search.toLowerCase()) ||
+      product.category.name.toLowerCase().includes(search.toLowerCase()) ||
       product.address.toLowerCase().includes(search.toLowerCase())
   );
 

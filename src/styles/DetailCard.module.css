@@ -1,0 +1,158 @@
+/* DetailCard.module.css */
+
+/* Thêm container chính để giữ bố cục trung tâm */
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1rem;
+}
+
+/* Card */
+.card {
+  width: 100%;
+  max-width: 600px; /* Đảm bảo card không quá lớn */
+  padding: 1rem;
+  background: #f5f5f5;
+  position: relative;
+  overflow: visible;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  margin: 2rem 0;
+}
+
+/* Text */
+.text-title {
+  font-weight: 900;
+  font-size: 1.5em;
+  line-height: 1.5;
+  text-align: left;
+}
+
+.text-body {
+  font-size: 1em;
+  line-height: 1.4;
+  text-align: justify;
+}
+
+/* Grid for images */
+.image-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+  margin: 1rem 0;
+}
+
+.card-footer {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  padding-top: 1rem;
+  border-top: 1px solid #ddd;
+}
+
+.card-button {
+  flex: 1;
+  text-align: center;
+  margin: 1rem;
+}
+
+/* From Uiverse.io by adamgiebl */ 
+.cssbuttons-io-button {
+  background: #22c55e;
+  color: white;
+  font-family: inherit;
+  padding: 0.35em;
+  padding-left: 1.2em;
+  font-size: 17px;
+  font-weight: 500;
+  border-radius: 0.9em;
+  border: none;
+  letter-spacing: 0.05em;
+  display: flex;
+  align-items: center;
+  box-shadow: inset 0 0 1.6em -0.6em #22c55e;
+  overflow: hidden;
+  position: relative;
+  height: 2.8em;
+  padding-right: 3.3em;
+  cursor: pointer;
+
+}
+
+.cssbuttons-io-button .icon {
+  background: white;
+  margin-left: 1em;
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 2.2em;
+  width: 2.2em;
+  border-radius: 0.7em;
+  box-shadow: 0.1em 0.1em 0.6em 0.2em #22c55e;
+  right: 0.3em;
+  transition: all 0.3s;
+}
+
+.cssbuttons-io-button:hover .icon {
+  width: calc(100% - 0.6em);
+}
+
+.cssbuttons-io-button .icon svg {
+  width: 1.1em;
+  transition: transform 0.3s;
+  color: #7b52b9;
+}
+
+.cssbuttons-io-button:hover .icon svg {
+  transform: translateX(0.1em);
+}
+
+.cssbuttons-io-button:active .icon {
+  transform: scale(0.95);
+}
+
+
+/* Responsive: điều chỉnh số cột cho thiết bị nhỏ hơn */
+@media (max-width: 1024px) {
+  .image-grid {
+    grid-template-columns: repeat(3, 1fr); /* 3 cột cho màn hình vừa */
+  }
+}
+
+@media (max-width: 768px) {
+  .image-grid {
+    grid-template-columns: repeat(2, 1fr); /* 2 cột cho màn hình nhỏ */
+  }
+}
+
+@media (max-width: 480px) {
+  .image-grid {
+    grid-template-columns: 1fr; /* 1 cột cho màn hình rất nhỏ */
+  }
+}
+
+/* Styling cho hình ảnh */
+.image-grid img {
+  width: 100%;
+  height: auto;
+  object-fit: cover; /* Đảm bảo ảnh vừa với khung */
+  border-radius: 0.5rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+@media (max-width: 768px) {
+  .card {
+    padding: 0.8rem;
+  }
+
+  .text-title {
+    font-size: 1.2em;
+  }
+
+  .text-body {
+    font-size: 0.9em;
+  }
+}

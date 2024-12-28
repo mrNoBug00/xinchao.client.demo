@@ -30,7 +30,7 @@ const LoginPage = () => {
       localStorage.setItem("username", result.userName);
       localStorage.setItem("userId", result.userId);
       localStorage.setItem("role", result.role.name);
-      router.push("/pages/home"); // Điều hướng tới trang home
+      router.push("/admin/home"); // Điều hướng tới trang home
     } catch (error: any) {
       setIsLoading(false);
       // Kiểm tra lỗi và cập nhật vào các trạng thái lỗi tương ứng

@@ -1,4 +1,4 @@
-'use client'
+"use client";
 
 import { useEffect, useState } from "react";
 import { useTranslations } from "next-intl";
@@ -14,9 +14,7 @@ import Pricing from "../../component/Pricing";
 import FAQ from "../../component/FAQ";
 import ImageCarousel from "../../component/ImageCarousel";
 import Navbar from "@/component/Navbar";
-
-
-
+import BusinessFeld from "@/component/BusinessField";
 
 const HomePage = () => {
   const t = useTranslations("LandingPageHeader");
@@ -46,8 +44,8 @@ const HomePage = () => {
 
   useEffect(() => {
     const timeout = setTimeout(() => {
-      setLoading(false); 
-    }, 1000); 
+      setLoading(false);
+    }, 1000);
 
     return () => clearTimeout(timeout); // Cleanup timeout on component unmount
   }, []); // Empty dependency array ensures this runs only once after initial mount
@@ -60,16 +58,22 @@ const HomePage = () => {
     );
 
   return (
-    <div className="flex flex-col min-h-screen bg-gray-100">
+    <div className="flex flex-col min-h-screen bg-[#e8e8e8]">
       <main className="flex-grow flex flex-col items-center justify-center">
         <div className="min-h-screen w-full bg-background">
           <Navbar />
           {/* <Header /> */}
-          <Hero />
 
           {/* <Features /> */}
 
-          <ImageCarousel />
+          <Hero />
+
+          <BusinessFeld />
+          {/* ImageCarousel */}
+          {/* <div className="mt-80">
+            <ImageCarousel />
+          </div> */}
+          {/* <ImageCarousel/> */}
           <ProductInfo />
           <Testimonials />
           <Pricing />
@@ -82,7 +86,7 @@ const HomePage = () => {
         {isVisible && (
           <button
             onClick={scrollToTop}
-            className="fixed bottom-10 right-10 bg-purple-600 text-white py-2 px-4 rounded-full shadow-lg transition-opacity duration-300 flex items-center justify-center hover:bg-purple-400">
+            className="fixed bottom-10 right-10 bg-green-600 text-white py-2 px-4 rounded-full shadow-lg transition-opacity duration-300 flex items-center justify-center hover:bg-purple-400">
             <Image
               src="/chevron-double-up.svg"
               alt="Back to top"

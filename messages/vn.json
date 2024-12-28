@@ -115,5 +115,11 @@
     "home": "Trang chủ",
     "product": "Sản phẩm",
     "about": "chúng tôi"
+  },
+
+  "BusinessField": {
+    "title": "Chúng tôi cung cấp dịch vụ thuê nhà và phòng cho người nước ngoài sinh sống, học tập và làm việc tại Đài Loan. Chúng tôi cam kết mang đến dịch vụ và trải nghiệm tốt nhất cho khách hàng.",
+    "description": "Chúng tôi cung cấp dịch vụ thuê nhà và phòng cho người nước ngoài sinh sống, học tập và làm việc tại Đài Loan. Chúng tôi cam kết mang đến dịch vụ và trải nghiệm tốt nhất cho khách hàng.",
+    "Our business field covers multiple industries, including real estate, catering, retail, etc. We are committed to providing customers with the best service and experience.": "Lĩnh vực kinh doanh của chúng tôi bao gồm nhiều ngành, bao gồm bất động sản, dịch vụ ăn uống, bán lẻ, v.v. Chúng tôi cam kết cung cấp cho khách hàng dịch vụ và trải nghiệm tốt nhất."
   }
 }

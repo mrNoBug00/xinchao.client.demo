@@ -6,6 +6,7 @@ import { productApiPath } from "@/utils/apiPath";
 import Card from "@/component/Card";
 import { Button } from "@headlessui/react";
 import { motion, useAnimation } from "framer-motion";
+import Skeleton from "@/component/Skeleton";
 const CategoryPage: React.FC = () => {
   const params = useParams(); // Sử dụng useParams để lấy giá trị dynamic route
   const categoryName = params.name; // Lấy giá trị "name" từ params
@@ -51,11 +52,20 @@ const CategoryPage: React.FC = () => {
     router.push("/pages/findAround");
   };
 
-  if (loading) return (
-    <div className="loader-overlay">
-      <div className="loader"></div>
-    </div>
-  );
+  if (loading)
+    return (
+      <div className="relative loader-overlay justify-items-center items-center">
+        <Skeleton />
+        <Skeleton />
+        <Skeleton />
+        <Skeleton />
+
+        <div className="absolute top-0 left-0 right-0 bottom-0 flex justify-center items-center">
+          <div className="loader"></div>
+        </div>
+      </div>
+    );
+
 
   return (
     <div className="grid m-4">
@@ -76,7 +86,7 @@ const CategoryPage: React.FC = () => {
       </div>
 
       {/* Các sản phẩm */}
-      <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
+      <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 justify-items-center items-center">
         {filteredData
           .slice() // Tạo một bản sao của mảng để không thay đổi mảng gốc
           .reverse() // Đảo ngược mảng
@@ -102,3 +112,4 @@ const CategoryPage: React.FC = () => {
 };
 
 export default CategoryPage;
+

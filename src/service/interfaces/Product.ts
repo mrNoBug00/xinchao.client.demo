@@ -17,7 +17,7 @@ export interface Status {
 export interface Product {
   id: string;
   name: string;
-  type: Type;
+  category: Type;
   description: string;
   status?: Status;
   price: number;
@@ -41,7 +41,11 @@ export interface EditContractProps {
   };
 }
 
-
+export interface ProductDetailProps {
+  params: {
+    id: string;
+  };
+}
 
 export interface FormImage {
   file: File | null;

@@ -1,90 +1,77 @@
+import { IMG_URL } from "@/service/api";
+import { categoryApiPath } from "@/utils/apiPath";
 import React, { useEffect, useState } from "react";
 import ProductCard from "./ProductCard";
-import { productApiPath } from "@/utils/apiPath";
-import { useRouter } from "next/navigation";
+import { useRouter } from "next/navigation"; // Import useRouter để chuyển hướng
+import ButtonSeeMore from "../component/ButtonSeeMore";
 
 interface Product {
   id: string;
   name: string;
-  description: string;
   price: number;
-  image: { imageUrl: string }[];
+  electricityFee: string;
+  waterFee: number;
+  gasFee: string;
+  numberOfTenantsByRoomRate: string;
   address: string;
-  type?: { name: string };
+  description: string;
+  imageUrl: Array<{ id: string; imageUrl: string }>;
 }
 
-const ProductList: React.FC = () => {
-  const [products, setProducts] = useState<Product[]>([]);
-  const router = useRouter();
-  const [loading, setLoading] = useState<boolean>(true);
-    
+interface Category {
+  id: number;
+  name: string;
+  products: Product[];
+}
 
+const ProductPage = () => {
+  const [categories, setCategories] = useState<Category[]>([]);
+  const router = useRouter(); // Khởi tạo useRouter
+
+  // Lấy dữ liệu từ API
   useEffect(() => {
-    const timeout = setTimeout(() => {
-      fetch(productApiPath.getAllProducts)
-        .then((response) => response.json())
-        .then((data) => {
-          setProducts(data);
-          setLoading(false);
-        });
-    }, 1000);
-    return () => clearTimeout(timeout);
+    const fetchCategories = async () => {
+      const response = await fetch(categoryApiPath.getAllCategory);
+      const data = await response.json();
+      setCategories(data);
+    };
+
+    fetchCategories();
   }, []);
 
-  const groupedByCategory = products.reduce((groups, product) => {
-    const category = (product.type?.name || "Other").toUpperCase();
-    if (!groups[category]) {
-      groups[category] = [];
-    }
-    groups[category].push(product);
-    return groups;
-  }, {} as Record<string, Product[]>);
-
-  if (loading)
-    return (
-      <div className="loader-overlay">
-        <div className="loader"></div>
-      </div>
-    );
+  // Hàm điều hướng tới trang chi tiết của category
+  const handleMoreClick = (categoryName: string) => {
+    router.push(`/pages/product/category/${categoryName}`);
+  };
 
   return (
-    <div className="container mx-auto px-4">
-      {Object.keys(groupedByCategory).map((category) => (
-        <div key={category} className="bg-slate-200 rounded-lg">
-          <div className="flex justify-between items-center text-2xl font-semibold mt-8 mb-2 border-gray-400 p-2 ">
-            <h2 className="ml-2">{category}</h2>
+    <div className="container mx-auto mt-2">
+      {categories.map((category) => (
+        <div key={category.id} className="mb-8 bg-blue-950 rounded-xl">
+          <div className="flex justify-between items-center ">
+            {/* Category name */}
+            <h2 className="text-xl m-4 ml-10 font-semibold text-white text-center sm:text-left">
+              {category.name.toUpperCase()}
+            </h2>
+            {/* Nút See More nằm bên phải */}
             <div
-              className="flex items-center text-blue-500 mr-2 cursor-pointer"
-              onClick={() =>
-                router.push(`/pages/product/category/${category}`)
-              }>
-              <span>more</span>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth={1.5}
-                stroke="currentColor"
-                className="w-6 h-6 ml-2">
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"
-                />
-              </svg>
+              className="flex items-center mt-2 text-blue-500 mr-4 cursor-pointer"
+              onClick={() => handleMoreClick(category.name)}>
+              <ButtonSeeMore />
             </div>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-            {/* Giới hạn chỉ lấy tối đa 4 sản phẩm cho mỗi category */}
-            {groupedByCategory[category].slice(0, 4).map((product) => (
+          {/* Sử dụng Grid, thay đổi số cột khi màn hình nhỏ */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 p-4 justify-items-center items-center">
+            {/* Hiển thị 4 sản phẩm đầu tiên */}
+            {category.products.slice(0, 4).map((product) => (
               <ProductCard
                 key={product.id}
                 id={product.id}
                 name={product.name}
                 description={product.description}
                 price={product.price}
-                images={product.image}
+                images={product.imageUrl}
                 address={product.address}
               />
             ))}
@@ -95,4 +82,6 @@ const ProductList: React.FC = () => {
   );
 };
 
-export default ProductList;
+export default ProductPage;
+
+

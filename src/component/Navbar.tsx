@@ -55,7 +55,7 @@ function Navbar() {
     localStorage.removeItem("userId");
     localStorage.removeItem("role");
     setIsLoggedIn(false);
-    router.push("/login");
+    router.push("/");
   };
 
   const handleTabAdmin = () => {

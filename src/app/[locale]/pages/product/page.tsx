@@ -7,8 +7,8 @@ import ProductList from "@/component/ProductList";
 const Products: React.FC = () => {
   
   return (
-    <div className="m-2">
-      <div className="max-w-screen-xl mx-auto p-4">
+    <div >
+      <div className="max-w-screen-2xl mx-auto ">
         <ProductList />
       </div>
     </div>

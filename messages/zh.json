@@ -115,5 +115,12 @@
     "home": "首頁",
     "product": "產品",
     "about": "關於我們"
+  },
+
+  "BusinessField": {
+    "title": "我們的業務領域涵蓋多個行業，包括房地產、餐飲、零售等。我們致力於為客戶提供最佳的服務和體驗。",
+    "description": "我們的業務領域涵蓋多個行業，包括房地產、餐飲、零售等。我們致力於為客戶提供最佳的服務和體驗。",
+    "Our business field covers multiple industries, including real estate, catering, retail, etc.": "我們的業務領域涵蓋多個行業，包括房地產、餐飲、零售等。",
+    "We are committed to providing customers with the best service and experience": "我們致力於為客戶提供最佳的服務和體驗。"
   }
 }

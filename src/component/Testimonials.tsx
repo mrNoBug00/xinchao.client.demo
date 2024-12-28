@@ -24,19 +24,19 @@ export default function Testimonials() {
   ];
 
   return (
-    <section className="py-20">
+    <section className="py-20 bg-[#f6e9d5]">
       <ScrollReveal>
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-semibold text-white text-center mb-12">
+          <h2 className="text-3xl font-semibold text-[#162b75] text-center mb-12">
             {t("title")}
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {testimonials.map((testimonial, index) => (
               <div
                 key={index}
-                className="bg-gray-800 p-6 rounded-lg flex flex-col justify-between h-full transition-transform transform hover:scale-105">
-                <p className="text-gray-400 mb-4">{t(testimonial.comment)}</p>
-                <p className="text-white font-semibold mt-auto">
+                className="bg-white p-6 rounded-lg flex flex-col justify-between h-full transition-transform transform hover:scale-105">
+                <p className="text-blackblack mb-4">{t(testimonial.comment)}</p>
+                <p className="text-[#162b75] font-semibold mt-auto">
                   {t(testimonial.name)}
                 </p>
               </div>

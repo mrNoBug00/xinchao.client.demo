@@ -100,7 +100,7 @@ const Card: React.FC<CardProps> = ({ product }) => {
           Address: {truncateText(product.address, 10)}
         </p>
       </CopyToClipboard>
-      <p className="text-sm text-gray-600 mb-2">Type: {product.type.name}</p>
+      <p className="text-sm text-gray-600 mb-2">Type: {product.category.name}</p>
       <CopyToClipboard text={product.description} onCopy={notify}>
         <p className="text-gray-700 mb-4 cursor-pointer" title="Click to copy">
           {truncateText(product.description, 10)}

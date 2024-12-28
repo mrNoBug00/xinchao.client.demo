@@ -6,7 +6,7 @@ const withNextIntl = require("next-intl/plugin")();
 
 const nextConfig = {
   images: {
-    domains: ["www.thuenhadep.online", "localhost"], // Thêm hostname vào đây
+    domains: ["www.thuenhadep.online", "www.xcserver.site", "localhost"], // Thêm hostname vào đây
   },
   env: {
     NEXT_PUBLIC_GOOGLE_MAPS_API_KEY:

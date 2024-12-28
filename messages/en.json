@@ -115,5 +115,14 @@
     "home": "Home",
     "product": "Product",
     "about": "About"
+  },
+
+  "BusinessField": {
+    "title": "Our company provides house and room rental services for foreigners living, studying, and working in Taiwan. We are committed to providing the best service and experience to our customers.",
+    "description": "Our company provides house and room rental services for foreigners living, studying, and working in Taiwan. We are committed to providing the best service and experience to our customers.",
+    "HouseRental": "House Rental",
+    "RoomRental": "Room Rental",
+    "HouseRentalDesc": "We offer a wide range of houses for rent in various locations throughout Taiwan.",
+    "RoomRentalDesc": "We offer a wide range of rooms for rent in various locations throughout Taiwan."
   }
 }
