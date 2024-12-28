@@ -1,0 +1,181 @@
+.card {
+  --accent-color: #22c55e;
+  position: relative;
+  width: 240px;
+  background: white;
+  border-radius: 1rem;
+  padding: 0.3rem;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 50px 30px -20px;
+  transition: all 0.5s ease-in-out;
+  margin: 1rem;
+
+}
+
+
+
+.card .image-container {
+  position: relative;
+  width: 100%;
+  height: 130px;
+  border-radius: 0.7rem;
+  border-top-right-radius: 4rem;
+  margin-bottom: 1rem;
+}
+
+.card .image-container img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+  object-fit: cover;
+  border-radius: inherit;
+}
+
+.card .image-container .price {
+  position: absolute;
+  right: 0.7rem;
+  bottom: -1rem;
+  background: white;
+  color: var(--accent-color);
+  font-weight: 900;
+  font-size: 0.9rem;
+  padding: 0.5rem;
+  border-radius: 1rem 1rem 2rem 2rem;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 0px 15px 0px;
+}
+
+.card .favorite {
+  position: absolute;
+  width: 19px;
+  height: 19px;
+  top: 5px;
+  right: 5px;
+  cursor: pointer;
+}
+
+.card .favorite input {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.card .favorite input:checked ~ svg {
+  animation: bouncing 0.5s;
+  /* fill: rgb(255, 95, 95); */
+  fill: #a8a8a8;
+  filter: drop-shadow(0px 3px 1px rgba(53, 53, 53, 0.14));
+}
+
+.card .favorite svg {
+  fill: rgb(255, 95, 95);
+}
+
+.card .content {
+  padding: 0px 0.8rem;
+  margin-bottom: 1rem;
+}
+
+.card .content .brand {
+  font-weight: 900;
+  color: #a6a6a6;
+}
+
+.card .content .product-name {
+  font-weight: 700;
+  color: #666666;
+  font-size: 0.7rem;
+  margin-bottom: 1rem;
+}
+
+.card .button-container {
+  display: flex;
+  gap: 0.3rem;
+}
+
+.card .button-container .button {
+  border-radius: 1.4rem 1.4rem 0.7rem 0.7rem;
+  border: none;
+  padding: 0.5rem 0;
+  background: var(--accent-color);
+  color: white;
+  font-weight: 900;
+  cursor: pointer;
+}
+
+.card .button-container .button:hover {
+  background: orangered;
+}
+
+.card .button-container .buy-button {
+  flex: auto;
+}
+
+.card:hover {
+  transform: scale(1.03);
+}
+
+@keyframes bouncing {
+  from,
+  to {
+    transform: scale(1, 1);
+  }
+
+  25% {
+    transform: scale(1.5, 2.1);
+  }
+
+  50% {
+    transform: scale(2.1, 1.5);
+  }
+
+  75% {
+    transform: scale(1.5, 2.05);
+  }
+}
+
+/* Media Queries for Responsiveness */
+
+/* For smaller screens */
+@media (max-width: 768px) {
+  .card {
+    width: 100%; /* Full width on small screens */
+    margin: 1rem 0; /* Reduce margin */
+  }
+
+  .card .image-container {
+    height: 150px; /* Increase image height for better visibility */
+  }
+
+  .card .image-container .price {
+    font-size: 1rem; /* Adjust font size */
+    padding: 0.7rem; /* Increase padding */
+  }
+
+  .card .content .product-name {
+    font-size: 0.8rem; /* Adjust product name font size */
+  }
+
+  .card .button-container .button {
+    padding: 0.5rem 1rem; /* Increase button padding */
+  }
+}
+
+/* For very small screens (e.g., mobile phones) */
+@media (max-width: 480px) {
+  .card {
+    width: 100%; /* Full width on mobile screens */
+    margin: 0.5rem 0; /* Reduce margin */
+  }
+
+  .card .image-container {
+    height: 120px; /* Adjust image height */
+  }
+
+  .card .content .product-name {
+    font-size: 0.75rem; /* Adjust font size for small screens */
+  }
+
+  .card .button-container .button {
+    padding: 0.4rem 0.8rem; /* Reduce button padding */
+  }
+}

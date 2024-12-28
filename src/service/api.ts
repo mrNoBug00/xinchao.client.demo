@@ -4,8 +4,9 @@ import { auth } from '../security/auth';
 // export const IMG_URL = "http://localhost:8080/api/v1/images";
 // export const BASE_URL = "http://localhost:8080";
 
-export const IMG_URL = "https://www.thuenhadep.online/api/v1/images";
-export const BASE_URL = "https://www.thuenhadep.online";
+
+export const IMG_URL = "https://www.xcserver.site/api/v1/images";
+export const BASE_URL = "https://www.xcserver.site";
 interface FetchOptions extends RequestInit {
     headers?: HeadersInit;
 }

@@ -83,7 +83,9 @@
     "Parking space": "Nơi đỗ xe",
     "Private accommodation": "Chỗ ở riêng tư",
     "go": "tiếp tục",
-    "note": "Giá trên không bao gồm phí môi giới."
+    "note": "Giá trên không bao gồm phí môi giới.",
+    "Bathroom": "Phòng tắm",
+    "Kitchen": "Nhà bếp"
   },
 
   "FAQ": {
@@ -91,9 +93,9 @@
     "What fees do I have to pay when signing a rental agreement?": "Tôi phải trả những phí gì khi ký hợp đồng thuê nhà?",
     "The fees that customers need to pay when renting a house are a two-month security deposit, one month of rent, and a one-month brokerage fee": "Các khoản phí khách hàng cần trả khi thuê nhà bao gồm: tiền cọc hai tháng, một tháng tiền thuê nhà và một tháng phí môi giới.",
     "How long can I sign the contract for?": "Thời gian thuê nhà tối thiểu và tối đa là bao lâu?",
-    "The minimum rental period is 6 months, and the maximum is one year. Upon expiration, if the customer wishes to continue renting, they can sign a new contract": "Thời gian thuê tối thiểu là 6 tháng, tối đa là một năm. Khi hết hạn, nếu khách hàng muốn tiếp tục thuê, họ có thể ký hợp đồng mới.",
+    "The minimum rental period is 6 months, and the maximum is one year Upon expiration, if the customer wishes to continue renting, they can sign a new contract": "Thời gian thuê tối thiểu là 6 tháng, tối đa là một năm. Khi hết hạn, nếu khách hàng muốn tiếp tục thuê, họ có thể ký hợp đồng mới.",
     "How will the utility costs be calculated when renting a house or room?": "Chi phí tiện ích sẽ được tính như thế nào khi thuê nhà hoặc phòng?",
-    "Utility costs will be calculated based on the meter or according to the contract terms. If the customer rents a room, the cost will be divided equally among the tenants. For houses, the tenant is responsible for all utility costs": "Chi phí tiện ích sẽ được tính theo đồng hồ hoặc theo điều khoản trong hợp đồng. Nếu khách hàng thuê phòng, chi phí sẽ được chia đều cho các người thuê. Đối với nhà, khách thuê sẽ chịu trách nhiệm toàn bộ chi phí tiện ích.",
+    "Utility costs will be calculated based on the meter or according to the contract terms If the customer rents a room, the cost will be divided equally among the tenants For houses, the tenant is responsible for all utility costs": "Chi phí tiện ích sẽ được tính theo đồng hồ hoặc theo điều khoản trong hợp đồng. Nếu khách hàng thuê phòng, chi phí sẽ được chia đều cho các người thuê. Đối với nhà, khách thuê sẽ chịu trách nhiệm toàn bộ chi phí tiện ích.",
     "What identification documents are required when renting a house or a room?": "Tôi cần cung cấp giấy tờ gì khi thuê nhà hoặc phòng?",
     "When renting a house or room, customers need to provide their passport, ARC (Alien Resident Certificate), or other relevant ID card, passport, or Government ID card of the guarantor": "Khi thuê nhà hoặc phòng, khách hàng cần cung cấp hộ chiếu, ARC (Giấy Chứng Nhận Cư Trú Người Nước Ngoài) hoặc các giấy tờ tùy thân liên quan khác, hộ chiếu hoặc thẻ căn cước của người bảo lãnh."
   },
@@ -107,5 +109,17 @@
     "Do not have an account?": "Bạn chưa có tài khoản?",
     "Identifier is incorrect Please check your input": "Tài khoản không chính xác. Vui lòng kiểm tra lại thông tin của bạn",
     "Password is incorrect Please try again": "Mật khẩu không chính xác. Vui lòng thử lại"
+  },
+
+  "Navbar": {
+    "home": "Trang chủ",
+    "product": "Sản phẩm",
+    "about": "chúng tôi"
+  },
+
+  "BusinessField": {
+    "title": "Chúng tôi cung cấp dịch vụ thuê nhà và phòng cho người nước ngoài sinh sống, học tập và làm việc tại Đài Loan. Chúng tôi cam kết mang đến dịch vụ và trải nghiệm tốt nhất cho khách hàng.",
+    "description": "Chúng tôi cung cấp dịch vụ thuê nhà và phòng cho người nước ngoài sinh sống, học tập và làm việc tại Đài Loan. Chúng tôi cam kết mang đến dịch vụ và trải nghiệm tốt nhất cho khách hàng.",
+    "Our business field covers multiple industries, including real estate, catering, retail, etc. We are committed to providing customers with the best service and experience.": "Lĩnh vực kinh doanh của chúng tôi bao gồm nhiều ngành, bao gồm bất động sản, dịch vụ ăn uống, bán lẻ, v.v. Chúng tôi cam kết cung cấp cho khách hàng dịch vụ và trải nghiệm tốt nhất."
   }
 }

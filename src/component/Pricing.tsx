@@ -1,13 +1,12 @@
 
 import ScrollReveal from "../component/ScrollReveal";
 import { useTranslations } from "next-intl";
-
-
+import Router, { useRouter } from "next/navigation";
 
 export default function Pricing() {
 
   const t = useTranslations("Pricing");
-
+  const router = useRouter();
   const plans = [
     {
       name: "Room",
@@ -56,10 +55,12 @@ export default function Pricing() {
     },
   ];
 
+  const handleChoosePlan = () => {
+    router.push("/pages/product");
+  }
+
   return (
-    <section
-      className="py-20"
-      id="pricing">
+    <section className="py-20 bg-[#f5f1e6]" id="pricing">
       <ScrollReveal>
         <div className="container mx-auto px-4">
           <h2 className="text-3xl font-semibold text-black text-center mb-12">
@@ -71,7 +72,7 @@ export default function Pricing() {
               <div
                 key={index}
                 className={`bg-gray-800 p-6 rounded-lg flex flex-col ${
-                  plan.isNeedChoose ? "border-2 border-green-600" : ""
+                  plan.isNeedChoose ? "border-4 border-green-600" : ""
                 } transition-transform transform hover:scale-105`}>
                 <h3 className="text-xl font-semibold text-white mb-2">
                   {t(plan.name)}
@@ -88,7 +89,8 @@ export default function Pricing() {
                     </li>
                   ))}
                 </ul>
-                <button className="w-full bg-purple-600 text-white py-2 rounded mt-auto hover:bg-purple-400">
+                <button className="w-full bg-[#dca447] text-white py-2 rounded mt-auto hover:bg-green-400"
+                onClick={handleChoosePlan}>
                   {t("go")}
                 </button>
               </div>

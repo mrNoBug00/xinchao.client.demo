@@ -7,6 +7,7 @@ import { productApiPath } from "@/utils/apiPath";
 import { geocodeAddress } from "../../../../service/geocode";
 import { useRouter } from "next/navigation"; 
 import "../../../../styles/globals.css";
+import { Product } from "../../../../service/interfaces/Product";
 
 const center = {
   lat: 10.762622,
@@ -18,20 +19,20 @@ interface Coordinates {
   lng: number;
 }
 
-interface Product {
-  id: number;
-  name: string;
-  type: string;
-  description: string;
-  price: number;
-  address: string;
-  author: string | null;
-}
+// interface Product {
+//   id: string;
+//   name: string;
+//   type: string;
+//   description: string;
+//   price: number;
+//   address: string;
+//   author: string | null;
+// }
 
 const MapComponent: React.FC = () => {
   const [userLocation, setUserLocation] = useState<Coordinates | null>(null);
   const [productLocations, setProductLocations] = useState<
-    (Coordinates & { id: number })[]
+    (Coordinates & { id: string })[]
   >([]);
   const [loading, setLoading] = useState<boolean>(true);
 
@@ -62,7 +63,12 @@ const MapComponent: React.FC = () => {
         }
 
         // Lấy dữ liệu địa chỉ từ database và geocode thành tọa độ
-        const data: Product[] = await fetchData(productApiPath.getAllProducts);
+        const data: Product[] = await fetch(productApiPath.getAllProducts)
+          .then((response) => response.json()) // Chuyển đổi Response thành JSON
+          .catch((error) => {
+            console.error("Error fetching products:", error);
+            return []; // Trả về mảng rỗng nếu có lỗi
+          });
         const coords = await Promise.all(
           data.map(async (product) => {
             const { address, id } = product;
@@ -77,7 +83,7 @@ const MapComponent: React.FC = () => {
         );
         const validCoords = coords.filter(
           (coord) => coord !== null
-        ) as (Coordinates & { id: number })[];
+        ) as (Coordinates & { id: string })[];
         setProductLocations(validCoords);
         setLoading(false); // Dữ liệu đã tải xong
       } catch (error) {
@@ -89,7 +95,7 @@ const MapComponent: React.FC = () => {
     fetchAndGeocodeAddresses();
   }, [router]);
 
-  const handleMarkerClick = (id: number) => {
+  const handleMarkerClick = (id: string) => {
     router.push(`/pages/product/${id}`);
   };
 

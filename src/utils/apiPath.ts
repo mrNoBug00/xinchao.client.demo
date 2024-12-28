@@ -10,6 +10,8 @@ export const apiPath = {
 export const productApiPath = {
   getAllProducts: `${BASE_URL}/api/v1/products`,
   getProductById: `${BASE_URL}/api/v1/products`,
+  getProductForRent: `${BASE_URL}/api/v1/products/status/for_rent`,
+  getProductByCategoryName: `${BASE_URL}/api/v1/products/category`,
 };
 
 export const houseApiPath = {
@@ -29,4 +31,8 @@ export const regulationsApiPath = {
 
 export const companyInfo = {
   getCompanyInfo: `${BASE_URL}/api/company-info`,
+};
+
+export const categoryApiPath = {
+  getAllCategory: `${BASE_URL}/api/v1/category`,
 };

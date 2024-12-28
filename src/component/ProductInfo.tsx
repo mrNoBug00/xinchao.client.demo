@@ -1,6 +1,8 @@
 import Image from "next/image";
 import ScrollReveal from "../component/ScrollReveal";
 import { useTranslations } from "next-intl";
+import { motion } from "framer-motion";
+
 
 export default function ProductInfo() {
 
@@ -24,7 +26,7 @@ export default function ProductInfo() {
   ];
 
   return (
-    <section className="py-20 bg-gradient-to-b ">
+    <section className="py-20 bg-[#f5f1e6] ">
       <ScrollReveal>
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 ">
@@ -74,14 +76,31 @@ export default function ProductInfo() {
               <p className="text-gray-400 mb-4">
                 {t("AvailableRentalLocationsDesc")}
               </p>
-              <div className="flex flex-wrap gap-2">
-                {locations.map((location, index) => (
-                  <span
-                    key={index}
-                    className="bg-gray-500 text-sm text-purple-300 px-3 py-1 rounded-full">
-                    {t(location)}
-                  </span>
-                ))}
+              <div className="overflow-hidden mt-4">
+                <motion.div
+                  className="flex flex-nowrap gap-4"
+                  animate={{
+                    x: [0, -2000],
+                  }}
+                  transition={{
+                    duration: 30,
+                    repeat: Infinity,
+                    ease: "linear",
+                  }}>
+                  {[...locations, ...locations].map((location, index) => (
+                    <motion.div
+                      key={index}
+                      className="bg-blue-500 text-white px-4 py-2 rounded-full whitespace-nowrap"
+                      initial={{ opacity: 0, x: 20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{
+                        delay: index * 0.2,
+                        duration: 0.5,
+                      }}>
+                      {t(location)}
+                    </motion.div>
+                  ))}
+                </motion.div>
               </div>
             </div>
           </div>

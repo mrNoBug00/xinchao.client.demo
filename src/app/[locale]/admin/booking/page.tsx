@@ -307,8 +307,10 @@ const BookingsPage: React.FC = () => {
                           <Image
                             key={qr.id}
                             src={`${IMG_URL}/${qr.imageUrl}`}
-                            alt="Contact QR Code"
-                            className="w-100 h-100 object-cover"
+                            alt={qr.id}
+                            className=" object-cover"
+                            width={200}
+                            height={200}
                           />
                         ))}
                       </div>

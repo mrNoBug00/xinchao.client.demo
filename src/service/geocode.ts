@@ -2,11 +2,6 @@ import axios from "axios";
 
 export const geocodeAddress = async (address: string) => {
 
-      console.log(
-        "process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY: ",
-        process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY
-      );
-
   try {
     const response = await axios.get(
       "https://maps.googleapis.com/maps/api/geocode/json",

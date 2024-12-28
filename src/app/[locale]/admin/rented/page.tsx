@@ -13,31 +13,32 @@ import {
   useViewportScroll,
   useTransform,
 } from "framer-motion";
+import { Product } from "../../../../service/interfaces/Product";
 
-interface Image {
-  id: number;
-  imageUrl: string;
-  imagePath: string;
-}
+// interface Image {
+//   id: number;
+//   imageUrl: string;
+//   imagePath: string;
+// }
 
-interface Status {
-  id: number;
-  name: string;
-  description: string;
-}
+// interface Status {
+//   id: number;
+//   name: string;
+//   description: string;
+// }
 
-interface Product {
-  id: number;
-  name: string;
-  type: string;
-  description: string;
-  status: Status;
-  price: number;
-  numberOfTenantsByRoomRate: string;
-  address: string;
-  image: Image[];
-  author: string | null;
-}
+// interface Product {
+//   id: number;
+//   name: string;
+//   type: string;
+//   description: string;
+//   status: Status;
+//   price: number;
+//   numberOfTenantsByRoomRate: string;
+//   address: string;
+//   image: Image[];
+//   author: string | null;
+// }
 
 const Products: React.FC = () => {
   const router = useRouter();
@@ -66,11 +67,11 @@ const Products: React.FC = () => {
   }, [router]);
 
   const filteredData = data
-    .filter((product) => product.status.id === 2)
+    .filter((product) => product.status?.id === 2)
     .filter(
       (product) =>
         product.name.toLowerCase().includes(search.toLowerCase()) ||
-        product.type.toLowerCase().includes(search.toLowerCase()) ||
+        product.category.name.toLowerCase().includes(search.toLowerCase()) ||
         product.address.toLowerCase().includes(search.toLowerCase())
     );
 
