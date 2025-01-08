@@ -1,5 +1,5 @@
 // next-intl.config.js
 module.exports = {
-  locales: ["en", "zh"], // Các ngôn ngữ bạn hỗ trợ
-  defaultLocale: "en", // Ngôn ngữ mặc định
+  locales: ["en", "zh", "vn"], // Các ngôn ngữ bạn hỗ trợ
+  defaultLocale: "vn", // Ngôn ngữ mặc định
 };
