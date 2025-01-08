@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import Image from "next/image";
 
 interface UploadImageProps {
   imageFiles: File[];
@@ -77,10 +78,12 @@ const UploadImage: React.FC<UploadImageProps> = ({
       <div className="mt-6 flex flex-wrap justify-center gap-4">
         {imagePreviews.map((preview, index) => (
           <div key={index} className="relative w-36 h-36">
-            <img
+            <Image
               src={preview}
               alt={`preview-${index}`}
-              className="w-full h-full object-cover rounded-md shadow-lg"
+              className="object-cover rounded-md shadow-lg"
+              width={100}
+              height={100}
             />
             <button
               type="button"

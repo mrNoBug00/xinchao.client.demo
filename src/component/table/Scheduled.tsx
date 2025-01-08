@@ -1,4 +1,5 @@
 import React from "react";
+import Image from "next/image";
 
 interface Deposit {
   id: string;
@@ -64,21 +65,25 @@ const Scheduled: React.FC<ScheduledProps> = ({ deposits }) => {
               </td>
               <td className="border border-gray-300 px-4 py-2">
                 {deposit.contactImage.map((image, index) => (
-                  <img
+                  <Image
                     key={index}
                     src={`/public/products/${image.imageUrl}`}
                     alt="Contact Image"
-                    className="w-12 h-12 object-cover rounded-full"
+                    className="object-cover rounded-full"
+                    width={100}
+                    height={100}
                   />
                 ))}
               </td>
               <td className="border border-gray-300 px-4 py-2">
                 {deposit.receiptImage.map((image, index) => (
-                  <img
+                  <Image
                     key={index}
                     src={`/public/products/${image.imageUrl}`}
                     alt="Receipt Image"
-                    className="w-12 h-12 object-cover rounded-full"
+                    className="object-cover rounded-full"
+                    width={100}
+                    height={100}
                   />
                 ))}
               </td>
