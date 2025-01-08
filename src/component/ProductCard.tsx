@@ -4,14 +4,12 @@ import styles from "../styles/ProductCard.module.css"; // Import CSS module
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 
-
-
 interface ProductCardProps {
   id: string;
   name: string;
   description: string;
   price: number;
-  images: { imageUrl: string }[];
+  images: { imageUrl: string }[]; // Mảng hình ảnh
   address: string;
 }
 
@@ -23,18 +21,25 @@ const ProductCard: React.FC<ProductCardProps> = ({
   images,
   address,
 }) => {
-
   const router = useRouter();
   const handleDetail = () => {
     router.push(`/pages/product/${id}`);
   };
+
+  // Kiểm tra nếu images có dữ liệu và có ít nhất một hình ảnh
+  const imageUrl =
+    images.length > 0
+      ? `${IMG_URL}/${images[0].imageUrl}`
+      : "/default-image.png"; // Cách lấy imageUrl từ mảng images
+
+
   return (
     <div className={styles.card}>
       {/* Sử dụng class từ CSS module */}
       <div className={styles["image-container"]}>
         <Image
           className="w-full h-48 object-cover"
-          src={`${IMG_URL}/${images[0].imageUrl}`}
+          src={imageUrl} // Sử dụng hình ảnh mặc định nếu không có hình ảnh
           alt={name}
           width={300}
           height={200}
@@ -55,7 +60,9 @@ const ProductCard: React.FC<ProductCardProps> = ({
         <div className={styles["product-name"]}>{address}</div>
       </div>
       <div className={styles["button-container"]}>
-        <button className={`${styles.button} ${styles["buy-button"]}`} onClick={handleDetail}>
+        <button
+          className={`${styles.button} ${styles["buy-button"]}`}
+          onClick={handleDetail}>
           Detail
         </button>
       </div>
