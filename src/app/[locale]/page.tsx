@@ -59,9 +59,12 @@ const HomePage = () => {
 
   return (
     <div className="flex flex-col min-h-screen bg-[#e8e8e8]">
+      <div className="fixed top-0 w-full z-50">
+        <Navbar />
+      </div>
       <main className="flex-grow flex flex-col items-center justify-center">
         <div className="min-h-screen w-full bg-background">
-          <Navbar />
+          {/* <Navbar /> */}
           {/* <Header /> */}
 
           {/* <Features /> */}

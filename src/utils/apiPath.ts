@@ -36,3 +36,12 @@ export const companyInfo = {
 export const categoryApiPath = {
   getAllCategory: `${BASE_URL}/api/v1/category`,
 };
+
+export const uploadImageApiPath = {
+  uploadImage: `${BASE_URL}/api/v1/images`,
+};
+
+export const depositApiPath = {
+  createDeposit: `${BASE_URL}/api/v1/deposits/create`,
+  getDeposit: `${BASE_URL}/api/v1/deposits`,
+};

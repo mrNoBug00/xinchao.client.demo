@@ -8,10 +8,13 @@ const Footer: React.FC = () => {
           <a
             href="https://flowbite.com/"
             className="flex items-center mb-4 sm:mb-0 space-x-3 rtl:space-x-reverse">
-         
-            <span className="self-center text-2xl font-semibold whitespace-nowrap text-white">
-              Xin Chao
-            </span>
+            <Image
+              src="/logo.jpg"
+              alt="Logo"
+              width={40}
+              height={40}
+              className="rounded-full"
+            />
           </a>
           <ul className="flex flex-wrap items-center mb-6 text-sm font-medium text-gray-500 sm:mb-0 dark:text-gray-400">
             <li>

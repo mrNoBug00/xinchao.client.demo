@@ -2,6 +2,7 @@ import { IMG_URL } from "@/service/api";
 import React from "react";
 import styles from "../styles/ProductCard.module.css"; // Import CSS module
 import { useRouter } from "next/navigation";
+import Image from "next/image";
 
 
 
@@ -31,10 +32,12 @@ const ProductCard: React.FC<ProductCardProps> = ({
     <div className={styles.card}>
       {/* Sử dụng class từ CSS module */}
       <div className={styles["image-container"]}>
-        <img
+        <Image
           className="w-full h-48 object-cover"
           src={`${IMG_URL}/${images[0].imageUrl}`}
           alt={name}
+          width={300}
+          height={200}
         />
         <div className={styles.price}>{price}</div>
       </div>

@@ -6,7 +6,18 @@
     "login": "Đăng nhập",
     "register": "Đăng ký",
     "footerText": "© 2024 Công ty Xin Chao. Bảo lưu mọi quyền.",
-    "Back to top": "Trở lại đầu trang"
+    "Back to top": "Trở lại đầu trang",
+    "Home": "Trang chủ",
+    "Product": "Sản phẩm",
+    "Contact": "Liên hệ",
+    "About": "Về chúng tôi",
+    "Login": "Đăng nhập",
+    "Register": "Đăng ký",
+    "Logout": "Đăng xuất",
+    "Settings": "Cài đặt",
+    "Profile": "Hồ sơ",
+    "Language": "Ngôn ngữ",
+    "AdminDashboard": "Bảng điều khiển quản trị"
   },
 
   "Hero": {
@@ -50,7 +61,8 @@
     "Longjing District": "Quận Long Tĩnh",
     "Wuqi District": "Quận Ngô Khởi",
     "Daya District": "Quận Đại Giáp",
-    "Qingshui District": "Quận Thanh Thủy"
+    "Qingshui District": "Quận Thanh Thủy",
+    "LocationsMap": "Bản đồ vị trí"
   },
 
   "Testimonials": {
@@ -120,6 +132,125 @@
   "BusinessField": {
     "title": "Chúng tôi cung cấp dịch vụ thuê nhà và phòng cho người nước ngoài sinh sống, học tập và làm việc tại Đài Loan. Chúng tôi cam kết mang đến dịch vụ và trải nghiệm tốt nhất cho khách hàng.",
     "description": "Chúng tôi cung cấp dịch vụ thuê nhà và phòng cho người nước ngoài sinh sống, học tập và làm việc tại Đài Loan. Chúng tôi cam kết mang đến dịch vụ và trải nghiệm tốt nhất cho khách hàng.",
-    "Our business field covers multiple industries, including real estate, catering, retail, etc. We are committed to providing customers with the best service and experience.": "Lĩnh vực kinh doanh của chúng tôi bao gồm nhiều ngành, bao gồm bất động sản, dịch vụ ăn uống, bán lẻ, v.v. Chúng tôi cam kết cung cấp cho khách hàng dịch vụ và trải nghiệm tốt nhất."
+    "Our business field covers multiple industries, including real estate, catering, retail, etc. We are committed to providing customers with the best service and experience.": "Lĩnh vực kinh doanh của chúng tôi bao gồm nhiều ngành, bao gồm bất động sản, dịch vụ ăn uống, bán lẻ, v.v. Chúng tôi cam kết cung cấp cho khách hàng dịch vụ và trải nghiệm tốt nhất.",
+    "house": "Nhà",
+    "room": "Phòng",
+    "second-hand": "Đã qua sử dụng"
+  },
+
+  "FormDeposit": {
+    "title": "Đặt cọc giữ",
+    "description": "Vui lòng điền vào biểu mẫu dưới đây để đặt cọc",
+    "Name": "Tên",
+    "Phone": "Số điện thoại",
+    "Email": "Email",
+    "Address": "Địa chỉ",
+    "DepositAmount": "Số tiền đặt cọc",
+    "DepositAmountDesc": "Vui lòng nhập số tiền bạn muốn đặt cọc",
+    "Note": "Ghi chú",
+    "NoteDesc": "Vui lòng nhập bất kỳ ghi chú hoặc hướng dẫn bổ sung nào",
+    "Submit": "Gửi",
+    "Enter your name": "Nhập tên của bạn",
+    "Enter your phone number": "Nhập số điện thoại của bạn",
+    "Receipt": "Biên lai",
+    "Send": "Gửi",
+    "ContactQrCode": "Mã QR để liên hệ",
+    "Error uploading image": "Lỗi tải ảnh lên",
+    "Please upload at least 1 contact image and 1 receipt image": "Vui lòng tải lên ít nhất 1 ảnh liên hệ và 1 ảnh biên lai",
+    "Deposit created successfully": "Đặt cọc thành công",
+    "An unexpected error occurred": "Đã xảy ra lỗi không mong muốn",
+    "house": "nhà",
+    "room": "phòng"
+  },
+
+  "AdminSidebar": {
+    "Dashboard": "Bảng điều khiển",
+    "Booking House": "Đặt lịch xem nhà",
+    "Deposit To Hold": "Đặt cọc giữ chỗ",
+    "For Rent": "Cho thuê",
+    "Rented": "Đã thuê",
+    "Contract": "Hợp đồng"
+  },
+
+  "DepositToHold": {
+    "title": "Đặt cọc giữ chỗ",
+    "description": "Vui lòng điền vào biểu mẫu dưới đây để đặt cọc",
+    "Name": "Tên",
+    "Phone": "Số điện thoại",
+    "Email": "Email",
+    "Address": "Địa chỉ",
+    "DepositAmount": "Số tiền đặt cọc",
+    "DepositAmountDesc": "Vui lòng nhập số tiền bạn muốn đặt cọc",
+    "Note": "Ghi chú",
+    "NoteDesc": "Vui lòng nhập bất kỳ ghi chú hoặc hướng dẫn bổ sung nào",
+    "Submit": "Gửi",
+    "Enter your name": "Nhập tên của bạn",
+    "Enter your phone number": "Nhập số điện thoại của bạn",
+    "Receipt": "Biên lai",
+    "Send": "Gửi",
+    "ContactQrCode": "Mã QR để liên hệ",
+    "Error uploading image": "Lỗi tải ảnh lên",
+    "Please upload at least 1 contact image and 1 receipt image": "Vui lòng tải lên ít nhất 1 ảnh liên hệ và 1 ảnh biên lai",
+    "Deposit created successfully": "Đặt cọc thành công",
+    "An unexpected error occurred": "Đã xảy ra lỗi không mong muốn",
+    "scheduled": "Đã lên lịch dẫn xem",
+    "not scheduled": "Chưa lên lịch dẫn xem"
+  },
+
+  "ProductDetail": {
+    "No images available": "Không có hình ảnh",
+    "Electricity Fee": "Phí điện",
+    "Type": "Loại",
+    "house": "nhà",
+    "Price": "Giá",
+    "Go check": "Đi xem",
+    "room": "phòng",
+    "Divide by number of people": "Chia theo số người",
+    "Water Fee": "Phí nước",
+    "Gas Fee": "Phí gas",
+    "Address": "Địa chỉ",
+    "price for": "giá cho",
+    "people": "người",
+    "When you make a deposit to reserve a place, after signing the contract, we will refund that amount to you": "Khi bạn đặt cọc để giữ chỗ, sau khi ký hợp đồng, chúng tôi sẽ hoàn lại số tiền đó cho bạn",
+    "Taiwan Bank Account": "Tài khoản ngân hàng Đài Loan",
+    "VietNam Bank Account": "Tài khoản ngân hàng Việt Nam",
+    "Please transfer money to one of the two bank accounts above": "Vui lòng chuyển tiền vào một trong hai tài khoản ngân hàng trên",
+    "If you transfer in Vietnamese currency": "Nếu bạn chuyển bằng tiền Việt",
+    "We will convert to Taiwanese currency based on the current exchange rate": "Chúng tôi sẽ quy đổi sang tiền Đài Loan theo tỷ giá hiện tại"
+  },
+
+  "BankCard": {
+    "Bank branch": "Mã chi nhánh ngân hàng"
+  },
+
+  "Contact": {
+    "ContactUs": "Liên Hệ",
+    "GetInTouch": "Hãy liên hệ với chúng tôi. Chúng tôi rất mong được nghe ý kiến từ bạn.",
+    "Name": "Họ và Tên",
+    "Email": "Địa Chỉ Email",
+    "Phone": "Số Điện Thoại",
+    "Message": "Tin Nhắn",
+    "Send": "Gửi Tin Nhắn",
+    "ContactInfo": "Thông Tin Liên Hệ",
+    "Address": "Địa Chỉ",
+    "OfficeAddress": "Địa chỉ văn phòng",
+    "LocationsMap": "Bản đồ vị trí",
+    "SocialMedia": "Theo Dõi Chúng Tôi",
+    "OfficeHours": "Giờ Làm Việc",
+    "WeekDays": "Thứ Hai - Thứ Sáu: 9:00 - 18:00",
+    "WeekEnds": "Thứ Bảy - Chủ Nhật: Đóng Cửa",
+    "Go to google map": "Tìm trên bản đồ "
+  },
+
+  "ProductBanner": {
+    "Featured Product": "Sản phẩm nổi bật",
+    "Discover our amazing products": "Khám phá các sản phẩm tuyệt vời của chúng tôi"
+  },
+
+  "ProductPage": {
+    "house": "Nhà",
+    "room": "Phòng",
+    "second-hand": "Đã qua sử dụng",
+    "see more": "Xem thêm"
   }
 }

@@ -1,0 +1,32 @@
+export const sellers = [
+  {
+    id: 1,
+    avatarUrl: "/IMG_6867.JPG",
+    name: "Chen Wei",
+    phone: "0989507518",
+    lineId: "@416ztseb",
+    lineQrCode: "/lineQR.png",
+    zalo: "@416ztseb",
+    zaloQrCode: "/lineQR.png",
+  },
+  {
+    id: 2,
+    avatarUrl: "/IMG_6867.JPG",
+    name: "Lin Mei",
+    phone: "0912345678",
+    lineId: "@xinchao888",
+    lineQrCode: "/lineQR.png",
+    zalo: "@416ztseb",
+    zaloQrCode: "/lineQR.png",
+  },
+  {
+    id: 3,
+    avatarUrl: "/IMG_6867.JPG",
+    name: "Wang Li",
+    phone: "0923456789",
+    lineId: "@rentxc",
+    lineQrCode: "/lineQR.png",
+    zalo: "@416ztseb",
+    zaloQrCode: "/lineQR.png",
+  },
+];

@@ -6,7 +6,18 @@
     "login": "Login",
     "register": "Register",
     "footerText": "© 2024 Xin Chao Company. All rights reserved.",
-    "Back to top": "Back to top"
+    "Back to top": "Back to top",
+    "Home": "Home",
+    "Product": "Product",
+    "About": "About",
+    "Contact": "Contact",
+    "Login": "Login",
+    "Register": "Register",
+    "Logout": "Logout",
+    "Profile": "Profile",
+    "Settings": "Settings",
+    "Language": "Language",
+    "AdminDashboard": "Admin Dashboard"
   },
 
   "Hero": {
@@ -50,7 +61,8 @@
     "Longjing District": "Longjing District",
     "Wuqi District": "Wuqi District",
     "Daya District": "Daya District",
-    "Qingshui District": "Qingshui District"
+    "Qingshui District": "Qingshui District",
+    "LocationsMap": "Locations Map"
   },
 
   "Testimonials": {
@@ -123,6 +135,126 @@
     "HouseRental": "House Rental",
     "RoomRental": "Room Rental",
     "HouseRentalDesc": "We offer a wide range of houses for rent in various locations throughout Taiwan.",
-    "RoomRentalDesc": "We offer a wide range of rooms for rent in various locations throughout Taiwan."
+    "RoomRentalDesc": "We offer a wide range of rooms for rent in various locations throughout Taiwan.",
+    "house": "House",
+    "room": "Room",
+    "second-hand": "Second-hand"
+  },
+
+  "FormDeposit": {
+    "title": "Deposit to hold",
+    "description": "Please fill in the form below to make a deposit",
+    "Name": "Name",
+    "Phone": "Phone",
+    "Email": "Email",
+    "Address": "Address",
+    "DepositAmount": "Deposit Amount",
+    "DepositAmountDesc": "Please enter the amount you wish to deposit",
+    "Note": "Note",
+    "NoteDesc": "Please enter any additional notes or instructions",
+    "Submit": "Submit",
+    "Enter your name": "Enter your name",
+    "Enter your phone number": "Enter your phone number",
+    "Receipt": "Receipt",
+    "Send": "Send",
+    "ContactQrCode": "Contact QR Code",
+    "Error uploading image": "Error uploading image",
+    "Please upload at least 1 contact image and 1 receipt image": "Please upload at least 1 contact image and 1 receipt image",
+    "Deposit created successfully": "Deposit created successfully",
+    "An unexpected error occurred": "An unexpected error occurred",
+    "house": "house",
+    "room": "room"
+  },
+
+  "AdminSidebar": {
+    "Dashboard": "Dashboard",
+    "Booking House": "Booking House",
+    "Deposit To Hold": "Deposit To Hold",
+    "For Rent": "For Rent",
+    "Rented": "Rented",
+    "Contract": "Contract"
+  },
+
+  "DepositToHold": {
+    "title": "Deposit to hold product",
+    "description": "Please fill in the form below to make a deposit",
+    "Name": "Name",
+    "Phone": "Phone",
+    "Email": "Email",
+    "Address": "Address",
+    "DepositAmount": "Deposit Amount",
+    "DepositAmountDesc": "Please enter the amount you wish to deposit",
+    "Note": "Note",
+    "NoteDesc": "Please enter any additional notes or instructions",
+    "Submit": "Submit",
+    "Enter your name": "Enter your name",
+    "Enter your phone number": "Enter your phone number",
+    "Receipt": "Receipt",
+    "Send": "Send",
+    "ContactQrCode": "Contact QR Code",
+    "Error uploading image": "Error uploading image",
+    "Please upload at least 1 contact image and 1 receipt image": "Please upload at least 1 contact image and 1 receipt image",
+    "Deposit created successfully": "Deposit created successfully",
+    "An unexpected error occurred": "An unexpected error occurred",
+    "scheduled": "scheduled",
+    "not scheduled": "not scheduled"
+  },
+
+  "ProductDetail": {
+    "No images available": "No images available",
+    "Electricity Fee": "Electricity Fee",
+    "Type": "Type",
+    "house": "house",
+    "room": "room",
+    "Divide by number of people": "Divide by number of people",
+    "Price": "Price",
+    "Go check": "Go check",
+    "Water Fee": "Water Fee",
+    "Gas Fee": "Gas Fee",
+    "Address": "Address",
+    "price for": "price for",
+    "people": "people",
+    "When you make a deposit to reserve a place, after signing the contract, we will refund that amount to you": "When you make a deposit to reserve a place, after signing the contract, we will refund that amount to you",
+    "Taiwan Bank Account": "Taiwan Bank Account",
+    "VietNam Bank Account": "Vietnam Bank Account",
+    "Please transfer money to one of the two bank accounts above": "Please transfer money to one of the two bank accounts above",
+    "If you transfer in Vietnamese currency": "If you transfer in Vietnamese currency",
+    "We will convert to Taiwanese currency based on the current exchange rate": "We will convert to Taiwanese currency based on the current exchange rate"
+  },
+
+  "BankCard": {
+    "Bank branch": "Bank branch code"
+  },
+
+  "Contact": {
+    "ContactUs": "Contact Us",
+    "GetInTouch": "Get in touch with us. We'd love to hear from you.",
+    "Name": "Your Name",
+    "Email": "Email Address",
+    "Phone": "Phone Number",
+    "Message": "Your Message",
+    "Send": "Send Message",
+    "ContactInfo": "Contact Information",
+    "Address": "Address",
+    "OfficeAddress": "Office Address",
+    "LocationsMap": "Locations Map",
+    "SocialMedia": "Follow Us",
+    "OfficeHours": "Office Hours",
+    "WeekDays": "Monday - Friday: 9:00 AM - 6:00 PM",
+    "WeekEnds": "Saturday - Sunday: Closed",
+    "Go to google map": "Go to map"
+  },
+
+  "ProductBanner": {
+    "Featured Product": "Featured Product",
+    "Discover our amazing products": "Discover our amazing products"
+    
+  },
+
+  "ProductPage": {
+    "house": "House",
+    "room": "Room",
+    "recond-hand": "Second-hand",
+    "see more": "See more"
   }
 }

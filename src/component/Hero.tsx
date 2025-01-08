@@ -11,7 +11,7 @@ export default function Hero() {
  return (
    <section className="relative flex flex-col md:flex-row items-center justify-center">
      {/* Hình ảnh Hero */}
-     <div className="relative w-full h-[800px]">
+     <div className="relative w-full h-[600px]">
        <div className="absolute inset-0">
          <Image
            src="/living-room-8403277_1920.jpg"

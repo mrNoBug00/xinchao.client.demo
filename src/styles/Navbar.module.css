@@ -1,0 +1,22 @@
+/* Navbar.module.css */
+.userInfo {
+  display: flex;
+  align-items: center;
+}
+
+.username {
+  display: inline-block;
+  padding-left: 8px;
+}
+
+@media (max-width: 640px) {
+  .userInfo {
+    flex-direction: column; /* Đặt các phần tử thành cột khi ở chế độ mobile */
+    align-items: flex-start; /* Căn trái các phần tử */
+  }
+
+  .username {
+    padding-left: 0;
+    padding-top: 8px; /* Thêm khoảng cách giữa avatar và tên */
+  }
+}

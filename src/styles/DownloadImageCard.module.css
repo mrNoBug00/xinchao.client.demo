@@ -1,0 +1,147 @@
+.card {
+  --bg-card: #27272a;
+  --primary: #f6e9d5;
+  --primary-800: #f6e9d5;
+  --primary-shadow: #f6e9d5;
+  --light: #f6e9d5;
+  --zinc-800: #18181b;
+  --bg-linear: linear-gradient(0deg, var(--primary) 50%, var(--light) 125%);
+
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+
+  padding: 1rem;
+  width: 24rem;
+  height: 34rem;
+  background-color: var(--bg-card);
+
+  border-radius: 1rem;
+}
+
+.image_container {
+  overflow: hidden;
+  cursor: pointer;
+  position: relative;
+  width: 100%;
+  height: 400px; /* Chiều cao cố định */
+  background-color: var(--primary-800);
+  border-radius: 0.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.image {
+  object-fit: cover; /* Đảm bảo ảnh được cắt vừa với khung */
+  width: 100%; /* Chiều rộng 100% */
+  height: 100%; /* Chiều cao 100% */
+}
+
+
+.title {
+  overflow: clip;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--light);
+  text-transform: capitalize;
+  text-overflow: ellipsis;
+}
+
+.size {
+  font-size: 0.75rem;
+  color: var(--light);
+}
+
+.listSize {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  margin-top: 0.25rem;
+}
+
+.itemListButton {
+  cursor: pointer;
+  padding: 0.5rem;
+  background-color: var(--zinc-800);
+  font-size: 0.75rem;
+  color: var(--light);
+  border: 2px solid var(--zinc-800);
+  border-radius: 0.25rem;
+  transition: all 0.3s ease-in-out;
+}
+
+.itemListButton:hover {
+  border: 2px solid var(--light);
+}
+
+.itemListButton:focus {
+  background-color: var(--primary);
+  border: 2px solid var(--primary-shadow);
+  box-shadow: inset 0px 1px 4px var(--primary-shadow);
+}
+
+.action {
+  display: flex;
+  justify-content: space-between; /* Đặt khoảng cách đều giữa các nút */
+  align-items: center; /* Căn giữa các nút theo chiều dọc */
+  margin-top: 36px; /* Tạo khoảng cách với phần trên */
+}
+
+.buttonsContainer {
+  display: flex;
+  flex-direction: column; /* Đặt các nút theo chiều dọc */
+  gap: 10px; /* Khoảng cách giữa các nút */
+}
+
+.close-button {
+  margin-top: 20px; /* Khoảng cách với các nút trên */
+}
+
+.button {
+  position: relative;
+  width: 150px;
+  height: 40px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  border: 1px solid #fed7aa;
+  background-color: #fed7aa;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.buttonText {
+  transform: translateX(22px);
+  color: #172779;
+  font-weight: 600;
+}
+
+.buttonIcon {
+  position: absolute;
+  transform: translateX(109px);
+  height: 100%;
+  width: 39px;
+  background-color: #f6e9d5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.svg {
+  width: 20px;
+  fill: #172779;
+}
+
+.button:hover {
+  background: #172779;
+}
+
+.button:hover .buttonText {
+  color: transparent;
+}
+
+.button:hover .buttonIcon {
+  width: 148px;
+  transform: translateX(0);
+}

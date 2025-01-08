@@ -10,19 +10,19 @@ export default function BusinessField() {
   const categories = [
     {
       id: 1,
-      name: "HOUSE",
+      name: "house",
       icon: <FaHome className="w-12 h-12 mb-4" />,
       path: "/pages/product/category/HOUSE",
     },
     {
       id: 2,
-      name: "ROOM",
+      name: "room",
       icon: <FaBed className="w-12 h-12 mb-4" />,
       path: "/pages/product/category/ROOM",
     },
     {
       id: 3,
-      name: "SECOND-HAND",
+      name: "second-hand",
       icon: <FaRecycle className="w-12 h-12 mb-4" />,
       path: "/pages/product/category/second-hand",
     },
@@ -42,7 +42,7 @@ export default function BusinessField() {
                        transition-transform duration-300 hover:scale-105 flex flex-col items-center justify-center h-full">
                   {category.icon}
                   <h3 className="text-lg font-semibold text-[#162b75]">
-                    {category.name}
+                    {t(category.name)}
                   </h3>
                 </div>
               ))}
@@ -57,3 +57,5 @@ export default function BusinessField() {
     </section>
   );
 }
+
+// http://localhost:3000/vn/pages/product/category/home
