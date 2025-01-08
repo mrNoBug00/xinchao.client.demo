@@ -14,13 +14,19 @@ export const metadata: Metadata = {
 export default function RootLayout({
   children,
 }: {
-  children: React.ReactNode
+  children: React.ReactNode;
 }) {
   return (
     <html lang="en">
-      <body>
-        <Navbar />
-        <Suspense fallback={<div>Loading...</div>}>{children}</Suspense>
+      <body className="bg-[#f6e9d5]">
+        <div className="fixed top-0 left-0 right-0 z-50 bg-white">
+          <Navbar />
+        </div>
+        <div className="pt-16">
+          {" "}
+          {/* Add padding-top to account for fixed navbar */}
+          <Suspense fallback={<div>Loading...</div>}>{children}</Suspense>
+        </div>
         <Footer />
       </body>
     </html>

@@ -14,6 +14,8 @@ import {
   useTransform,
 } from "framer-motion";
 import { Product } from "../../../../service/interfaces/Product";
+import AddProductButton from "@/component/AddProductButton";
+import GoToMapButton from "@/component/GoToMapButton";
 // interface Image {
 //   id: number;
 //   imageUrl: string;
@@ -95,16 +97,13 @@ const Products: React.FC = () => {
           value={search}
           onChange={(e) => setSearch(e.target.value)}
         />
-        <Button
-          className="bg-blue-500 text-white p-2 rounded-md"
-          onClick={findAround}>
-          Find around
-        </Button>
-        <Button
-          className="bg-green-500 text-white p-2 rounded-md"
-          onClick={addNewProduct}>
-          Add New Product
-        </Button>
+
+        <button onClick={addNewProduct}>
+          <AddProductButton />
+        </button>
+        <button onClick={findAround}>
+          <GoToMapButton />
+        </button>
       </div>
       <div className="h-[800px] overflow-y-scroll grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4">
         {filteredData.length > 0 ? (

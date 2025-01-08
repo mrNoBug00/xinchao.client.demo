@@ -6,7 +6,18 @@
     "login": "登入",
     "register": "註冊",
     "footerText": "© 2024 Xin Chao 公司。保留所有權利。",
-    "Back to top": "返回頁首"
+    "Back to top": "返回頁首",
+    "Home": "首頁",
+    "Product": "產品",
+    "About": "關於我們",
+    "Contact": "聯繫我們",
+    "Login": "登入",
+    "Register": "註冊",
+    "Services": "服務",
+    "Profile": "個人資料",
+    "Logout": "登出",
+    "Language": "語言",
+    "AdminDashboard": "管理員儀表板"
   },
 
   "Hero": {
@@ -50,7 +61,8 @@
     "Longjing District": "龍井區",
     "Wuqi District": "梧棲區",
     "Daya District": "大雅區",
-    "Qingshui District": "清水區"
+    "Qingshui District": "清水區",
+    "LocationsMap": "地點地圖"
   },
 
   "Testimonials": {
@@ -121,6 +133,121 @@
     "title": "我們的業務領域涵蓋多個行業，包括房地產、餐飲、零售等。我們致力於為客戶提供最佳的服務和體驗。",
     "description": "我們的業務領域涵蓋多個行業，包括房地產、餐飲、零售等。我們致力於為客戶提供最佳的服務和體驗。",
     "Our business field covers multiple industries, including real estate, catering, retail, etc.": "我們的業務領域涵蓋多個行業，包括房地產、餐飲、零售等。",
-    "We are committed to providing customers with the best service and experience": "我們致力於為客戶提供最佳的服務和體驗。"
+    "We are committed to providing customers with the best service and experience": "我們致力於為客戶提供最佳的服務和體驗。",
+    "house": "房子",
+    "room": "房間",
+    "second-hand": "二手"
+  },
+
+  "FormDeposit": {
+    "title": "訂金保留",
+    "description": "請填寫以下表格以完成訂金支付",
+    "Name": "姓名",
+    "Phone": "電話",
+    "Email": "電子郵件",
+    "Address": "地址",
+    "DepositAmount": "訂金金額",
+    "DepositAmountDesc": "請輸入您想支付的訂金金額",
+    "Note": "備註",
+    "NoteDesc": "請輸入任何附加說明或指示",
+    "Submit": "提交",
+    "Enter your name": "輸入您的姓名",
+    "Enter your phone number": "輸入您的電話號碼",
+    "Receipt": "收據",
+    "Send": "發送",
+    "ContactQrCode": "聯繫二維碼",
+    "Error uploading image": "上傳圖片時出錯",
+    "Please upload at least 1 contact image and 1 receipt image": "請上傳至少1張聯繫圖片和1張收據圖片",
+    "Deposit created successfully": "訂金支付成功",
+    "An unexpected error occurred": "發生了意外錯誤",
+    "house": "房子",
+    "room": "房間"
+  },
+
+  "AdminSidebar": {
+    "Dashboard": "儀表板",
+    "Booking House": "預訂房屋",
+    "Deposit To Hold": "訂金保留",
+    "For Rent": "出租",
+    "Rented": "已出租",
+    "Contract": "合約"
+  },
+
+  "DepositToHold": {
+    "title": "訂金保留",
+    "description": "以下是所有訂金保留的房間",
+    "Name": "姓名",
+    "Phone": "電話",
+    "Email": "電子郵件",
+    "Address": "地址",
+    "DepositAmount": "訂金金額",
+    "Note": "備註",
+    "Status": "狀態",
+    "Action": "操作",
+    "View": "查看",
+    "Delete": "刪除",
+    "No deposit to hold": "沒有訂金保留",
+    "Delete deposit": "刪除訂金",
+    "Are you sure you want to delete this deposit?": "您確定要刪除此訂金嗎？",
+    "Deposit deleted successfully": "訂金刪除成功",
+    "scheduled": "已安排帶看",
+    "not scheduled": "未安排帶看"
+  },
+
+  "ProductDetail": {
+    "No images available": "暫無圖片",
+    "Electricity Fee": "電費",
+    "Type": "類型",
+    "house": "房子",
+    "room": "房間",
+    "Divide by number of people": "按人數分配",
+    "Water Fee": "水費",
+    "Gas Fee": "瓦斯費",
+    "Address": "地址",
+    "Price": "價格",
+    "Go check": "帶看",
+    "price for": "價格為",
+    "people": "人",
+    "When you make a deposit to reserve a place, after signing the contract, we will refund that amount to you": "當您支付訂金預訂房間時，簽約後我們會退還該金額給您",
+    "Taiwan Bank Account": "台灣銀行帳戶",
+    "VietNam Bank Account": "越南銀行帳戶",
+    "Please transfer money to one of the two bank accounts above": "請匯款至以上兩個銀行帳戶之一",
+    "If you transfer in Vietnamese currency": "如果您使用越南幣匯款",
+    "We will convert to Taiwanese currency based on the current exchange rate": "我們將根據當前匯率換算成台幣"
+  },
+
+  "BankCard": {
+    "Bank branch": "銀行分行碼"
+  },
+
+  "Contact": {
+    "ContactUs": "聯絡我們",
+    "GetInTouch": "與我們聯繫。我們很樂意聽取您的意見。",
+    "Name": "姓名",
+    "Email": "電子郵件",
+    "Phone": "電話號碼",
+    "Message": "訊息",
+    "Send": "發送訊息",
+    "ContactInfo": "聯絡資訊",
+    "Address": "地址",
+    "OfficeAddress": "辦公室地址",
+    "LocationsMap": "地點地圖",
+    "SocialMedia": "關注我們",
+    "OfficeHours": "營業時間",
+    "WeekDays": "週一至週五：上午9:00 - 下午6:00",
+    "WeekEnds": "週六、週日：休息",
+    "Go to google map": "前往地圖"
+  },
+
+  "ProductBanner": {
+    "Featured Product": "特色產品",
+    "Discover our amazing products": "體驗我們的精彩產品"
+  },
+
+  "ProductPage": {
+    "house": "房子",
+    "hoom": "房間",
+    "second-hand": "二手",
+    "see more": "查看更多"
   }
 }

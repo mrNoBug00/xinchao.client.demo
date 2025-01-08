@@ -16,6 +16,8 @@ import {
 import BookingChart from "@/component/admin/BookingChart";
 
 import { Product } from "../../../../service/interfaces/Product";
+import AddProductButton from "@/component/AddProductButton";
+import GoToMapButton from "@/component/GoToMapButton";
 
 // interface Image {
 //   id: number;
@@ -96,16 +98,14 @@ const Products: React.FC = () => {
           value={search}
           onChange={(e) => setSearch(e.target.value)}
         />
-        <Button
-          className="bg-blue-500 text-white p-2 rounded-md"
-          onClick={findAround}>
-          Find around
-        </Button>
-        <Button
-          className="bg-green-500 text-white p-2 rounded-md"
-          onClick={addNewProduct}>
-          Add New Product
-        </Button>
+
+        <button>
+          <AddProductButton />
+        </button>
+        <button>
+          <GoToMapButton />
+        </button>
+        
       </div>
       <BookingChart />
     </div>

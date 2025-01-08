@@ -4,12 +4,13 @@ import { useParams, useRouter } from "next/navigation";
 import "../../../../../../styles/globals.css";
 import { productApiPath } from "@/utils/apiPath";
 import Card from "@/component/Card";
-import { Button } from "@headlessui/react";
 import { motion, useAnimation } from "framer-motion";
 import Skeleton from "@/component/Skeleton";
+import  GoToMapButton  from "@/component/GoToMapButton";
+
 const CategoryPage: React.FC = () => {
-  const params = useParams(); // Sử dụng useParams để lấy giá trị dynamic route
-  const categoryName = params.name; // Lấy giá trị "name" từ params
+  const params = useParams(); 
+  const categoryName = params.name; 
   const [products, setProducts] = useState<any[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [search, setSearch] = useState<string>("");
@@ -78,11 +79,9 @@ const CategoryPage: React.FC = () => {
           value={search}
           onChange={(e) => setSearch(e.target.value)}
         />
-        <Button
-          className="bg-blue-500 text-white p-2 rounded-md"
-          onClick={findAround}>
-          Find around
-        </Button>
+        <button onClick={findAround}>
+          <GoToMapButton />
+        </button>
       </div>
 
       {/* Các sản phẩm */}

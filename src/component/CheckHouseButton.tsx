@@ -1,17 +1,23 @@
 import React from "react";
 import styled from "styled-components";
 import { useTranslations } from "next-intl";
+import { Product } from "@/service/interfaces/Product";
 
-const Button = () => {
+interface ProductDetailProps {
+  productDetail: Product;
+}
 
-  const t = useTranslations("ProductPage");
+const CheckHouseButton: React.FC<ProductDetailProps> = ({ productDetail }) => {
+  const t = useTranslations("ProductDetail");
   return (
     <StyledWrapper>
-      <button className="learn-more text-[#162b75]">
-        <span aria-hidden="true" className="circle">
+      <button className="learn-more">
+        <span className="circle" aria-hidden="true">
           <span className="icon arrow" />
         </span>
-        <span className="button-text text-[#162b75]">{t("see more")}</span>
+        <span className="button-text">
+          {t("Go check")} {t(productDetail.category.name)}
+        </span>
       </button>
     </StyledWrapper>
   );
@@ -30,7 +36,6 @@ const StyledWrapper = styled.div`
     padding: 0;
     font-size: inherit;
     font-family: inherit;
-    margin: 1rem;
   }
 
   button.learn-more {
@@ -40,7 +45,6 @@ const StyledWrapper = styled.div`
 
   button.learn-more .circle {
     transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
-    box-shadow: 0 0 5px 1px white;
     position: relative;
     display: block;
     margin: 0;
@@ -88,7 +92,7 @@ const StyledWrapper = styled.div`
     bottom: 0;
     padding: 0.75rem 0;
     margin: 0 0 0 1.85rem;
-    color: #162b75;
+    color: #282936;
     font-weight: 700;
     line-height: 1.6;
     text-align: center;
@@ -97,47 +101,16 @@ const StyledWrapper = styled.div`
 
   button:hover .circle {
     width: 100%;
-    box-shadow: 0 0 10px 2px white;
-  }
-
-  button:hover .button-text {
-    transform: translate(-1.7rem, 0);
   }
 
   button:hover .circle .icon.arrow {
     background: #fff;
-    transform: translate(8.7rem, 0);
-  }
-
-  button:active .circle .icon.arrow {
-    transform: translate(9.5rem, 0);
-    transition: all 0.3s;
-  }
-
-  button:active .circle {
-    transform: scale(0.9);
-    transition: all 0.3s;
-    box-shadow: 0 0 5px 0.5px white;
+    transform: translate(1rem, 0);
   }
 
   button:hover .button-text {
     color: #fff;
   }
-
-  button:active .button-text {
-    color: rgba(255, 255, 255, 0.459);
-  }
-
-  // Media Query for Mobile Devices
-  @media (max-width: 768px) {
-    button.learn-more .circle {
-      display: none; // Ẩn vòng tròn và mũi tên
-    }
-
-    button.learn-more .button-text {
-      margin: 0; // Căn chỉnh lại nút
-    }
-  }
 `;
 
-export default Button;
+export default CheckHouseButton;
