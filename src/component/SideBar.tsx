@@ -18,7 +18,7 @@ const SideBar: React.FC = () => {
 
   return (
     <header className="bg-gray-800 p-4 rounded-lg">
-      <div className="container mx-auto flex flex-col space-y-2">
+      <div className="container mx-auto flex flex-col ">
         <nav>
           <Link
             href="/admin/home"

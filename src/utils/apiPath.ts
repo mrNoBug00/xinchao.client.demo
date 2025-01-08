@@ -12,6 +12,7 @@ export const productApiPath = {
   getProductById: `${BASE_URL}/api/v1/products`,
   getProductForRent: `${BASE_URL}/api/v1/products/status/for_rent`,
   getProductByCategoryName: `${BASE_URL}/api/v1/products/category`,
+  updateProduct: `${BASE_URL}/api/v1/products`,
 };
 
 export const houseApiPath = {
@@ -30,11 +31,15 @@ export const regulationsApiPath = {
 };
 
 export const companyInfo = {
-  getCompanyInfo: `${BASE_URL}/api/company-info`,
+  getCompanyInfo: `${BASE_URL}/api/v1/company-info`,
 };
 
 export const categoryApiPath = {
   getAllCategory: `${BASE_URL}/api/v1/category`,
+};
+
+export const statusApiPath = {
+  getAllStatus: `${BASE_URL}/api/v1/statuses`,
 };
 
 export const uploadImageApiPath = {

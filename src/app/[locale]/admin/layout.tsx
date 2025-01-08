@@ -26,11 +26,11 @@ export default function RootLayout({ children }: RootLayoutProps) {
       <body className="flex flex-col">
         <Navbar />
         <div className="flex p-4 justify-center">
-          <div className="flex p-4">
+          <div className="flex p-4 w-1/4">
             <Header />
           </div>
 
-          <div className="flex p-4">
+          <div className="flex p-4 w-full">
             <main className="flex-1 border border-gray-300 rounded-lg p-2">
               {children}
             </main>

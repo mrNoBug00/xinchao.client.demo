@@ -1,18 +1,16 @@
 // interfaces/Product.ts
 
-
 export interface Image {
-    id: number;
-    imageUrl: string;
-    imagePath: string;
-  }
-  
+  id: number;
+  imageUrl: string;
+  imagePath: string;
+}
+
 export interface Status {
-   id: number;
-   name: string;
-   description: string;
- }
-  
+  id: number;
+  name: string;
+  description: string;
+}
 
 export interface Product {
   id: string;
@@ -20,6 +18,7 @@ export interface Product {
   category: Type;
   description: string;
   status?: Status;
+  companyInfo?: CompanyInfo;
   price: number;
   electricityFee?: string;
   waterFee?: string;
@@ -29,10 +28,16 @@ export interface Product {
   image: Image[];
   author: string | null;
 }
-  
+
 export interface Type {
   id: number;
   name: string;
+}
+
+export interface EditContractProps {
+  params: {
+    id: string;
+  };
 }
 
 export interface EditContractProps {
@@ -66,6 +71,10 @@ export interface FormData {
   images: { file: File | null; imageUrl: string }[];
 }
 
-
-
-
+export interface CompanyInfo {
+  id: string;
+  name: string;
+  taxNumber: string;
+  address: string;
+  line: string;
+}

@@ -86,6 +86,10 @@ const Card: React.FC<CardProps> = ({ product }) => {
     ? product.image.length - maxImagesToShow
     : 0;
 
+  
+  const handleEditProduct = (id: string) => {
+    router.push(`/admin/edit-product/${id}`)
+  }
   return (
     <div className="border rounded-lg p-4 shadow-md">
       <ToastContainer />
@@ -100,7 +104,9 @@ const Card: React.FC<CardProps> = ({ product }) => {
           Address: {truncateText(product.address, 10)}
         </p>
       </CopyToClipboard>
-      <p className="text-sm text-gray-600 mb-2">Type: {product.category.name}</p>
+      <p className="text-sm text-gray-600 mb-2">
+        Type: {product.category.name}
+      </p>
       <CopyToClipboard text={product.description} onCopy={notify}>
         <p className="text-gray-700 mb-4 cursor-pointer" title="Click to copy">
           {truncateText(product.description, 10)}
@@ -141,7 +147,11 @@ const Card: React.FC<CardProps> = ({ product }) => {
         <ViewHouseButton onClick={() => handleViewHouseClick(product.id)}>
           Details
         </ViewHouseButton>
-        {product.status?.name === "RENTED" && (
+
+        <ViewHouseButton onClick={() => handleEditProduct(product.id)}>
+          edit
+        </ViewHouseButton>
+        {/* {product.status?.name === "RENTED" && (
           <button
             className="bg-gray-800 text-white p-2 rounded-md mt-2"
             onClick={handleShowContractClick}>
@@ -154,7 +164,7 @@ const Card: React.FC<CardProps> = ({ product }) => {
             onClick={handleSignContractClick}>
             Sign Contract
           </button>
-        )}
+        )} */}
       </div>
       {isOpen && (
         <Lightbox

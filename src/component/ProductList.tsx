@@ -48,8 +48,8 @@ const ProductPage = () => {
   };
 
   return (
-    <div className="flex flex-col min-h-screen">
-      <div className="w-full mt-2">
+    <div className="flex flex-col min-h-screen ">
+      <div className="w-full mt-2 mb-8">
         <ProductBanner />
       </div>
       <div className="w-full mx-auto mt-2">
@@ -71,7 +71,7 @@ const ProductPage = () => {
             {/* Sử dụng Grid, thay đổi số cột khi màn hình nhỏ */}
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 p-4 justify-items-center items-center">
               {/* Hiển thị 4 sản phẩm đầu tiên */}
-              {category.products.slice(0, 4).map((product) => (
+              {/* {category.products.slice(0, 4).map((product) => (
                 <ProductCard
                   key={product.id}
                   id={product.id}
@@ -81,7 +81,7 @@ const ProductPage = () => {
                   images={product.imageUrl}
                   address={product.address}
                 />
-              ))}
+              ))} */}
             </div>
           </div>
         ))}
