@@ -4,6 +4,7 @@ import { useState } from "react";
 import Image from "next/image";
 import "../../../../../../styles/globals.css";
 import FileUpload from "@/component/FileUploadProps";
+import { houseApiPath } from "@/utils/apiPath";
 
 interface ScheduleViewingFormData {
   name: string;
@@ -83,7 +84,7 @@ export default function ScheduleViewingPage({
       contactQrCode: imageIds,
     };
 
-    const response = await fetch("http://localhost:8080/api/v1/bookings", {
+    const response = await fetch(houseApiPath.bookingHouse, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
