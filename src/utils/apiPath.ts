@@ -13,6 +13,7 @@ export const productApiPath = {
   getProductForRent: `${BASE_URL}/api/v1/products/status/for_rent`,
   getProductByCategoryName: `${BASE_URL}/api/v1/products/category`,
   updateProduct: `${BASE_URL}/api/v1/products`,
+  deleteProduct: `${BASE_URL}/api/v1/products`,
 };
 
 export const houseApiPath = {

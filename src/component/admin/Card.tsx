@@ -1,5 +1,5 @@
 import { IMG_URL } from "@/service/api";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Lightbox from "yet-another-react-lightbox";
 import "yet-another-react-lightbox/styles.css";
 import "../../styles/globals.css";
@@ -11,6 +11,7 @@ import "react-toastify/dist/ReactToastify.css";
 import Button from "../Button";
 import Image from "next/image";
 import { Product } from "../../service/interfaces/Product";
+import { productApiPath } from "@/utils/apiPath";
 
 // interface Image {
 //   id: number;
@@ -45,6 +46,7 @@ const Card: React.FC<CardProps> = ({ product }) => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [photoIndex, setPhotoIndex] = useState<number>(0);
   const router = useRouter();
+  const [productAddress, setProductAddress] = useState<string>("");
 
   const slides = product.image
     ? product.image.map((img) => ({
@@ -60,12 +62,12 @@ const Card: React.FC<CardProps> = ({ product }) => {
   const handleShowContractClick = () => {
     // Xử lý logic cho nút Contract
     console.log("Contract clicked for product ID:", product.id);
-    };
-    
-    const handleSignContractClick = () => {
-      // Xử lý logic cho nút Contract
-      router.push(`/pages/contract`)
-    };
+  };
+
+  const handleSignContractClick = () => {
+    // Xử lý logic cho nút Contract
+    router.push(`/pages/contract`);
+  };
 
   const truncateText = (text: string, length: number) => {
     if (text.length > length) {
@@ -86,10 +88,55 @@ const Card: React.FC<CardProps> = ({ product }) => {
     ? product.image.length - maxImagesToShow
     : 0;
 
-  
   const handleEditProduct = (id: string) => {
-    router.push(`/admin/edit-product/${id}`)
-  }
+    router.push(`/admin/edit-product/${id}`);
+  };
+
+  const handleDeleteProduct = async (id: string) => {
+    try {
+      const response = await fetch(`${productApiPath.deleteProduct}/${id}`, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+          // Nếu cần thêm token cho xác thực:
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.message || "Failed to delete the product.");
+      }
+
+      // Xóa thành công
+      toast.success("Product deleted successfully!", {
+        position: "top-center",
+        autoClose: 2000,
+      });
+
+      
+      // Bạn có thể thêm logic cập nhật giao diện, ví dụ:
+      // fetchProducts(); // Gọi lại hàm để tải danh sách sản phẩm mới
+    } catch (error) {
+      if (error instanceof Error) {
+        toast.error("Error deleting product: " + error.message, {
+          position: "top-center",
+          autoClose: 2000,
+        });
+      } else {
+        toast.error("An unexpected error occurred.", {
+          position: "top-center",
+          autoClose: 2000,
+        });
+      }
+    }
+  };
+
+
+  useEffect(() => {
+    setProductAddress(`${product.city},${product.area}`);
+  }, [product.city, product.area]);
+
   return (
     <div className="border rounded-lg p-4 shadow-md">
       <ToastContainer />
@@ -97,11 +144,11 @@ const Card: React.FC<CardProps> = ({ product }) => {
       <h2 className="text-xl font-bold mb-2">
         {truncateText(product.name, 10)}
       </h2>
-      <CopyToClipboard text={product.address} onCopy={notify}>
+      <CopyToClipboard text={productAddress} onCopy={notify}>
         <p
           className="text-sm text-gray-600 mb-2 cursor-pointer"
           title="Click to copy">
-          Address: {truncateText(product.address, 10)}
+          Address: {truncateText(productAddress, 10)}
         </p>
       </CopyToClipboard>
       <p className="text-sm text-gray-600 mb-2">
@@ -113,7 +160,7 @@ const Card: React.FC<CardProps> = ({ product }) => {
         </p>
       </CopyToClipboard>
       <p className="text-sm text-gray-600 mb-2">
-        Status: {product.status?.name}
+        Status: {product.statusId?.name}
       </p>
       <p className="text-lg font-bold text-blue-500 mb-4">
         Price: ${product.price}/{product.numberOfTenantsByRoomRate}people
@@ -151,6 +198,10 @@ const Card: React.FC<CardProps> = ({ product }) => {
         <ViewHouseButton onClick={() => handleEditProduct(product.id)}>
           edit
         </ViewHouseButton>
+
+        <ViewHouseButton onClick={() => handleDeleteProduct(product.id)}>
+          delete
+        </ViewHouseButton>
         {/* {product.status?.name === "RENTED" && (
           <button
             className="bg-gray-800 text-white p-2 rounded-md mt-2"
@@ -177,6 +228,5 @@ const Card: React.FC<CardProps> = ({ product }) => {
     </div>
   );
 };
-
 
 export default Card;

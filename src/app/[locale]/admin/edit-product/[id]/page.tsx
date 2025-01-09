@@ -19,6 +19,7 @@ import "../../../../../styles/globals.css";
 import Image from "next/image";
 import { IMG_URL } from "@/service/api";
 import { fetchData } from "../../../../../service/api";
+import CityCountyData from "@/data/CityCountyData.json";
 
 const EditProduct: React.FC<EditContractProps> = ({ params }) => {
   const [product, setProduct] = useState<Product | null>(null);
@@ -29,6 +30,9 @@ const EditProduct: React.FC<EditContractProps> = ({ params }) => {
   const userId = localStorage.getItem("userId");
   const token = localStorage.getItem("token");
   const fileInputRef = useRef<HTMLInputElement | null>(null);
+   const [selectedCity, setSelectedCity] = useState<string>("")
+      const [selectedArea, setSelectedArea] = useState<string>("");
+
 
   useEffect(() => {
     // Fetch product data
@@ -38,10 +42,15 @@ const EditProduct: React.FC<EditContractProps> = ({ params }) => {
           `${productApiPath.getProductById}/${params.id}`
         );
         setProduct(response.data);
+        setSelectedCity(response.data.city || "");
+        setSelectedArea(response.data.area || "");
       } catch (error) {
         console.error("Error fetching product data:", error);
       }
     };
+
+    
+    
 
     // Fetch categories and statuses
     const fetchCategoriesAndStatuses = async () => {
@@ -60,6 +69,8 @@ const EditProduct: React.FC<EditContractProps> = ({ params }) => {
     fetchProduct();
     fetchCategoriesAndStatuses();
   }, [params.id]);
+
+  
 
   const handleChange = (
     e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
@@ -85,14 +96,15 @@ const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         "product",
         JSON.stringify({
           name: product.name,
-          category: Number(product.category), // Đảm bảo là số
-          statusId: Number(product.status?.id), // Đảm bảo là số
+          category: Number(product.category.id), // Đảm bảo là số
+          statusId: Number(product.status.id), // Đảm bảo là số
           description: product.description,
           price: Number(product.price),
           electricityFee: product.electricityFee,
           waterFee: Number(product.waterFee),
           gasFee: product.gasFee,
-          address: product.address,
+          city: product.city,
+          area: product.area,
           numberOfTenantsByRoomRate: Number(product.numberOfTenantsByRoomRate),
         })
       );
@@ -109,7 +121,6 @@ const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         console.log(`${key}:`, value);
       });
 
-      console.log(params.id);
       
       try {
         await axios.put(
@@ -128,6 +139,28 @@ const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
       }
     }
   };
+
+
+  const handleCityChange = (e: ChangeEvent<HTMLSelectElement>) => {
+    const selectedCity = e.target.value;
+    setSelectedCity(selectedCity);
+
+    setProduct((prevProduct) =>
+      prevProduct
+        ? { ...prevProduct, city: selectedCity, area: "" } // Reset Area khi City thay đổi
+        : null
+    );
+  };
+
+  const handleAreaChange = (e: ChangeEvent<HTMLSelectElement>) => {
+    const selectedArea = e.target.value;
+    setSelectedArea(selectedArea);
+
+    setProduct((prevProduct) =>
+      prevProduct ? { ...prevProduct, area: selectedArea } : null
+    );
+  };
+
 
   if (!product) return <div>Loading...</div>;
 
@@ -165,7 +198,7 @@ const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
           <label className="block text-gray-700">Status</label>
           <select
             name="statusId"
-            value={product.status?.id || ""}
+            value={product.statusId?.id}
             onChange={handleChange}
             className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500">
             {statuses.map((status) => (
@@ -197,13 +230,10 @@ const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         <div className="mb-4">
           <label className="block text-gray-700">Electricity Fee</label>
           <select
+            name="electricityFee"
             value={product.electricityFee}
             onChange={handleChange}
-            className="w-full p-2 border rounded"
-            required>
-            <option value="" disabled>
-              Select Electricity Fee
-            </option>
+            className="w-full p-2 border rounded">
             <option value="In summer, 6 NTD/unit; in other seasons, 5 NTD/unit.">
               In summer, 6 NTD/unit; in other seasons, 5 NTD/unit.
             </option>
@@ -232,16 +262,40 @@ const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
             className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
           />
         </div>
+
         <div className="mb-4">
-          <label className="block text-gray-700">Address</label>
-          <input
-            type="text"
-            name="address"
-            value={product.address}
-            onChange={handleChange}
-            className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
-          />
+          <label className="block text-gray-700">City</label>
+          <select
+            value={selectedCity || ""}
+            onChange={handleCityChange}
+            className="px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+            <option value={selectedCity}>{selectedCity}</option>
+            {CityCountyData.map((city) => (
+              <option key={city.CityEngName} value={city.CityEngName}>
+                {city.CityEngName}
+              </option>
+            ))}
+          </select>
         </div>
+
+        <div className="mb-4">
+          <label className="block text-gray-700">Area</label>
+          <select
+            value={selectedArea || ""}
+            onChange={handleAreaChange}
+            className="px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+            <option value={selectedArea}>{selectedArea}</option>
+            {selectedCity &&
+              CityCountyData.find(
+                (city) => city.CityEngName === selectedCity
+              )?.AreaList.map((area) => (
+                <option key={area.AreaEngName} value={area.AreaEngName}>
+                  {area.AreaEngName}
+                </option>
+              ))}
+          </select>
+        </div>
+
         <div className="mb-4">
           <label className="block text-gray-700">
             Number of Tenants by Room Rate

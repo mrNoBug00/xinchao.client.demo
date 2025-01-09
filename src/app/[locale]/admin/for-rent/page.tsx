@@ -71,8 +71,8 @@ const Products: React.FC = () => {
     .filter(
       (product) =>
         product.name.toLowerCase().includes(search.toLowerCase()) ||
-        product.category.name.toLowerCase().includes(search.toLowerCase()) ||
-        product.address.toLowerCase().includes(search.toLowerCase())
+        product.category.name.toLowerCase().includes(search.toLowerCase())
+        // || product.address.toLowerCase().includes(search.toLowerCase())
     );
 
   const findAround = () => {
@@ -89,14 +89,14 @@ const Products: React.FC = () => {
 
   return (
     <div className="p-4 max-w-7xl mx-auto">
-      <div className="mb-4 flex space-x-2">
-        <input
+      <div className="mb-4 flex space-x-2 justify-end">
+        {/* <input
           type="text"
           className="w-full p-2 border border-gray-300 rounded-md"
           placeholder="Search by name or type or address..."
           value={search}
           onChange={(e) => setSearch(e.target.value)}
-        />
+        /> */}
 
         <button onClick={addNewProduct}>
           <AddProductButton />
@@ -114,7 +114,7 @@ const Products: React.FC = () => {
               <motion.div
                 key={product.id}
                 className="product-card"
-                whileHover={{ scale: 1.1, zIndex: 1 }}
+                whileHover={{ scale: 0.9, zIndex: 1 }}
                 whileTap={{ scale: 0.9 }}
                 animate={controls}
                 initial="hidden"

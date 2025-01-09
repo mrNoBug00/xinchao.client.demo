@@ -17,14 +17,15 @@ export interface Product {
   name: string;
   category: Type;
   description: string;
-  status?: Status;
+  statusId: Status;
   companyInfo?: CompanyInfo;
   price: number;
   electricityFee?: string;
   waterFee?: string;
   gasFee?: string;
   numberOfTenantsByRoomRate?: string;
-  address: string;
+  city?: string;
+  area?: string;
   image: Image[];
   author: string | null;
 }

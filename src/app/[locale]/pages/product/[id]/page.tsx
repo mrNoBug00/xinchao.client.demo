@@ -23,6 +23,7 @@ import VNBankCard from "@/component/VNBankCard";
 const ProductDetail: React.FC<ProductDetailProps> = ({ params }) => {
   const [loading, setLoading] = useState<boolean>(true);
   const [data, setData] = useState<Product | null>(null);
+  const [address, setAddress] = useState<string>("")
   const t = useTranslations("ProductDetail");
   const router = useRouter();
   const fetchProductData = useCallback(async () => {
@@ -41,6 +42,7 @@ const ProductDetail: React.FC<ProductDetailProps> = ({ params }) => {
   useEffect(() => {
     document.title = "Product Detail | xinchao";
     fetchProductData();
+    setAddress(`${data?.city}, ${data?.area}`);
   }, [params.id, fetchProductData]);
 
   if (loading)
@@ -83,7 +85,7 @@ const ProductDetail: React.FC<ProductDetailProps> = ({ params }) => {
           </p>
           <p className={styles["text-body"]}>{t("Water Fee")}: {data?.waterFee}</p>
           <p className={styles["text-body"]}>{t("Gas Fee")}: {data?.gasFee}</p>
-          <p className={styles["text-body"]}>{t("Address")}: {data?.address}</p>
+          <p className={styles["text-body"]}>{t("Address")}: {address}</p>
           <p className={styles["text-body"]}>
             {t(data?.category.name)} {t("price for")} {data?.numberOfTenantsByRoomRate}{" "}
             {t("people")}

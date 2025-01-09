@@ -10,6 +10,7 @@ import "../../../../styles/globals.css";
 import Image from "next/image";
 import { categoryApiPath, companyInfo, statusApiPath } from "@/utils/apiPath";
 import axios from "axios";
+import CityCountyData from "@/data/CityCountyData.json";
 import {
   Product,
   FormImage,
@@ -33,11 +34,16 @@ const AddNewProduct: React.FC = () => {
   const [productDescription, setProductDescription] = useState<string>("");
   const [productPrice, setProductPrice] = useState<string>("");
   const [productAddress, setProductAddress] = useState<string>("");
+  const [city, setCity] = useState<string>("")
+  const [area, setArea] = useState<string>("");
   const [images, setImages] = useState<File[]>([]);
   const [productElectricityFee, setProductElectricityFee] =
     useState<string>("");
   const [productWaterFee, setProductWaterFee] = useState<string>("");
   const [productGasFee, setProductGasFee] = useState<string>("");
+   const [selectedCity, setSelectedCity] = useState<string>("")
+    const [selectedArea, setSelectedArea] = useState<string>("");
+    
   const [numberOfTenantsByRoomRate, setNumberOfTenantsByRoomRate] =
     useState<string>("");
 
@@ -134,7 +140,8 @@ const AddNewProduct: React.FC = () => {
         electricityFee: productElectricityFee,
         waterFee: Number(productWaterFee),
         gasFee: productGasFee,
-        address: productAddress,
+        city: selectedCity,
+        area: selectedArea
       })
     );
     formData.append("userId", id ?? "");
@@ -188,6 +195,11 @@ const AddNewProduct: React.FC = () => {
       }
     }
   };
+
+  useEffect(() => {
+    setProductAddress(`${selectedCity},${selectedArea}`);
+  }, [selectedCity, selectedArea]);
+
 
   return (
     <div className="p-8 h-full mx-auto border border-gray-300 rounded-lg shadow-md">
@@ -326,14 +338,36 @@ const AddNewProduct: React.FC = () => {
 
         <div className="mb-4">
           <label className="block text-gray-700">Address</label>
-          <input
-            type="text"
-            placeholder="Product Address"
-            value={productAddress}
-            onChange={(e) => setProductAddress(e.target.value)}
-            className="w-full p-2 border rounded"
-            required
-          />
+          <select
+            value={selectedCity}
+            onChange={(e) => {
+              setSelectedCity(e.target.value);
+              setSelectedArea(""); // Reset Area khi chọn City mới
+            }}
+            className="px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+            <option value="">City</option>
+            {CityCountyData.map((city) => (
+              <option key={city.CityEngName} value={city.CityEngName}>
+                {city.CityEngName}
+              </option>
+            ))}
+          </select>
+
+          {/* Dropdown chọn Area */}
+          <select
+            value={selectedArea}
+            onChange={(e) => setSelectedArea(e.target.value)}
+            className="px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 ml-2">
+            <option value="">Area</option>
+            {selectedCity &&
+              CityCountyData.find(
+                (city) => city.CityEngName === selectedCity
+              )?.AreaList.map((area) => (
+                <option key={area.AreaEngName} value={area.AreaEngName}>
+                  {area.AreaEngName}
+                </option>
+              ))}
+          </select>
         </div>
 
         <div className="mb-4">

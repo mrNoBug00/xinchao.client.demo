@@ -6,7 +6,8 @@ import { productApiPath } from "@/utils/apiPath";
 import Card from "@/component/Card";
 import { motion, useAnimation } from "framer-motion";
 import Skeleton from "@/component/Skeleton";
-import  GoToMapButton  from "@/component/GoToMapButton";
+import GoToMapButton from "@/component/GoToMapButton";
+import CityCountyData from "@/data/CityCountyData.json";
 
 const CategoryPage: React.FC = () => {
   const params = useParams(); 
@@ -16,6 +17,8 @@ const CategoryPage: React.FC = () => {
   const [search, setSearch] = useState<string>("");
   const router = useRouter();
   const controls = useAnimation();
+  const [selectedCity, setSelectedCity] = useState<string>("")
+  const [selectedArea, setSelectedArea] = useState<string>("");
   
 
   useEffect(() => {
@@ -41,8 +44,8 @@ const CategoryPage: React.FC = () => {
 
   const filteredData = products.filter(
     (product) =>
-      product.name.toLowerCase().includes(search.toLowerCase()) ||
-      product.address.toLowerCase().includes(search.toLowerCase())
+      (!selectedCity || product.address.includes(selectedCity)) &&
+      (!selectedArea || product.address.includes(selectedArea))
   );
 
   useEffect(() => {
@@ -72,13 +75,37 @@ const CategoryPage: React.FC = () => {
     <div className="grid m-4">
       {/* Thanh tìm kiếm nằm trên cùng */}
       <div className="mb-4 flex space-x-2 justify-center">
-        <input
-          type="text"
-          className="w-full sm:w-96 p-2 border border-gray-300 rounded-md"
-          placeholder="Search by name or type or address..."
-          value={search}
-          onChange={(e) => setSearch(e.target.value)}
-        />
+        <select
+          value={selectedCity}
+          onChange={(e) => {
+            setSelectedCity(e.target.value);
+            setSelectedArea(""); // Reset Area khi chọn City mới
+          }}
+          className="px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+          <option value="">All Cities</option>
+          {CityCountyData.map((city) => (
+            <option key={city.CityEngName} value={city.CityEngName}>
+              {city.CityEngName}
+            </option>
+          ))}
+        </select>
+
+        {/* Dropdown chọn Area */}
+        <select
+          value={selectedArea}
+          onChange={(e) => setSelectedArea(e.target.value)}
+          className="px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+          <option value="">All Areas</option>
+          {selectedCity &&
+            CityCountyData.find(
+              (city) => city.CityEngName === selectedCity
+            )?.AreaList.map((area) => (
+              <option key={area.AreaEngName} value={area.AreaEngName}>
+                {area.AreaEngName}
+              </option>
+            ))}
+        </select>
+
         <button onClick={findAround}>
           <GoToMapButton />
         </button>

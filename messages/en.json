@@ -255,6 +255,7 @@
     "house": "House",
     "room": "Room",
     "recond-hand": "Second-hand",
-    "see more": "See more"
+    "see more": "See more",
+    "NoProductsAvailable": "No Products Available"
   }
 }
