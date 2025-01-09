@@ -61,7 +61,7 @@ export default function ScheduleViewingPage({
       data.append("files", image); // Add each file
     });
 
-    const response = await fetch(houseApiPath.bookingHouse, {
+    const response = await fetch(houseApiPath.uploadContactQrCode, {
       method: "POST",
       body: data,
     });
@@ -76,7 +76,7 @@ export default function ScheduleViewingPage({
 
   const submitBooking = async (imageIds: string[]) => {
     const bookingData = {
-      userId: "yourUserId", // Thay bằng userId thực tế
+      //userId: "yourUserId", // Thay bằng userId thực tế
       roomId: params.id,
       bookerName: formData.name,
       bookerPhone: formData.phone,
