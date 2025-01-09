@@ -61,7 +61,7 @@ export default function ScheduleViewingPage({
       data.append("files", image); // Add each file
     });
 
-    const response = await fetch("http://localhost:8080/api/v1/images", {
+    const response = await fetch(houseApiPath.bookingHouse, {
       method: "POST",
       body: data,
     });
