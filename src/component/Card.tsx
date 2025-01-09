@@ -179,7 +179,7 @@ const Card: React.FC<CardProps> = ({ product }) => {
             {product.city}, {product.area}
           </p>
           <p>{product.description}</p>
-          <p>{product.statusId?.description}</p>
+          <p>{product.status?.description}</p>
           <p>{formatCurrency(product.price)}</p>
           <p>
             {product.category.name === "second hand"

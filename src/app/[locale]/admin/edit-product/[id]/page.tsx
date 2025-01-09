@@ -21,6 +21,8 @@ import { IMG_URL } from "@/service/api";
 import { fetchData } from "../../../../../service/api";
 import CityCountyData from "@/data/CityCountyData.json";
 
+
+
 const EditProduct: React.FC<EditContractProps> = ({ params }) => {
   const [product, setProduct] = useState<Product | null>(null);
   const [images, setImages] = useState<File[]>([]);
@@ -31,7 +33,7 @@ const EditProduct: React.FC<EditContractProps> = ({ params }) => {
   const token = localStorage.getItem("token");
   const fileInputRef = useRef<HTMLInputElement | null>(null);
    const [selectedCity, setSelectedCity] = useState<string>("")
-      const [selectedArea, setSelectedArea] = useState<string>("");
+  const [selectedArea, setSelectedArea] = useState<string>("");
 
 
   useEffect(() => {
@@ -61,6 +63,7 @@ const EditProduct: React.FC<EditContractProps> = ({ params }) => {
         ]);
         setCategories(categoriesResponse);
         setStatuses(statusesResponse);
+        
       } catch (error) {
         console.error("Error fetching categories and statuses:", error);
       }
@@ -81,6 +84,7 @@ const EditProduct: React.FC<EditContractProps> = ({ params }) => {
     );
   };
 
+
 const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const files = event.target.files;
     if (files) {
@@ -96,8 +100,8 @@ const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         "product",
         JSON.stringify({
           name: product.name,
-          category: Number(product.category.id), // Đảm bảo là số
-          statusId: Number(product.statusId.id), // Đảm bảo là số
+          category: Number(product.category), // Đảm bảo là số
+          statusId: Number(product.status), // Đảm bảo là số
           description: product.description,
           price: Number(product.price),
           electricityFee: product.electricityFee,
@@ -120,6 +124,8 @@ const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
       formData.forEach((value, key) => {
         console.log(`${key}:`, value);
       });
+
+      console.log(formData);
 
       
       try {
@@ -197,8 +203,8 @@ const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         <div className="mb-4">
           <label className="block text-gray-700">Status</label>
           <select
-            name="statusId"
-            value={product.statusId?.id}
+            name="status"
+            value={product.status?.id}
             onChange={handleChange}
             className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500">
             {statuses.map((status) => (

@@ -17,7 +17,7 @@ export interface Product {
   name: string;
   category: Type;
   description: string;
-  statusId: Status;
+  status: Status;
   companyInfo?: CompanyInfo;
   price: number;
   electricityFee?: string;

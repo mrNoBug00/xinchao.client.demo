@@ -67,7 +67,7 @@ const Products: React.FC = () => {
   }, [router]);
 
   const filteredData = data
-    .filter((product) => product.statusId?.id === 2)
+    .filter((product) => product.status?.id === 2)
     .filter(
       (product) =>
         product.name.toLowerCase().includes(search.toLowerCase()) ||

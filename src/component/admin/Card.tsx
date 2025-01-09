@@ -160,7 +160,7 @@ const Card: React.FC<CardProps> = ({ product }) => {
         </p>
       </CopyToClipboard>
       <p className="text-sm text-gray-600 mb-2">
-        Status: {product.statusId?.name}
+        Status: {product.status?.name}
       </p>
       <p className="text-lg font-bold text-blue-500 mb-4">
         Price: ${product.price}/{product.numberOfTenantsByRoomRate}people
