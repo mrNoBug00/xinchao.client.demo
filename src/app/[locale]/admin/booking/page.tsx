@@ -171,9 +171,10 @@ const BookingsPage: React.FC = () => {
     setIsModalRefuseOpen(!isModalRefuseOpen);
   };
 
-  const truncateText = (text: string, length: number) => {
-    return text.length > length ? text.slice(0, length) + "..." : text;
-  };
+ const truncateText = (text: string, length: number) => {
+   return text.length > length ? text.slice(0, length) + "..." : text;
+ };
+
 
   const handleCopy = () => {
     toast.success("Copied!", {
@@ -226,14 +227,15 @@ const BookingsPage: React.FC = () => {
                     {booking.roomName}
                   </td>
                   <CopyToClipboard
-                    text={booking.roomAddress}
+                    text={`${booking.city}, ${booking.area}`}
                     onCopy={handleCopy}>
                     <td
                       className="py-3 px-4 border-b text-center cursor-pointer"
-                      title={booking.roomAddress}>
-                      {truncateText(booking.roomAddress, 10)}
+                      title={`${booking.city}, ${booking.area}`}>
+                      {truncateText(`${booking.city}, ${booking.area}`, 10)}
                     </td>
                   </CopyToClipboard>
+
                   <td className="py-3 px-4 border-b text-center">
                     {booking.bookerName || ""}
                   </td>

@@ -8,7 +8,8 @@ export interface Booking {
   userId: string;
   roomId: string;
   roomName: string;
-  roomAddress: string;
+  city: string;
+  area: string;
   bookerName: string;
   bookerPhone: string;
   bookingTime: [number, number, number, number, number];
