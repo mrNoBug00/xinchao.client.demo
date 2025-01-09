@@ -97,7 +97,7 @@ const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         JSON.stringify({
           name: product.name,
           category: Number(product.category.id), // Đảm bảo là số
-          statusId: Number(product.status.id), // Đảm bảo là số
+          statusId: Number(product.statusId.id), // Đảm bảo là số
           description: product.description,
           price: Number(product.price),
           electricityFee: product.electricityFee,

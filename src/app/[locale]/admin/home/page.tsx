@@ -72,8 +72,8 @@ const Products: React.FC = () => {
   const filteredData = data.filter(
     (product) =>
       product.name.toLowerCase().includes(search.toLowerCase()) ||
-      product.category.name.toLowerCase().includes(search.toLowerCase()) ||
-      product.address.toLowerCase().includes(search.toLowerCase())
+      product.category.name.toLowerCase().includes(search.toLowerCase())
+      // || product.address.toLowerCase().includes(search.toLowerCase())
   );
 
   const findAround = () => {

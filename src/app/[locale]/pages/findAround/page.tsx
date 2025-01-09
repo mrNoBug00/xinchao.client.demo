@@ -69,18 +69,31 @@ const MapComponent: React.FC = () => {
             console.error("Error fetching products:", error);
             return []; // Trả về mảng rỗng nếu có lỗi
           });
+
         const coords = await Promise.all(
           data.map(async (product) => {
-            const { address, id } = product;
+            const { city, area, id } = product;
+
+            if (!city || !area) {
+              console.warn(`Product ${id} is missing city or area`);
+              return null;
+            }
+
             try {
-              const coord = await geocodeAddress(address);
+              const coord = await geocodeAddress(`${city}, ${area}`);
               return { ...coord, id };
             } catch (error) {
-              console.error(`Failed to geocode address ${address}:`, error);
+              console.error(
+                `Failed to geocode address for city: ${city}, area: ${area}`,
+                error
+              );
               return null;
             }
           })
         );
+
+
+
         const validCoords = coords.filter(
           (coord) => coord !== null
         ) as (Coordinates & { id: string })[];
