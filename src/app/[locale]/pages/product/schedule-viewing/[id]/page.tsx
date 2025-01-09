@@ -5,6 +5,8 @@ import Image from "next/image";
 import "../../../../../../styles/globals.css";
 import FileUpload from "@/component/FileUploadProps";
 import { houseApiPath } from "@/utils/apiPath";
+import { useRouter } from "next/navigation";
+
 
 interface ScheduleViewingFormData {
   name: string;
@@ -28,6 +30,7 @@ export default function ScheduleViewingPage({
   });
   const [errors, setErrors] = useState<Partial<ScheduleViewingFormData>>({});
   const [previewImages, setPreviewImages] = useState<string[]>([]);
+  const router = useRouter();
 
   const validateForm = () => {
     const newErrors: Partial<ScheduleViewingFormData> = {};
@@ -109,6 +112,7 @@ export default function ScheduleViewingPage({
       console.log("Booking created successfully:", bookingResponse);
       setFormData({ name: "", phone: "", date: "", time: "", images: [] });
       setPreviewImages([]);
+      router.push("/pages/product")
     } catch (error) {
       console.error("Error submitting form:", error);
     }
