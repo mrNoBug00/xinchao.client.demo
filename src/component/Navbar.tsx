@@ -42,7 +42,8 @@ const Navbar = () => {
 
   const handleChangeLanguage = (lang: string) => {
     if (locale !== lang) {
-      router.push(`/${lang}`);
+      // router.push(`/${lang}`);
+       router.push(`/${lang}${pathname.replace(/^\/[a-z]{2}/, "")}`);
     }
     setIsDropdownOpen(false);
   };
